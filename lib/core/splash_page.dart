@@ -9,7 +9,8 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
@@ -18,12 +19,14 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1500));
-    
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
-    
+
     _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
     );
@@ -40,7 +43,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Dark splash
+      backgroundColor: AppColors.background,
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -49,44 +52,45 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Logo o'rniga hozircha Icon (User o'z logo'sini qo'shishi mumkin)
+                // Logo
                 Container(
-                  width: 120,
-                  height: 120,
+                  width: 100,
+                  height: 100,
                   decoration: BoxDecoration(
-                    color: AppColors.primaryGreen.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.gold, width: 2),
+                    gradient: AppColors.cardGradient,
+                    border: Border.all(color: AppColors.softGold, width: 2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.softGold.withOpacity( 0.2),
+                        blurRadius: 30,
+                        spreadRadius: 5,
+                      ),
+                    ],
                   ),
                   child: const Icon(
-                    Icons.mosque,
-                    size: 60,
-                    color: AppColors.gold,
+                    Icons.mosque_rounded,
+                    size: 48,
+                    color: AppColors.softGold,
                   ),
                 ),
                 const SizedBox(height: 24),
                 Text(
                   'Muslim Pro',
-                  style: GoogleFonts.inter(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white,
-                    letterSpacing: 1.5,
+                  style: GoogleFonts.poppins(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textPrimary,
+                    letterSpacing: 1,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Antigravity jamoasi tomonidan',
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    color: Colors.white.withValues(alpha: 0.5),
-                    fontWeight: FontWeight.w400,
+                  'Antigravity jamoasi',
+                  style: GoogleFonts.poppins(
+                    fontSize: 13,
+                    color: AppColors.textMuted,
                   ),
-                ),
-                const SizedBox(height: 48),
-                const CircularProgressIndicator(
-                  color: AppColors.primaryGreen,
-                  strokeWidth: 2,
                 ),
               ],
             ),

@@ -1,178 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// Muslim Pro ilovasi uchun asosiy ranglar va tema sozlamalari
 class AppColors {
-  // Asosiy ranglar
-  static const Color primaryGreen = Color(0xFF2E7D32);
-  static const Color primaryGreenLight = Color(0xFF4CAF50);
-  static const Color primaryGreenDark = Color(0xFF1B5E20);
+  // Asosiy ranglar — Deep Emerald
+  static const Color deepEmerald = Color(0xFF022C22);
+  static const Color emeraldDark = Color(0xFF011A14);
+  static const Color emeraldMid = Color(0xFF064E3B);
+  static const Color emeraldLight = Color(0xFF0D7A5F);
 
-  // Oltin ranglar
-  static const Color gold = Color(0xFFFFD700);
-  static const Color goldLight = Color(0xFFFFE44D);
-  static const Color goldDark = Color(0xFFC7A600);
+  // Oltin — Soft Gold
+  static const Color softGold = Color(0xFFD4AF37);
+  static const Color goldLight = Color(0xFFE8C95A);
+  static const Color goldDark = Color(0xFFB8941E);
 
-  // Qo'shimcha ranglar
-  static const Color background = Color(0xFFF5F5F0);
-  static const Color backgroundDark = Color(0xFF121212);
-  static const Color surface = Color(0xFFFFFFFF);
-  static const Color surfaceDark = Color(0xFF1E1E1E);
-  static const Color cardDark = Color(0xFF2C2C2C);
+  // Fon ranglari
+  static const Color background = Color(0xFF010F0B);
+  static const Color surface = Color(0xFF081C16);
+  static const Color cardBg = Color(0xFF0A2A1F);
+  static const Color cardBgLight = Color(0xFF103D2E);
 
   // Matn ranglari
-  static const Color textPrimary = Color(0xFF212121);
-  static const Color textSecondary = Color(0xFF757575);
-  static const Color textOnPrimary = Color(0xFFFFFFFF);
-  static const Color textPrimaryDark = Color(0xFFE0E0E0);
-  static const Color textSecondaryDark = Color(0xFF9E9E9E);
+  static const Color textPrimary = Color(0xFFF5F5F0);
+  static const Color textSecondary = Color(0xFF9CA3AF);
+  static const Color textMuted = Color(0xFF6B7280);
 
-  // Gradient ranglar
+  // Gradientlar
   static const LinearGradient primaryGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [primaryGreen, primaryGreenLight],
+    colors: [emeraldMid, deepEmerald],
   );
 
   static const LinearGradient goldGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [gold, goldLight],
+    colors: [softGold, goldLight],
   );
 
-  static const LinearGradient darkGradient = LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-    colors: [Color(0xFF1B5E20), Color(0xFF0D2B10)],
+  static const LinearGradient cardGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF0F3D2E), Color(0xFF072A1E)],
+  );
+
+  static const LinearGradient prayerCardGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF0D4A36), Color(0xFF022C22)],
   );
 }
 
 class AppTheme {
-  /// Yorug' (Light) tema
-  static ThemeData get lightTheme {
-    return ThemeData(
-      useMaterial3: true,
-      brightness: Brightness.light,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primaryGreen,
-        primary: AppColors.primaryGreen,
-        secondary: AppColors.gold,
-        surface: AppColors.surface,
-        brightness: Brightness.light,
-      ),
-      scaffoldBackgroundColor: AppColors.background,
-      textTheme: GoogleFonts.interTextTheme().apply(
-        bodyColor: AppColors.textPrimary,
-        displayColor: AppColors.textPrimary,
-      ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.primaryGreen,
-        foregroundColor: AppColors.textOnPrimary,
-        elevation: 0,
-        centerTitle: true,
-        titleTextStyle: GoogleFonts.inter(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-          color: AppColors.textOnPrimary,
-        ),
-      ),
-      cardTheme: CardThemeData(
-        color: AppColors.surface,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryGreen,
-          foregroundColor: AppColors.textOnPrimary,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          textStyle: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: AppColors.surface,
-        selectedItemColor: AppColors.primaryGreen,
-        unselectedItemColor: AppColors.textSecondary,
-        type: BottomNavigationBarType.fixed,
-        elevation: 8,
-      ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: AppColors.gold,
-        foregroundColor: AppColors.textPrimary,
-      ),
-    );
-  }
-
-  /// Qorong'u (Dark) tema
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primaryGreen,
-        primary: AppColors.primaryGreenLight,
-        secondary: AppColors.gold,
-        surface: AppColors.surfaceDark,
-        brightness: Brightness.dark,
+      scaffoldBackgroundColor: AppColors.background,
+      colorScheme: const ColorScheme.dark(
+        primary: AppColors.emeraldMid,
+        secondary: AppColors.softGold,
+        surface: AppColors.surface,
       ),
-      scaffoldBackgroundColor: AppColors.backgroundDark,
-      textTheme: GoogleFonts.interTextTheme(
+      textTheme: GoogleFonts.poppinsTextTheme(
         ThemeData.dark().textTheme,
       ).apply(
-        bodyColor: AppColors.textPrimaryDark,
-        displayColor: AppColors.textPrimaryDark,
+        bodyColor: AppColors.textPrimary,
+        displayColor: AppColors.textPrimary,
       ),
       appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.surfaceDark,
-        foregroundColor: AppColors.textPrimaryDark,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: GoogleFonts.inter(
+        titleTextStyle: GoogleFonts.poppins(
           fontSize: 20,
           fontWeight: FontWeight.w600,
-          color: AppColors.textPrimaryDark,
+          color: AppColors.textPrimary,
         ),
+        iconTheme: const IconThemeData(color: AppColors.softGold),
       ),
       cardTheme: CardThemeData(
-        color: AppColors.cardDark,
-        elevation: 2,
+        color: AppColors.cardBg,
+        elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
         ),
       ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryGreenLight,
-          foregroundColor: AppColors.textOnPrimary,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          textStyle: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: AppColors.surfaceDark,
-        selectedItemColor: AppColors.primaryGreenLight,
-        unselectedItemColor: AppColors.textSecondaryDark,
-        type: BottomNavigationBarType.fixed,
-        elevation: 8,
-      ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: AppColors.gold,
-        foregroundColor: AppColors.textPrimary,
-      ),
+      iconTheme: const IconThemeData(color: AppColors.softGold),
     );
   }
 }

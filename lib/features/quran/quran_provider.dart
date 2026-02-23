@@ -188,3 +188,8 @@ final surahDetailProvider =
     StateNotifierProvider<SurahDetailNotifier, SurahDetailState>((ref) {
   return SurahDetailNotifier();
 });
+
+/// Mushaf sahifasi (1-604) — tajvidli matn
+final mushafPageProvider = FutureProvider.family<List<AyahModel>, int>((ref, page) async {
+  return await QuranApiService.getPage(page);
+});

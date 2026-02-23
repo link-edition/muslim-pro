@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:muslim_pro/core/theme.dart';
-import 'package:translit/translit.dart';
-import 'package:muslim_pro/features/quran/quran_settings_provider.dart';
 import '../data/quran_model.dart';
 import '../quran_provider.dart';
-import 'surah_detail_screen.dart';
+import 'surah_reading_screen.dart';
 
-class QuranScreen extends ConsumerWidget {
-  const QuranScreen({super.key});
+/// Qur'on o'qish bo'limi — Suralar ro'yxati
+class QuranTextScreen extends ConsumerWidget {
+  const QuranTextScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +25,7 @@ class QuranScreen extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back_ios_new, size: 20, color: AppColors.textPrimary),
         ),
         title: Text(
-          'Qur\'oni Karim',
+          'Qur\'on o\'qish',
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
@@ -65,7 +65,7 @@ class QuranScreen extends ConsumerWidget {
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
                       final surah = listState.filteredSurahs[index];
-                      return _SurahCard(surah: surah);
+                      return _SurahTextCard(surah: surah);
                     },
                   ),
                 ),
@@ -75,9 +75,9 @@ class QuranScreen extends ConsumerWidget {
   }
 }
 
-class _SurahCard extends ConsumerWidget {
-  final SurahModel surah; 
-  const _SurahCard({required this.surah});
+class _SurahTextCard extends ConsumerWidget {
+  final SurahModel surah;
+  const _SurahTextCard({required this.surah});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -93,10 +93,11 @@ class _SurahCard extends ConsumerWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(18),
           onTap: () {
+            // Aynan Audio Qur'on bilan bir xil provider — ishlaydi!
             ref.read(surahDetailProvider.notifier).loadAyahs(surah);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SurahDetailScreen(surah: surah)),
+              CupertinoPageRoute(builder: (_) => SurahReadingScreen(surah: surah)),
             );
           },
           child: Padding(

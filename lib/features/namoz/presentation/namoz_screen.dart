@@ -81,7 +81,7 @@ class NamozScreen extends ConsumerWidget {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryGreen.withValues(alpha: 0.4),
+            color: AppColors.emeraldMid.withOpacity( 0.4),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -94,7 +94,7 @@ class NamozScreen extends ConsumerWidget {
             'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
             style: GoogleFonts.amiri(
               fontSize: 18,
-              color: AppColors.gold,
+              color: AppColors.softGold,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -105,7 +105,7 @@ class NamozScreen extends ConsumerWidget {
             nextPrayer != null ? 'Keyingi namoz' : '',
             style: GoogleFonts.inter(
               fontSize: 14,
-              color: Colors.white.withValues(alpha: 0.7),
+              color: Colors.white.withOpacity( 0.7),
               letterSpacing: 1.2,
             ),
           ),
@@ -127,7 +127,7 @@ class NamozScreen extends ConsumerWidget {
                   nextPrayer.nameArabic,
                   style: GoogleFonts.amiri(
                     fontSize: 20,
-                    color: AppColors.gold,
+                    color: AppColors.softGold,
                   ),
                 ),
               ] else
@@ -135,7 +135,7 @@ class NamozScreen extends ConsumerWidget {
                   nextPrayerName,
                   style: GoogleFonts.inter(
                     fontSize: 18,
-                    color: Colors.white.withValues(alpha: 0.8),
+                    color: Colors.white.withOpacity( 0.8),
                   ),
                 ),
             ],
@@ -147,7 +147,7 @@ class NamozScreen extends ConsumerWidget {
             const SizedBox(
               height: 48,
               child: CircularProgressIndicator(
-                color: AppColors.gold,
+                color: AppColors.softGold,
                 strokeWidth: 2,
               ),
             )
@@ -168,7 +168,7 @@ class NamozScreen extends ConsumerWidget {
               '${nextPrayer.formattedTime} da',
               style: GoogleFonts.inter(
                 fontSize: 16,
-                color: AppColors.goldLight,
+                color: AppColors.softGoldLight,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -201,7 +201,7 @@ class NamozScreen extends ConsumerWidget {
             style: GoogleFonts.inter(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity( 0.7),
             ),
           ),
         ],
@@ -254,7 +254,7 @@ class NamozScreen extends ConsumerWidget {
       child: Center(
         child: Column(
           children: [
-            CircularProgressIndicator(color: AppColors.primaryGreen),
+            CircularProgressIndicator(color: AppColors.emeraldMid),
             SizedBox(height: 16),
             Text(
               'Joylashuv aniqlanmoqda...',
@@ -350,16 +350,16 @@ class _PrayerTimeCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
         color: isNext
-            ? AppColors.primaryGreen.withValues(alpha: 0.1)
+            ? AppColors.emeraldMid.withOpacity( 0.1)
             : Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
         border: isNext
-            ? Border.all(color: AppColors.primaryGreen, width: 2)
-            : Border.all(color: Colors.grey.withValues(alpha: 0.15)),
+            ? Border.all(color: AppColors.emeraldMid, width: 2)
+            : Border.all(color: Colors.grey.withOpacity( 0.15)),
         boxShadow: isNext
             ? [
                 BoxShadow(
-                  color: AppColors.primaryGreen.withValues(alpha: 0.15),
+                  color: AppColors.emeraldMid.withOpacity( 0.15),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
@@ -373,10 +373,10 @@ class _PrayerTimeCard extends StatelessWidget {
           height: 44,
           decoration: BoxDecoration(
             color: isNext
-                ? AppColors.primaryGreen
+                ? AppColors.emeraldMid
                 : isPassed
                     ? Colors.grey.shade200
-                    : AppColors.primaryGreen.withValues(alpha: 0.1),
+                    : AppColors.emeraldMid.withOpacity( 0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Icon(
@@ -386,7 +386,7 @@ class _PrayerTimeCard extends StatelessWidget {
                 ? Colors.white
                 : isPassed
                     ? Colors.grey.shade400
-                    : AppColors.primaryGreen,
+                    : AppColors.emeraldMid,
           ),
         ),
         title: Row(
@@ -406,7 +406,7 @@ class _PrayerTimeCard extends StatelessWidget {
               prayer.nameArabic,
               style: GoogleFonts.amiri(
                 fontSize: 14,
-                color: isPassed ? Colors.grey.shade400 : AppColors.gold,
+                color: isPassed ? Colors.grey.shade400 : AppColors.softGold,
               ),
             ),
           ],
@@ -420,7 +420,7 @@ class _PrayerTimeCard extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: isNext ? FontWeight.w700 : FontWeight.w500,
                 color: isNext
-                    ? AppColors.primaryGreen
+                    ? AppColors.emeraldMid
                     : isPassed
                         ? Colors.grey
                         : Theme.of(context).colorScheme.onSurface,
@@ -432,7 +432,7 @@ class _PrayerTimeCard extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppColors.gold,
+                  color: AppColors.softGold,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -440,7 +440,7 @@ class _PrayerTimeCard extends StatelessWidget {
                   style: GoogleFonts.inter(
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.primaryGreenDark,
+                    color: AppColors.emeraldMidDark,
                   ),
                 ),
               ),

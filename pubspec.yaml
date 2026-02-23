@@ -26,9 +26,14 @@ dependencies:
 
   # Local storage
   shared_preferences: ^2.3.4
+  sqflite: ^2.4.1
+  path: ^1.9.0
 
   # Tasbeh uchun tebranish
   vibration: ^2.0.0
+
+  # Charts
+  fl_chart: ^0.70.2
 
   # API so'rovlar
   dio: ^5.7.0
@@ -51,6 +56,12 @@ dependencies:
 
   # Internet tekshirish (oflayn rejim)
   connectivity_plus: ^6.1.1
+  flutter_heatmap_calendar: any
+  flutter_localizations:
+    sdk: flutter
+  flutter_widget_from_html: ^0.16.1
+  share_plus: ^12.0.1
+  translit: ^2.0.2
 
 dev_dependencies:
   flutter_test:

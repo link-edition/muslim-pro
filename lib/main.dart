@@ -1,47 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'core/theme.dart';
-import 'core/constants.dart';
-import 'features/namoz/presentation/namoz_screen.dart';
-import 'features/tasbeh/presentation/tasbeh_screen.dart';
-import 'features/qibla/presentation/qibla_screen.dart';
-import 'features/quran/presentation/quran_screen.dart';
-
-import 'core/notification_service.dart';
 import 'core/splash_page.dart';
+import 'features/home/presentation/home_screen.dart';
+
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
+import 'package:muslim_pro/core/notification_service.dart';
+
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Bildirishnomalarni ishga tushirish
+  tz.initializeTimeZones();
   await NotificationService.init();
-  
-  runApp(
-    const ProviderScope(
-      child: MuslimProApp(),
-    ),
-  );
+  await initializeDateFormatting('uz', null);
+  Intl.defaultLocale = 'uz';
+  runApp(const ProviderScope(child: MuslimProApp()));
 }
 
-/// Asosiy ilova widgeti
+
 class MuslimProApp extends StatelessWidget {
   const MuslimProApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: AppConstants.appName,
+      title: 'Muslim Pro',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      home: const RootPage(), // RootPage bilan boshlaymiz
+      theme: AppTheme.darkTheme,
+      locale: const Locale('uz', 'UZ'),
+      supportedLocales: const [
+        Locale('uz', 'UZ'),
+        Locale('en', 'US'),
+      ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      home: const RootPage(),
     );
   }
 }
 
-/// Ilova ildiz sahifasi — Splash dan MainScreen ga o'tishni boshqaradi
+/// Splash -> Home o'tish
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
 
@@ -55,17 +62,9 @@ class _RootPageState extends State<RootPage> {
   @override
   void initState() {
     super.initState();
-    _initApp();
-  }
-
-  Future<void> _initApp() async {
-    // Kamida 2 soniya splashni ko'rsatamiz
-    await Future.delayed(const Duration(milliseconds: 2500));
-    if (mounted) {
-      setState(() {
-        _showSplash = false;
-      });
-    }
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted) setState(() => _showSplash = false);
+    });
   }
 
   @override
@@ -75,84 +74,7 @@ class _RootPageState extends State<RootPage> {
       transitionBuilder: (child, animation) {
         return FadeTransition(opacity: animation, child: child);
       },
-      child: _showSplash ? const SplashPage() : const MainScreen(),
-    );
-  }
-}
-
-/// Asosiy ekran — BottomNavigationBar bilan 4 ta sahifa
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
-
-  final List<Widget> _screens = const [
-    NamozScreen(),
-    TasbehScreen(),
-    QiblaScreen(),
-    QuranScreen(),
-  ];
-
-  final List<String> _titles = const [
-    'Namoz Vaqtlari',
-    'Tasbeh',
-    'Qibla',
-    'Qur\'on',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_titles[_currentIndex]),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings_outlined),
-            onPressed: () {
-              // Sozlamalar sahifasi — kelajakda
-            },
-          ),
-        ],
-      ),
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        child: _screens[_currentIndex],
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.access_time_outlined),
-            selectedIcon: Icon(Icons.access_time_filled),
-            label: 'Namoz',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.radio_button_checked_outlined),
-            selectedIcon: Icon(Icons.radio_button_checked),
-            label: 'Tasbeh',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.explore_outlined),
-            selectedIcon: Icon(Icons.explore),
-            label: 'Qibla',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            selectedIcon: Icon(Icons.menu_book),
-            label: 'Qur\'on',
-          ),
-        ],
-      ),
+      child: _showSplash ? const SplashPage() : const HomeScreen(),
     );
   }
 }
