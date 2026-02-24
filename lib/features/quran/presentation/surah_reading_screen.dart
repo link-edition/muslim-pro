@@ -4,8 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/services.dart';
+import 'package:just_audio/just_audio.dart';
 import '../data/quran_model.dart';
 import '../data/mushaf_download_service.dart';
+import '../quran_provider.dart';
 
 // ==========================================
 // MUSHAF — OFLAYN O'QISH
@@ -29,6 +33,8 @@ class _State extends ConsumerState<SurahReadingScreen> {
   late int _currentPage;
   late PageController _pc;
   String? _appDir;
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  int? _playingAyahId;
 
   @override
   void initState() {
@@ -68,6 +74,7 @@ class _State extends ConsumerState<SurahReadingScreen> {
   @override
   void dispose() {
     _pc.dispose();
+    _audioPlayer.dispose();
     super.dispose();
   }
 
@@ -112,13 +119,12 @@ class _State extends ConsumerState<SurahReadingScreen> {
                  onPageChanged: (i) => setState(() => _currentPage = i + 1),
                  itemBuilder: (_, i) {
                    final page = i + 1;
-                   final folder = _isTajweedMode ? 'tajweed_pages' : 'mushaf_pages';
-                   return _MushafLocalPage(
+                   return _MushafTextPage(
                      pageNum: page,
                      theme: _theme,
-                     baseDir: '$_appDir/$folder',
-                     // Tajvid rejimida rasmning o'z ranglari muhim, shuning uchun invert qilmaymiz
-                     disableInvert: _isTajweedMode,
+                     isTajweedMode: _isTajweedMode,
+                     audioPlayer: _audioPlayer,
+                     onCopy: _copyAyah,
                    );
                  },
                ),
@@ -305,88 +311,167 @@ class _State extends ConsumerState<SurahReadingScreen> {
       ]),
     );
   }
+
+  void _copyAyah(AyahModel ayah) {
+    Clipboard.setData(ClipboardData(text: ayah.text));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Oyat nusxalandi: ${ayah.verseKey}'),
+        backgroundColor: _gold,
+        duration: const Duration(seconds: 2),
+      )
+    );
+  }
 }
 
-class _MushafLocalPage extends ConsumerStatefulWidget {
+class _MushafTextPage extends ConsumerStatefulWidget {
   final int pageNum;
   final _BgTheme theme;
-  final String baseDir;
-  final bool disableInvert;
+  final bool isTajweedMode;
+  final AudioPlayer audioPlayer;
+  final Function(AyahModel) onCopy;
 
-  const _MushafLocalPage({
+  const _MushafTextPage({
     required this.pageNum,
     required this.theme,
-    required this.baseDir,
-    this.disableInvert = false,
+    required this.isTajweedMode,
+    required this.audioPlayer,
+    required this.onCopy,
   });
 
   @override
-  ConsumerState<_MushafLocalPage> createState() => _MushafLocalPageState();
+  ConsumerState<_MushafTextPage> createState() => _MushafTextPageState();
 }
 
-class _MushafLocalPageState extends ConsumerState<_MushafLocalPage> {
-  bool _isLoading = true;
-  bool _hasError = false;
+class _MushafTextPageState extends ConsumerState<_MushafTextPage> {
+  String? _playingKey;
 
-  @override
-  void initState() {
-    super.initState();
-    _checkOrDownload();
-  }
-
-  @override
-  void didUpdateWidget(covariant _MushafLocalPage oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.pageNum != widget.pageNum || oldWidget.baseDir != widget.baseDir) {
-      _checkOrDownload();
-    }
-  }
-
-  Future<void> _checkOrDownload() async {
-    setState(() { _isLoading = true; _hasError = false; });
-    final p = widget.pageNum.toString().padLeft(3, '0');
-    final file = File('${widget.baseDir}/page$p.png');
-    
-    if (!file.existsSync() || file.lengthSync() < 1000) {
-      // Prioritet yuklashni boshlash
-      final type = widget.baseDir.contains('tajweed') ? MushafType.tajweed : MushafType.standard;
-      try {
-        await ref.read(mushafDownloadProvider.notifier).priorityDownloadPage(type, widget.pageNum);
-      } catch (e) {
-        if (mounted) setState(() => _hasError = true);
+  void _showAudioMenu(BuildContext context, AyahModel ayah, Color bg, Color txtC, Color gold) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: bg,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      builder: (ctx) {
+        return Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Oyat ${ayah.verseKey}", style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold, color: txtC)),
+              const SizedBox(height: 16),
+              ListTile(
+                leading: Icon(Icons.play_circle_fill, color: gold, size: 36),
+                title: Text("Mishary Rashid Al-Afasy", style: TextStyle(color: txtC)),
+                subtitle: Text("Ushbu oyatni tinglash", style: TextStyle(color: txtC.withOpacity(0.6))),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _playAyah(ayah);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.copy, color: gold, size: 36),
+                title: Text("Nusxa olish", style: TextStyle(color: txtC)),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  widget.onCopy(ayah);
+                },
+              )
+            ],
+          ),
+        );
       }
+    );
+  }
+
+  Future<void> _playAyah(AyahModel ayah) async {
+    setState(() => _playingKey = ayah.verseKey);
+    final parts = ayah.verseKey.split(':');
+    final s = parts[0].padLeft(3, '0');
+    final a = parts[1].padLeft(3, '0');
+    final url = "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/$s$a.mp3";
+    try {
+      await widget.audioPlayer.setUrl(url);
+      await widget.audioPlayer.play();
+    } catch (e) {
+      debugPrint("Audio error: $e");
+    } finally {
+      if (mounted) setState(() => _playingKey = null);
     }
-    
-    if (mounted) {
-      setState(() => _isLoading = false);
-    }
+  }
+
+  String _arabicNumber(int num) {
+    const chars = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    return num.toString().split('').map((e) => chars[int.parse(e)]).join();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return Container(
-        color: widget.theme == _BgTheme.light ? const Color(0xFFFFFEF9) : (widget.theme == _BgTheme.sepia ? const Color(0xFFF3EEE1) : const Color(0xFF1C1C1C)),
-        child: Center(child: CircularProgressIndicator(color: _gold.withOpacity(0.5))),
-      );
-    }
-
-    final p = widget.pageNum.toString().padLeft(3, '0');
-    final file = File('${widget.baseDir}/page$p.png');
-    final isDark = widget.theme == _BgTheme.dark;
+    final ayahsAsync = ref.watch(mushafPageProvider(widget.pageNum));
+    
+    final bgc = widget.theme == _BgTheme.light ? const Color(0xFFFFFEF9) : (widget.theme == _BgTheme.sepia ? const Color(0xFFF3EEE1) : const Color(0xFF1C1C1C));
+    final txtC = widget.theme == _BgTheme.dark ? Colors.white : Colors.black87;
 
     return Container(
-      color: widget.theme == _BgTheme.light ? const Color(0xFFFFFEF9) : (widget.theme == _BgTheme.sepia ? const Color(0xFFF3EEE1) : const Color(0xFF1C1C1C)),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: Image.file(
-        file,
-        fit: BoxFit.contain,
-        // Tajvid rejimida ranglarni o'zgartirmaymiz, aks holda qoidalar ko'rinmay qoladi
-        color: (isDark && !widget.disableInvert) ? Colors.white : null,
-        colorBlendMode: (isDark && !widget.disableInvert) ? BlendMode.srcIn : null,
-        errorBuilder: (context, error, stackTrace) => Center(child: Icon(Icons.broken_image, color: Colors.grey)),
+      color: bgc,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+      child: ayahsAsync.when(
+        loading: () => Center(child: CircularProgressIndicator(color: _gold.withOpacity(0.5))),
+        error: (err, stack) => Center(child: Text('Xatolik: $err', style: TextStyle(color: Colors.red))),
+        data: (ayahs) {
+          if (ayahs.isEmpty) return const Center(child: Text("Ma'lumot topilmadi"));
+          
+          return SingleChildScrollView(
+            child: RichText(
+              textAlign: TextAlign.justify,
+              textDirection: TextDirection.rtl,
+              text: TextSpan(
+                children: ayahs.map((ayah) {
+                  final isPlaying = _playingKey == ayah.verseKey;
+                  final textToShow = widget.isTajweedMode && ayah.textTajweed != null 
+                      ? ayah.textTajweed!.replaceAll(RegExp(r'<[^>]*>'), "") // Tajweed HTML (agar bor bo'lsa) standart qilinadi, lekin rangli span logikasi qo'shsa bo'ladi.
+                      : ayah.text;
+
+                  // Oyat boshi yoki Bismillah
+                  String bismillah = '';
+                  if (ayah.numberInSurah == 1 && ayah.verseKey != '1:1' && ayah.verseKey != '9:1') {
+                    bismillah = "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ\n";
+                  }
+
+                  return TextSpan(
+                    children: [
+                      if (bismillah.isNotEmpty)
+                        TextSpan(
+                          text: bismillah,
+                          style: GoogleFonts.amiriQuran(fontSize: 26, color: widget.theme == _BgTheme.dark ? _gold : const Color(0xFFB8860B), height: 2.2),
+                        ),
+                      TextSpan(
+                        text: textToShow + ' ',
+                        style: GoogleFonts.amiriQuran(
+                          fontSize: 28, 
+                          color: isPlaying ? _gold : txtC, 
+                          height: 2.3,
+                        ),
+                        recognizer: TapGestureRecognizer()..onTap = () {
+                          _showAudioMenu(context, ayah, bgc, txtC, _gold);
+                        },
+                      ),
+                      TextSpan(
+                        text: ' ﴿${_arabicNumber(ayah.numberInSurah)}﴾ ',
+                        style: GoogleFonts.amiriQuran(fontSize: 24, color: _gold),
+                        recognizer: LongPressGestureRecognizer()..onLongPress = () {
+                          widget.onCopy(ayah);
+                        },
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 }
+
 
