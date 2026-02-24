@@ -93,8 +93,6 @@ class _SurahTextCard extends ConsumerWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(18),
           onTap: () {
-            // Aynan Audio Qur'on bilan bir xil provider — ishlaydi!
-            ref.read(surahDetailProvider.notifier).loadAyahs(surah);
             Navigator.push(
               context,
               CupertinoPageRoute(builder: (_) => SurahReadingScreen(surah: surah)),

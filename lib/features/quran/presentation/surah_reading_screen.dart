@@ -1,34 +1,20 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import '../quran_provider.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../data/quran_model.dart';
+import '../data/mushaf_download_service.dart';
 
 // ==========================================
-// FON RANGLAR
+// MUSHAF — OFLAYN O'QISH
 // ==========================================
+
 enum _BgTheme { light, sepia, dark }
 
 const _gold = Color(0xFFD4A843);
 
-Color _bg(_BgTheme t) => switch (t) { _BgTheme.light => const Color(0xFFFFFEF9), _BgTheme.sepia => const Color(0xFFF5ECD5), _BgTheme.dark => const Color(0xFF1A1A1A) };
-Color _txt(_BgTheme t) => switch (t) { _BgTheme.light => const Color(0xFF1A0D00), _BgTheme.sepia => const Color(0xFF2C1A00), _BgTheme.dark => const Color(0xFFE8D5B5) };
-Color _mut(_BgTheme t) => switch (t) { _BgTheme.light => const Color(0xFF8B7355), _BgTheme.sepia => const Color(0xFF8B6914), _BgTheme.dark => const Color(0xFF6B5B45) };
-Color _brd(_BgTheme t) => _gold.withOpacity(t == _BgTheme.dark ? 0.1 : 0.25);
-Color _bar(_BgTheme t) => t == _BgTheme.dark ? const Color(0xFF0D0D0D) : const Color(0xFF2C1A00);
-
-// HTML tozalash
-String _clean(String s) {
-  var t = s.replaceAll(RegExp(r'<sup[^>]*>.*?</sup>', caseSensitive: false), '');
-  t = t.replaceAll(RegExp(r'<[^>]*foot_note[^>]*>.*?</[^>]*>', caseSensitive: false), '');
-  return t;
-}
-String _strip(String s) => _clean(s).replaceAll(RegExp(r'<[^>]*>'), '');
-
-// ==========================================
-// MUSHAF O'QISH SAHIFASI — 604 BET STANDARTI
-// ==========================================
 class SurahReadingScreen extends ConsumerStatefulWidget {
   final SurahModel surah;
   const SurahReadingScreen({super.key, required this.surah});
@@ -39,179 +25,239 @@ class SurahReadingScreen extends ConsumerStatefulWidget {
 
 class _State extends ConsumerState<SurahReadingScreen> {
   var _theme = _BgTheme.sepia;
-  bool _tajweed = true;
-  int _currentIdx = 0;
-  PageController? _pc;
+  bool _isTajweedMode = false;
+  late int _currentPage;
+  late PageController _pc;
+  String? _appDir;
 
-  /// Oyatlarni Mushaf sahifa raqamiga qarab guruhlash
-  Map<int, List<AyahModel>> _groupByPage(List<AyahModel> ayahs) {
-    final map = <int, List<AyahModel>>{};
-    for (final a in ayahs) {
-      map.putIfAbsent(a.pageNumber, () => []).add(a);
+  @override
+  void initState() {
+    super.initState();
+    _currentPage = widget.surah.startPage;
+    _pc = PageController(initialPage: _currentPage - 1);
+    _loadSettings();
+    _initDir();
+  }
+
+  Future<void> _loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (mounted) {
+      setState(() {
+        _isTajweedMode = prefs.getBool('is_tajweed_mode_enabled') ?? false;
+        final themeIdx = prefs.getInt('mushaf_theme_index') ?? 1;
+        _theme = _BgTheme.values[themeIdx];
+      });
     }
-    return map;
+  }
+
+  Future<void> _saveSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('is_tajweed_mode_enabled', _isTajweedMode);
+    await prefs.setInt('mushaf_theme_index', _theme.index);
+  }
+
+  Future<void> _initDir() async {
+    final dir = await getApplicationDocumentsDirectory();
+    if (mounted) {
+      setState(() {
+        _appDir = dir.path;
+      });
+    }
   }
 
   @override
   void dispose() {
-    _pc?.dispose();
+    _pc.dispose();
     super.dispose();
   }
 
+  Color _bg(_BgTheme t) => switch (t) {
+    _BgTheme.light => const Color(0xFFFFFEF9),
+    _BgTheme.sepia => const Color(0xFFF3EEE1),
+    _BgTheme.dark => const Color(0xFF1C1C1C),
+  };
+  Color _mut(_BgTheme t) => switch (t) {
+    _BgTheme.light => const Color(0xFF999999),
+    _BgTheme.sepia => const Color(0xFF8B8178),
+    _BgTheme.dark => const Color(0xFF666666),
+  };
+  Color _txtC(_BgTheme t) => switch (t) {
+    _BgTheme.light => const Color(0xFF333333),
+    _BgTheme.sepia => const Color(0xFF4A3728),
+    _BgTheme.dark => const Color(0xFFCCCCCC),
+  };
+
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(surahDetailProvider);
+    final downloadState = ref.watch(mushafDownloadProvider);
+    final bool isReady = _isTajweedMode ? downloadState.isTajweedDownloaded : downloadState.isStandardDownloaded;
+    final bool isCurrentlyDownloadingThis = downloadState.isDownloading && 
+        ((_isTajweedMode && downloadState.downloadingType == MushafType.tajweed) ||
+         (!_isTajweedMode && downloadState.downloadingType == MushafType.standard));
 
     return Scaffold(
       backgroundColor: _bg(_theme),
-      appBar: AppBar(
-        backgroundColor: _bar(_theme),
-        elevation: 0,
-        toolbarHeight: 44,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios_new, size: 18, color: _gold),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // ASOSIY QISM
+            if (_appDir == null)
+              const Center(child: CircularProgressIndicator(color: _gold))
+            else
+               // 604 BETLIK PAGEVIEW — doim ko'rsatiladi! Fonda zip tortiladi, rasm yo'q bo'lsa darhol priority download qilinadi.
+               PageView.builder(
+                 controller: _pc,
+                 reverse: true, // O'ngdan chapga (arabcha uslub)
+                 itemCount: 604,
+                 onPageChanged: (i) => setState(() => _currentPage = i + 1),
+                 itemBuilder: (_, i) {
+                   final page = i + 1;
+                   final folder = _isTajweedMode ? 'tajweed_pages' : 'mushaf_pages';
+                   return _MushafLocalPage(
+                     pageNum: page,
+                     theme: _theme,
+                     baseDir: '$_appDir/$folder',
+                     // Tajvid rejimida rasmning o'z ranglari muhim, shuning uchun invert qilmaymiz
+                     disableInvert: _isTajweedMode,
+                   );
+                 },
+               ),
+
+            // Tepki qism
+            _buildHeader(isReady, isCurrentlyDownloadingThis, downloadState),
+
+            // Pastki qism
+            _buildFooter(),
+          ],
         ),
-        title: Text(widget.surah.name, style: GoogleFonts.amiri(fontSize: 18, fontWeight: FontWeight.bold, color: _gold)),
-        centerTitle: true,
-        actions: [
-          IconButton(onPressed: _showSettings, icon: const Icon(Icons.tune_rounded, size: 20, color: _gold)),
+      ),
+    );
+  }
+
+  Widget _buildHeader(bool isReady, bool isCurrentlyDownloadingThis, MushafDownloadState dl) {
+    return Positioned(
+      top: 8, left: 12, right: 12,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: _bg(_theme).withOpacity(0.9),
+                    shape: BoxShape.circle,
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4)],
+                  ),
+                  child: Icon(Icons.arrow_back_ios_new, size: 18, color: _txtC(_theme).withOpacity(0.6)),
+                ),
+              ),
+              if (isCurrentlyDownloadingThis)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: _bg(_theme).withOpacity(0.9),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    dl.progress < 604 ? 'Yuklanmoqda: ${dl.progress}/604' : 'Ochilmoqda...',
+                    style: GoogleFonts.poppins(fontSize: 10, color: _gold, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              GestureDetector(
+                onTap: _showSettings,
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: _bg(_theme).withOpacity(0.9),
+                    shape: BoxShape.circle,
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4)],
+                  ),
+                  child: Icon(Icons.tune, size: 20, color: _txtC(_theme).withOpacity(0.6)),
+                ),
+              ),
+            ],
+          ),
+          if (isCurrentlyDownloadingThis)
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: LinearProgressIndicator(
+                value: dl.progress / 604,
+                backgroundColor: _gold.withOpacity(0.2),
+                color: _gold,
+                minHeight: 3,
+              ),
+            ),
         ],
       ),
-      body: _body(state),
     );
   }
 
-  Widget _body(SurahDetailState state) {
-    if (state.isLoading) {
-      return Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const SizedBox(width: 36, height: 36, child: CircularProgressIndicator(color: _gold, strokeWidth: 3)),
-          const SizedBox(height: 14),
-          Text('Yuklanmoqda...', style: GoogleFonts.poppins(fontSize: 14, color: _mut(_theme))),
-        ]),
-      );
-    }
-
-    if (state.error != null) {
-      return Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Icon(Icons.wifi_off_rounded, size: 48, color: _mut(_theme)),
-          const SizedBox(height: 12),
-          Text('Internet xatolik', style: GoogleFonts.poppins(fontSize: 14, color: _mut(_theme))),
-          const SizedBox(height: 16),
-          ElevatedButton.icon(
-            onPressed: () => ref.read(surahDetailProvider.notifier).loadAyahs(widget.surah),
-            icon: const Icon(Icons.refresh, color: Colors.white, size: 18),
-            label: Text('Qayta yuklash', style: GoogleFonts.poppins(color: Colors.white)),
-            style: ElevatedButton.styleFrom(backgroundColor: _gold),
+  Widget _buildFooter() {
+    return Positioned(
+      bottom: 8, left: 0, right: 0,
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          decoration: BoxDecoration(
+            color: _bg(_theme).withOpacity(0.9),
+            borderRadius: BorderRadius.circular(12),
           ),
-        ]),
-      );
-    }
-
-    if (state.ayahs.isEmpty) {
-      return Center(child: Text('Oyatlar topilmadi', style: GoogleFonts.poppins(color: _mut(_theme))));
-    }
-
-    // Mushaf sahifalariga guruhlash
-    final grouped = _groupByPage(state.ayahs);
-    final pageKeys = grouped.keys.toList()..sort();
-    final totalPages = pageKeys.length;
-
-    _pc ??= PageController();
-
-    return Column(
-      children: [
-        // PageView — horizontal, o'ngdan chapga
-        Expanded(
-          child: PageView.builder(
-            controller: _pc,
-            reverse: true,
-            itemCount: totalPages,
-            onPageChanged: (i) => setState(() => _currentIdx = i),
-            itemBuilder: (_, i) {
-              final pageNum = pageKeys[i];
-              final ayahs = grouped[pageNum]!;
-              final juz = ayahs.first.juzNumber;
-              final isFirstPage = i == 0;
-
-              return _FixedPage(
-                ayahs: ayahs,
-                pageNum: pageNum,
-                juz: juz,
-                surahName: widget.surah.englishName,
-                theme: _theme,
-                tajweed: _tajweed,
-                showBismillah: isFirstPage && widget.surah.number != 1 && widget.surah.number != 9,
-              );
-            },
+          child: Text(
+            '$_currentPage / 604',
+            style: GoogleFonts.poppins(fontSize: 12, color: _mut(_theme), fontWeight: FontWeight.w500),
           ),
         ),
-
-        // Pastki panel
-        Container(
-          color: _bar(_theme),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: SafeArea(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('${widget.surah.englishName}', style: GoogleFonts.poppins(fontSize: 10, color: _gold.withOpacity(0.5))),
-                if (totalPages <= 15)
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: List.generate(totalPages, (i) => Container(
-                      width: 7, height: 7,
-                      margin: const EdgeInsets.symmetric(horizontal: 2),
-                      decoration: BoxDecoration(shape: BoxShape.circle, color: i == _currentIdx ? _gold : _gold.withOpacity(0.2)),
-                    )),
-                  ),
-                Text(
-                  'Sahifa ${pageKeys.isNotEmpty ? pageKeys[_currentIdx] : "-"} • ${_currentIdx + 1}/$totalPages',
-                  style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w600, color: _gold.withOpacity(0.7)),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 
-  // ==========================================
-  // SOZLAMALAR
-  // ==========================================
   void _showSettings() {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setS) => Container(
+        builder: (context, setModalState) => Container(
           padding: const EdgeInsets.all(24),
-          decoration: const BoxDecoration(color: Color(0xFF1E1E1E), borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-          child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text('Sozlamalar', style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
-              IconButton(onPressed: () => Navigator.pop(ctx), icon: const Icon(Icons.close, color: Colors.white54)),
-            ]),
-            const SizedBox(height: 20),
-            Text('Fon rangi', style: GoogleFonts.poppins(fontSize: 13, color: Colors.white60)),
-            const SizedBox(height: 10),
-            Row(children: [
-              _bgBtn('Oq', Colors.white, _BgTheme.light, setS),
-              const SizedBox(width: 10),
-              _bgBtn('Sepia', const Color(0xFFF5ECD5), _BgTheme.sepia, setS),
-              const SizedBox(width: 10),
-              _bgBtn('Qora', const Color(0xFF1A1A1A), _BgTheme.dark, setS),
-            ]),
+          decoration: BoxDecoration(
+            color: _theme == _BgTheme.dark ? const Color(0xFF1E1E1E) : Colors.white,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          ),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Text('Sozlamalar', style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 18, color: _theme == _BgTheme.dark ? Colors.white : Colors.black)),
             const SizedBox(height: 24),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Row(children: [
-                Text('Tajvid ', style: GoogleFonts.poppins(fontSize: 14, color: Colors.white)),
-                if (_tajweed) ...[_dot(const Color(0xFFB22222)), _dot(const Color(0xFF006400)), _dot(const Color(0xFF0000CD))],
+            
+            // Rejim tanlash
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: (_theme == _BgTheme.dark ? Colors.white : Colors.black).withOpacity(0.05),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(children: [
+                Expanded(child: _modeBtn('Standard', !_isTajweedMode, () {
+                  setState(() => _isTajweedMode = false);
+                  setModalState(() {});
+                  _saveSettings();
+                })),
+                Expanded(child: _modeBtn('Tajvid', _isTajweedMode, () {
+                  setState(() => _isTajweedMode = true);
+                  setModalState(() {});
+                  _saveSettings();
+                })),
               ]),
-              Switch(value: _tajweed, activeColor: _gold, onChanged: (v) { setState(() => _tajweed = v); setS(() {}); }),
+            ),
+            
+            const SizedBox(height: 24),
+            Text('Sahifa rangi', style: GoogleFonts.poppins(fontSize: 14, color: _theme == _BgTheme.dark ? Colors.white70 : Colors.black54)),
+            const SizedBox(height: 12),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              _cDot(_BgTheme.light, Colors.white, 'Oq', ctx),
+              _cDot(_BgTheme.sepia, const Color(0xFFF3EEE1), 'Sepia', ctx),
+              _cDot(_BgTheme.dark, const Color(0xFF1C1C1C), 'Qora', ctx),
             ]),
             const SizedBox(height: 16),
           ]),
@@ -220,165 +266,127 @@ class _State extends ConsumerState<SurahReadingScreen> {
     );
   }
 
-  Widget _bgBtn(String l, Color c, _BgTheme t, void Function(void Function()) ss) {
-    final sel = _theme == t;
-    return Expanded(child: GestureDetector(
-      onTap: () { setState(() => _theme = t); ss(() {}); },
+  Widget _modeBtn(String title, bool active, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14),
-        decoration: BoxDecoration(color: c, borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: sel ? _gold : Colors.transparent, width: 2.5)),
-        alignment: Alignment.center,
-        child: Text(l, style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600,
-          color: c.computeLuminance() > 0.5 ? Colors.black87 : Colors.white)),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: active ? _gold : Colors.transparent,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Text(title, style: GoogleFonts.poppins(fontSize: 13, fontWeight: active ? FontWeight.bold : FontWeight.normal, color: active ? Colors.white : (_theme == _BgTheme.dark ? Colors.white54 : Colors.black54))),
+        ),
       ),
-    ));
+    );
   }
 
-  Widget _dot(Color c) => Container(width: 7, height: 7, margin: const EdgeInsets.only(right: 3),
-    decoration: BoxDecoration(shape: BoxShape.circle, color: c));
+  Widget _cDot(_BgTheme t, Color c, String label, BuildContext ctx) {
+    final selected = _theme == t;
+    return GestureDetector(
+      onTap: () { 
+        setState(() => _theme = t); 
+        _saveSettings();
+        Navigator.pop(ctx); 
+      },
+      child: Column(children: [
+        Container(
+          width: 44, height: 44,
+          decoration: BoxDecoration(
+            color: c,
+            shape: BoxShape.circle,
+            border: Border.all(color: selected ? _gold : Colors.grey.withOpacity(0.2), width: selected ? 3 : 1),
+            boxShadow: selected ? [BoxShadow(color: _gold.withOpacity(0.3), blurRadius: 8)] : null,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(label, style: GoogleFonts.poppins(fontSize: 11, color: selected ? _gold : Colors.grey)),
+      ]),
+    );
+  }
 }
 
-// ==========================================
-// BITTA MUSHAF SAHIFASI — FIXED HEIGHT
-// ==========================================
-class _FixedPage extends StatelessWidget {
-  final List<AyahModel> ayahs;
+class _MushafLocalPage extends ConsumerStatefulWidget {
   final int pageNum;
-  final int juz;
-  final String surahName;
   final _BgTheme theme;
-  final bool tajweed;
-  final bool showBismillah;
+  final String baseDir;
+  final bool disableInvert;
 
-  const _FixedPage({
-    required this.ayahs, required this.pageNum, required this.juz,
-    required this.surahName, required this.theme, required this.tajweed,
-    required this.showBismillah,
+  const _MushafLocalPage({
+    required this.pageNum,
+    required this.theme,
+    required this.baseDir,
+    this.disableInvert = false,
   });
 
   @override
+  ConsumerState<_MushafLocalPage> createState() => _MushafLocalPageState();
+}
+
+class _MushafLocalPageState extends ConsumerState<_MushafLocalPage> {
+  bool _isLoading = true;
+  bool _hasError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkOrDownload();
+  }
+
+  @override
+  void didUpdateWidget(covariant _MushafLocalPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.pageNum != widget.pageNum || oldWidget.baseDir != widget.baseDir) {
+      _checkOrDownload();
+    }
+  }
+
+  Future<void> _checkOrDownload() async {
+    setState(() { _isLoading = true; _hasError = false; });
+    final p = widget.pageNum.toString().padLeft(3, '0');
+    final file = File('${widget.baseDir}/page$p.png');
+    
+    if (!file.existsSync() || file.lengthSync() < 1000) {
+      // Prioritet yuklashni boshlash
+      final type = widget.baseDir.contains('tajweed') ? MushafType.tajweed : MushafType.standard;
+      try {
+        await ref.read(mushafDownloadProvider.notifier).priorityDownloadPage(type, widget.pageNum);
+      } catch (e) {
+        if (mounted) setState(() => _hasError = true);
+      }
+    }
+    
+    if (mounted) {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return Container(
+        color: widget.theme == _BgTheme.light ? const Color(0xFFFFFEF9) : (widget.theme == _BgTheme.sepia ? const Color(0xFFF3EEE1) : const Color(0xFF1C1C1C)),
+        child: Center(child: CircularProgressIndicator(color: _gold.withOpacity(0.5))),
+      );
+    }
+
+    final p = widget.pageNum.toString().padLeft(3, '0');
+    final file = File('${widget.baseDir}/page$p.png');
+    final isDark = widget.theme == _BgTheme.dark;
+
     return Container(
-      color: _bg(theme),
-      padding: const EdgeInsets.all(10),
-      child: Container(
-        decoration: BoxDecoration(
-          color: _bg(theme),
-          border: Border.all(color: _brd(theme), width: 1.5),
-          borderRadius: BorderRadius.circular(2),
-        ),
-        child: Column(
-          children: [
-            // TEPAGI — Juz va Sura nomi
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: _brd(theme)))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('$juz-Juz', style: GoogleFonts.poppins(fontSize: 10, color: _mut(theme))),
-                  Text(surahName, style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w600, color: _mut(theme))),
-                  Text('$pageNum', style: GoogleFonts.poppins(fontSize: 10, color: _mut(theme))),
-                ],
-              ),
-            ),
-
-            // ASOSIY MATN — ekranga sig'adigan, scroll yo'q
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return SingleChildScrollView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight,
-                          maxHeight: constraints.maxHeight,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Bismilloh
-                            if (showBismillah) ...[
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  'بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ',
-                                  style: GoogleFonts.amiri(fontSize: 22, color: _txt(theme), fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Divider(color: _brd(theme), height: 20),
-                            ],
-
-                            // Matn — FittedBox bilan sig'dirish
-                            Expanded(
-                              child: FittedBox(
-                                fit: BoxFit.contain,
-                                alignment: Alignment.center,
-                                child: SizedBox(
-                                  width: constraints.maxWidth - 24,
-                                  child: tajweed ? _tajweedWidget() : _plainWidget(),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-
-            // PASTGI — sahifa raqami
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              decoration: BoxDecoration(border: Border(top: BorderSide(color: _brd(theme)))),
-              child: Center(child: Text('— $pageNum —', style: GoogleFonts.poppins(fontSize: 9, color: _mut(theme).withOpacity(0.4)))),
-            ),
-          ],
-        ),
+      color: widget.theme == _BgTheme.light ? const Color(0xFFFFFEF9) : (widget.theme == _BgTheme.sepia ? const Color(0xFFF3EEE1) : const Color(0xFF1C1C1C)),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      child: Image.file(
+        file,
+        fit: BoxFit.contain,
+        // Tajvid rejimida ranglarni o'zgartirmaymiz, aks holda qoidalar ko'rinmay qoladi
+        color: (isDark && !widget.disableInvert) ? Colors.white : null,
+        colorBlendMode: (isDark && !widget.disableInvert) ? BlendMode.srcIn : null,
+        errorBuilder: (context, error, stackTrace) => Center(child: Icon(Icons.broken_image, color: Colors.grey)),
       ),
-    );
-  }
-
-  Widget _tajweedWidget() {
-    final html = ayahs.map((a) => _clean(a.textTajweed ?? a.text)).join(' ');
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: HtmlWidget(
-        '<div style="text-align:justify; line-height:2.4; direction:rtl;">$html</div>',
-        textStyle: GoogleFonts.amiri(fontSize: 22, height: 2.2, color: _txt(theme)),
-        customStylesBuilder: (el) {
-          final c = el.className;
-          if (c.contains('ham_wasl')) return {'color': '#808080'};
-          if (c.contains('laam_shamsiyah')) return {'color': '#808080'};
-          if (c.contains('madda_necessary')) return {'color': '#B22222'};
-          if (c.contains('madda_normal')) return {'color': '#FF4500'};
-          if (c.contains('madda_permissible')) return {'color': '#FF6347'};
-          if (c.contains('qlq')) return {'color': '#0000CD'};
-          if (c.contains('ghn')) return {'color': '#006400'};
-          if (c.contains('ikhfa')) return {'color': '#DAA520'};
-          if (c.contains('iqlab')) return {'color': '#228B22'};
-          if (c.contains('idghm_shafawi')) return {'color': '#FF69B4'};
-          if (c.contains('idghm_gyn') || c.contains('idghm_msl')) return {'color': '#9932CC'};
-          if (c.contains('idghm_mutjns') || c.contains('idghm_mutqrb')) return {'color': '#BA55D3'};
-          if (el.localName == 'span' && c.contains('end')) return {'color': '#D4A843', 'font-size': '70%'};
-          return null;
-        },
-      ),
-    );
-  }
-
-  Widget _plainWidget() {
-    final text = ayahs.map((a) => _strip(a.textTajweed ?? a.text)).join(' ');
-    return Text(
-      text,
-      textAlign: TextAlign.justify,
-      textDirection: TextDirection.rtl,
-      style: GoogleFonts.amiri(fontSize: 22, height: 2.2, color: _txt(theme)),
     );
   }
 }
+

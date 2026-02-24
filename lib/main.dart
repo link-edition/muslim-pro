@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'core/theme.dart';
 import 'core/splash_page.dart';
 import 'features/home/presentation/home_screen.dart';
+import 'features/quran/data/mushaf_download_service.dart';
 
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -49,19 +50,24 @@ class MuslimProApp extends StatelessWidget {
 }
 
 /// Splash -> Home o'tish
-class RootPage extends StatefulWidget {
+class RootPage extends ConsumerStatefulWidget {
   const RootPage({super.key});
 
   @override
-  State<RootPage> createState() => _RootPageState();
+  ConsumerState<RootPage> createState() => _RootPageState();
 }
 
-class _RootPageState extends State<RootPage> {
+class _RootPageState extends ConsumerState<RootPage> {
   bool _showSplash = true;
 
   @override
   void initState() {
     super.initState();
+    // Mushaf yuklashni boshlash (background)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(mushafDownloadProvider.notifier).checkStatus();
+    });
+    
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) setState(() => _showSplash = false);
     });

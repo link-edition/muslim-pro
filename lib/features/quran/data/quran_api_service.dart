@@ -7,7 +7,7 @@ import 'quran_model.dart';
 class QuranApiService {
   static const String _baseUrl = 'https://api.quran.com/api/v4';
   static const String _audioBaseUrl = 'https://audio.qurancdn.com/';
-  static const String _keySurahs = 'cached_surahs_v4';
+  static const String _keySurahs = 'cached_surahs_v5';
 
   static final Dio _dio = Dio(BaseOptions(
     baseUrl: _baseUrl,
@@ -40,17 +40,15 @@ class QuranApiService {
   /// Sura oyatlarini yuklash (Tajvidli matn + Alouddin Mansur tarjimasi)
   static Future<List<AyahModel>> getAyahs(int surahNumber) async {
     try {
-      // 1. Oyatlar va tarjimani olish (Translation ID: 101 - Alouddin Mansur)
       final versesResponse = await _dio.get(
         '/verses/by_chapter/$surahNumber',
         queryParameters: {
           'translations': '101',
           'fields': 'text_uthmani,text_uthmani_tajweed,page_number,juz_number',
-          'per_page': '300', // Sura Baqara uchun ham yetarli
+          'per_page': '300',
         },
       );
 
-      // 2. Audio fayllarni olish (Recitation ID: 7 - Alafasy)
       final audioResponse = await _dio.get('/recitations/7/by_chapter/$surahNumber');
 
       if (versesResponse.statusCode == 200) {
@@ -59,7 +57,6 @@ class QuranApiService {
             ? audioResponse.data['audio_files'] as List 
             : [];
 
-        // Verse_key bo'yicha audio xaritasi
         final audioMap = {
           for (var a in audioData) a['verse_key']: _audioBaseUrl + (a['url'] as String)
         };
@@ -81,8 +78,8 @@ class QuranApiService {
       final response = await _dio.get(
         '/verses/by_page/$pageNumber',
         queryParameters: {
-          'fields': 'text_uthmani,text_uthmani_tajweed',
-          'per_page': '50', // Max verses per page is around 25-30, 50 is safe
+          'fields': 'text_uthmani,text_uthmani_tajweed,page_number,juz_number',
+          'per_page': '50',
         },
       );
 
@@ -95,7 +92,9 @@ class QuranApiService {
             text: json['text_uthmani'] as String? ?? '',
             textTajweed: json['text_uthmani_tajweed'] as String?,
             verseKey: json['verse_key'] as String,
-            translation: null, // Fikr: Mushaf sahifasida tarjima bo'lmaydi
+            translation: null,
+            pageNumber: json['page_number'] as int? ?? pageNumber,
+            juzNumber: json['juz_number'] as int? ?? 1,
           );
         }).toList();
       }
