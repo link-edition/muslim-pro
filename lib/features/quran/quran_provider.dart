@@ -3,6 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'data/quran_model.dart';
 import 'data/quran_api_service.dart';
 
+import 'package:flutter/foundation.dart';
+import 'data/quran_api_service.dart';
+
+// Text Sync Provider
+final textSyncProgressProvider = StateProvider<double?>((ref) => null);
+
 /// Suralar ro'yxati holati
 class QuranListState {
   final List<SurahModel> allSurahs;      // Barcha suralar

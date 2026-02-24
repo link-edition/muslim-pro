@@ -48,7 +48,7 @@ dependencies:
   intl: ^0.19.0
 
   # Qur'on audio pleyer
-  just_audio: ^0.9.42
+  just_audio: ^0.10.5
 
   # Bildirishnomalar (namoz vaqtlari uchun)
   flutter_local_notifications: ^18.0.1

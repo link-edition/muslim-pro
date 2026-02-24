@@ -385,12 +385,17 @@ class _MushafTextPageState extends ConsumerState<_MushafTextPage> {
 
   Future<void> _playAyah(AyahModel ayah) async {
     setState(() => _playingKey = ayah.verseKey);
-    final parts = ayah.verseKey.split(':');
-    final s = parts[0].padLeft(3, '0');
-    final a = parts[1].padLeft(3, '0');
-    final url = "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/$s$a.mp3";
+    final url = ayah.audioUrl ?? () {
+        final parts = ayah.verseKey.split(':');
+        final s = parts[0].padLeft(3, '0');
+        final a = parts[1].padLeft(3, '0');
+        return "https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/$s$a.mp3";
+    }();
+
     try {
-      await widget.audioPlayer.setUrl(url);
+      // Offline eshitish uchun LockCachingAudioSource ishlatsak, u birinchi martada yuklab keshlaya oladi.
+      final audioSource = LockCachingAudioSource(Uri.parse(url));
+      await widget.audioPlayer.setAudioSource(audioSource);
       await widget.audioPlayer.play();
     } catch (e) {
       debugPrint("Audio error: $e");

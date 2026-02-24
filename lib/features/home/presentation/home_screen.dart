@@ -10,6 +10,7 @@ import 'package:muslim_pro/features/tasbeh/presentation/tasbeh_screen.dart';
 import 'package:muslim_pro/features/qibla/presentation/qibla_screen.dart';
 import 'package:muslim_pro/features/settings/presentation/settings_screen.dart';
 import 'package:muslim_pro/features/namoz/presentation/namoz_vaqtlari_page.dart';
+import 'package:muslim_pro/features/quran/quran_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -17,6 +18,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prayerState = ref.watch(prayerProvider);
+    final syncProgress = ref.watch(textSyncProgressProvider);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -44,13 +46,32 @@ class HomeScreen extends ConsumerWidget {
                                 color: AppColors.textSecondary,
                               ),
                             ),
-                            Text(
-                              'Muslim Pro',
-                              style: GoogleFonts.poppins(
-                                fontSize: 26,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.textPrimary,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Muslim Pro',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                                if (syncProgress != null && syncProgress < 1.0)
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0, top: 4),
+                                    child: Tooltip(
+                                      message: "Qur'on matnlari oflayn saqlanmoqda...",
+                                      child: SizedBox(
+                                        width: 14, height: 14,
+                                        child: CircularProgressIndicator(
+                                          value: syncProgress,
+                                          strokeWidth: 2,
+                                          color: AppColors.softGold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ],
                         ),

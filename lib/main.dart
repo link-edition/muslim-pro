@@ -6,6 +6,8 @@ import 'core/theme.dart';
 import 'core/splash_page.dart';
 import 'features/home/presentation/home_screen.dart';
 import 'features/quran/data/mushaf_download_service.dart';
+import 'features/quran/data/quran_api_service.dart';
+import 'features/quran/quran_provider.dart';
 
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -66,6 +68,15 @@ class _RootPageState extends ConsumerState<RootPage> {
     // Mushaf yuklashni boshlash (background)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(mushafDownloadProvider.notifier).checkStatus();
+      
+      // Tekstlarni orqa fonda jimgina yuklab olish
+      QuranApiService.silentSyncAllText(
+        onProgress: (p) {
+          if (mounted) {
+            ref.read(textSyncProgressProvider.notifier).state = p;
+          }
+        }
+      );
     });
     
     Future.delayed(const Duration(seconds: 2), () {
