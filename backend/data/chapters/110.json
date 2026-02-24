@@ -1,0 +1,74 @@
+{
+  "verses": [
+    {
+      "id": 6214,
+      "verse_number": 1,
+      "verse_key": "110:1",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 554,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": " إِذَا جَآءَ نَصْرُ ٱللَّهِ وَٱلْفَتْحُ",
+      "text_uthmani_tajweed": "إِذَا ج<tajweed class=madda_obligatory>َا</tajweed>ٓءَ نَصْرُ <tajweed class=ham_wasl>ٱ</tajweed>للَّهِ وَ<tajweed class=ham_wasl>ٱ</tajweed>لْفَتْحُ <span class=end>١</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664157,
+          "resource_id": 101,
+          "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), қачон Аллоҳнинг ёрдами ва ғалаба келса;"
+        }
+      ]
+    },
+    {
+      "id": 6215,
+      "verse_number": 2,
+      "verse_key": "110:2",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 554,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَرَأَيْتَ ٱلنَّاسَ يَدْخُلُونَ فِى دِينِ ٱللَّهِ أَفْوَاجًا",
+      "text_uthmani_tajweed": "وَرَأَيْتَ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed>َاسَ يَ<tajweed class=qalaqah>دْ</tajweed>خُلُونَ فِى دِينِ <tajweed class=ham_wasl>ٱ</tajweed>للَّهِ أَفْوَاجًا <span class=end>٢</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664158,
+          "resource_id": 101,
+          "text": "Ва одамлар тўп-тўп бўлишиб, Аллоҳнинг дини (Ислом)га кираётганларини кўрсангиз;"
+        }
+      ]
+    },
+    {
+      "id": 6216,
+      "verse_number": 3,
+      "verse_key": "110:3",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 554,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَٱسْتَغْفِرْهُ ۚ إِنَّهُۥ كَانَ تَوَّابًۢا",
+      "text_uthmani_tajweed": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَ<tajweed class=ham_wasl>ٱ</tajweed>سْتَغْفِرْهُ‌ۚ إِ<tajweed class=ghunnah>نّ</tajweed>َهُ<tajweed class=madda_normal>ۥ</tajweed> كَانَ تَوَّابَۢا <span class=end>٣</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664159,
+          "resource_id": 101,
+          "text": "Дарҳол Парвардигорингизга ҳамд айтиш билан (У зотни ҳар қандай «шерик»лардан) покланг ва У зотдан мағфират сўранг! Зеро, У тавбаларни қабул қилгувчи бўлган Зотдир. <sup foot_note=145393>1</sup>"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "per_page": 300,
+    "current_page": 1,
+    "next_page": null,
+    "total_pages": 1,
+    "total_records": 3
+  }
+}

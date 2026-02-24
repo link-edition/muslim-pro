@@ -1,0 +1,557 @@
+{
+  "verses": [
+    {
+      "id": 5968,
+      "verse_number": 1,
+      "verse_key": "88:1",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": " هَلْ أَتَىٰكَ حَدِيثُ ٱلْغَـٰشِيَةِ",
+      "text_uthmani_tajweed": "هَلْ أَتَ<tajweed class=madda_normal>ـٰ</tajweed>كَ حَدِيثُ <tajweed class=ham_wasl>ٱ</tajweed>لْغَ<tajweed class=madda_normal>ـٰ</tajweed>شِيَةِ <span class=end>١</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663911,
+          "resource_id": 101,
+          "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), сизга ўраб олгувчи (Қиёмат Куни) ҳақидага хабар келдими?"
+        }
+      ]
+    },
+    {
+      "id": 5969,
+      "verse_number": 2,
+      "verse_key": "88:2",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وُجُوهٌ يَوْمَئِذٍ خَـٰشِعَةٌ",
+      "text_uthmani_tajweed": "وُجُو<tajweed class=idgham_ghunnah>هٌ ي</tajweed>َوْمَئِذٍ خَ<tajweed class=madda_normal>ـٰ</tajweed>شِعَةٌ <span class=end>٢</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663912,
+          "resource_id": 101,
+          "text": "У Кунда (кофирларнинг) юзлари эгилиб қолгувчи."
+        }
+      ]
+    },
+    {
+      "id": 5970,
+      "verse_number": 3,
+      "verse_key": "88:3",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "عَامِلَةٌ نَّاصِبَةٌ",
+      "text_uthmani_tajweed": "عَامِلَ<tajweed class=idgham_ghunnah>ةٌ ن</tajweed>َّاصِبَةٌ <span class=end>٣</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663913,
+          "resource_id": 101,
+          "text": "(Бўйин ва қўл-оёқлари кишан ва занжирларни судраш билан) меҳнат-машаққат чеккувчидир."
+        }
+      ]
+    },
+    {
+      "id": 5971,
+      "verse_number": 4,
+      "verse_key": "88:4",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "تَصْلَىٰ نَارًا حَامِيَةً",
+      "text_uthmani_tajweed": "تَصْلَىٰ نَارًا حَامِيَةً <span class=end>٤</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663914,
+          "resource_id": 101,
+          "text": "(Улар) қизиган дўзахга кирур!"
+        }
+      ]
+    },
+    {
+      "id": 5972,
+      "verse_number": 5,
+      "verse_key": "88:5",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "تُسْقَىٰ مِنْ عَيْنٍ ءَانِيَةٍ",
+      "text_uthmani_tajweed": "تُسْقَىٰ مِنْ عَيْنٍ ءَانِيَةٍ <span class=end>٥</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663915,
+          "resource_id": 101,
+          "text": "Қайнаб турган булоқдан суғорилур!"
+        }
+      ]
+    },
+    {
+      "id": 5973,
+      "verse_number": 6,
+      "verse_key": "88:6",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لَّيْسَ لَهُمْ طَعَامٌ إِلَّا مِن ضَرِيعٍ",
+      "text_uthmani_tajweed": "لَّيْسَ لَهُمْ طَعَامٌ إِلَّا مِ<tajweed class=ikhafa>ن ض</tajweed>َر<tajweed class=madda_permissible>ِي</tajweed>عٍ <span class=end>٦</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663916,
+          "resource_id": 101,
+          "text": "Улар учун бирон таом бўлмас, (уларнинг емишлари) фақат зорийъдан (заҳарли ва бадбўй тикансимон ўсимлик) бўлур!"
+        }
+      ]
+    },
+    {
+      "id": 5974,
+      "verse_number": 7,
+      "verse_key": "88:7",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لَّا يُسْمِنُ وَلَا يُغْنِى مِن جُوعٍ",
+      "text_uthmani_tajweed": "لَّا يُسْمِنُ وَلَا يُغْنِى مِ<tajweed class=ikhafa>ن ج</tajweed><tajweed class=madda_permissible>ُو</tajweed>عٍ <span class=end>٧</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663917,
+          "resource_id": 101,
+          "text": "У (еган кимсани) семиртирмайди ҳам ва очлиқдан халос ҳам қилмайди!"
+        }
+      ]
+    },
+    {
+      "id": 5975,
+      "verse_number": 8,
+      "verse_key": "88:8",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وُجُوهٌ يَوْمَئِذٍ نَّاعِمَةٌ",
+      "text_uthmani_tajweed": "وُجُو<tajweed class=idgham_ghunnah>هٌ ي</tajweed>َوْمَئِ<tajweed class=idgham_ghunnah>ذٍ ن</tajweed>َّاعِمَةٌ <span class=end>٨</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663918,
+          "resource_id": 101,
+          "text": "(Мўминларнинг) юзлари эса у Кунда (ўзларига ато этилган ноз-неъматлардан) шод-хуррам;"
+        }
+      ]
+    },
+    {
+      "id": 5976,
+      "verse_number": 9,
+      "verse_key": "88:9",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لِّسَعْيِهَا رَاضِيَةٌ",
+      "text_uthmani_tajweed": "لِّسَعْيِهَا رَاضِيَةٌ <span class=end>٩</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663919,
+          "resource_id": 101,
+          "text": "(Ҳаёти-дунёда Аллоҳ йўлида қилган) саъй-ҳаракатларидан рози бўлур."
+        }
+      ]
+    },
+    {
+      "id": 5977,
+      "verse_number": 10,
+      "verse_key": "88:10",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فِى جَنَّةٍ عَالِيَةٍ",
+      "text_uthmani_tajweed": "فِى جَ<tajweed class=ghunnah>نّ</tajweed>َةٍ عَالِيَةٍ <span class=end>١٠</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663920,
+          "resource_id": 101,
+          "text": "(Улар) олий жаннатда бўлиб;"
+        }
+      ]
+    },
+    {
+      "id": 5978,
+      "verse_number": 11,
+      "verse_key": "88:11",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لَّا تَسْمَعُ فِيهَا لَـٰغِيَةً",
+      "text_uthmani_tajweed": "لَّا تَسْمَعُ فِيهَا لَ<tajweed class=madda_normal>ـٰ</tajweed>غِيَةً <span class=end>١١</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663921,
+          "resource_id": 101,
+          "text": "У жойда бирон беҳуда сўз эшитмаслар."
+        }
+      ]
+    },
+    {
+      "id": 5979,
+      "verse_number": 12,
+      "verse_key": "88:12",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فِيهَا عَيْنٌ جَارِيَةٌ",
+      "text_uthmani_tajweed": "فِيهَا عَيْ<tajweed class=ikhafa>نٌ ج</tajweed>َارِيَةٌ <span class=end>١٢</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663922,
+          "resource_id": 101,
+          "text": "У жойда оқар булоқ бордир."
+        }
+      ]
+    },
+    {
+      "id": 5980,
+      "verse_number": 13,
+      "verse_key": "88:13",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فِيهَا سُرُرٌ مَّرْفُوعَةٌ",
+      "text_uthmani_tajweed": "فِيهَا سُرُ<tajweed class=idgham_ghunnah>رٌ م</tajweed>َّرْفُوعَةٌ <span class=end>١٣</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663923,
+          "resource_id": 101,
+          "text": "У жойда баланд сўрилар;"
+        }
+      ]
+    },
+    {
+      "id": 5981,
+      "verse_number": 14,
+      "verse_key": "88:14",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَأَكْوَابٌ مَّوْضُوعَةٌ",
+      "text_uthmani_tajweed": "وَأَكْوَا<tajweed class=idgham_ghunnah>بٌ م</tajweed>َّوْضُوعَةٌ <span class=end>١٤</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663924,
+          "resource_id": 101,
+          "text": "Ва (булоқ бўйига) қўйиб қўйилган қадаҳлар."
+        }
+      ]
+    },
+    {
+      "id": 5982,
+      "verse_number": 15,
+      "verse_key": "88:15",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَنَمَارِقُ مَصْفُوفَةٌ",
+      "text_uthmani_tajweed": "وَنَمَارِقُ مَصْفُوفَةٌ <span class=end>١٥</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663925,
+          "resource_id": 101,
+          "text": "Тизиб қўйилган ёстиқлар."
+        }
+      ]
+    },
+    {
+      "id": 5983,
+      "verse_number": 16,
+      "verse_key": "88:16",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَزَرَابِىُّ مَبْثُوثَةٌ",
+      "text_uthmani_tajweed": "وَزَرَابِىُّ مَ<tajweed class=qalaqah>بْ</tajweed>ثُوثَةٌ <span class=end>١٦</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663926,
+          "resource_id": 101,
+          "text": "Ва тўшалган гиламлар бордир. <sup foot_note=145366>1</sup>"
+        }
+      ]
+    },
+    {
+      "id": 5984,
+      "verse_number": 17,
+      "verse_key": "88:17",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "أَفَلَا يَنظُرُونَ إِلَى ٱلْإِبِلِ كَيْفَ خُلِقَتْ",
+      "text_uthmani_tajweed": "أَفَلَا يَ<tajweed class=ikhafa>نظ</tajweed>ُرُونَ إِلَى <tajweed class=ham_wasl>ٱ</tajweed>لْإِبِلِ كَيْفَ خُلِقَتْ <span class=end>١٧</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663927,
+          "resource_id": 101,
+          "text": "Ахир улар туянинг қандай яратилганига боқмайдиларми?"
+        }
+      ]
+    },
+    {
+      "id": 5985,
+      "verse_number": 18,
+      "verse_key": "88:18",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَإِلَى ٱلسَّمَآءِ كَيْفَ رُفِعَتْ",
+      "text_uthmani_tajweed": "وَإِلَى <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>سَّم<tajweed class=madda_obligatory>َا</tajweed>ٓءِ كَيْفَ رُفِعَتْ <span class=end>١٨</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663928,
+          "resource_id": 101,
+          "text": "Осмоннинг қандай кўтариб қўйилганига;"
+        }
+      ]
+    },
+    {
+      "id": 5986,
+      "verse_number": 19,
+      "verse_key": "88:19",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَإِلَى ٱلْجِبَالِ كَيْفَ نُصِبَتْ",
+      "text_uthmani_tajweed": "وَإِلَى <tajweed class=ham_wasl>ٱ</tajweed>لْجِبَالِ كَيْفَ نُصِبَتْ <span class=end>١٩</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663929,
+          "resource_id": 101,
+          "text": "Тоғларнинг қандай тикланганига;"
+        }
+      ]
+    },
+    {
+      "id": 5987,
+      "verse_number": 20,
+      "verse_key": "88:20",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَإِلَى ٱلْأَرْضِ كَيْفَ سُطِحَتْ",
+      "text_uthmani_tajweed": "وَإِلَى <tajweed class=ham_wasl>ٱ</tajweed>لْأَرْضِ كَيْفَ سُطِحَتْ <span class=end>٢٠</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663930,
+          "resource_id": 101,
+          "text": "Ва Ернинг қандай ёйиб-текислаб қўйилганига (ибрат назари билан боқмайдиларми?!) <sup foot_note=145367>1</sup>"
+        }
+      ]
+    },
+    {
+      "id": 5988,
+      "verse_number": 21,
+      "verse_key": "88:21",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فَذَكِّرْ إِنَّمَآ أَنتَ مُذَكِّرٌ",
+      "text_uthmani_tajweed": "فَذَكِّرْ إِ<tajweed class=ghunnah>نّ</tajweed>َم<tajweed class=madda_obligatory>َآ</tajweed> أَ<tajweed class=ikhafa>نت</tajweed>َ مُذَكِّرٌ <span class=end>٢١</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663931,
+          "resource_id": 101,
+          "text": "Бас, (эй Муҳаммад алайҳис-салоту вас-салом), сиз панд-насиҳат қилинг! Зотан, сиз фақат бир панд-насиҳат қилгувчидирсиз, холос."
+        }
+      ]
+    },
+    {
+      "id": 5989,
+      "verse_number": 22,
+      "verse_key": "88:22",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لَّسْتَ عَلَيْهِم بِمُصَيْطِرٍ",
+      "text_uthmani_tajweed": "لَّسْتَ عَلَيْه<tajweed class=ikhafa_shafawi>ِم ب</tajweed>ِمُصَيْطِرٍ <span class=end>٢٢</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663932,
+          "resource_id": 101,
+          "text": "Сиз уларнинг устида зўравонлик билан ҳукм юргизгувчи эмассиз."
+        }
+      ]
+    },
+    {
+      "id": 5990,
+      "verse_number": 23,
+      "verse_key": "88:23",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "إِلَّا مَن تَوَلَّىٰ وَكَفَرَ",
+      "text_uthmani_tajweed": "إِلَّا مَ<tajweed class=ikhafa>ن ت</tajweed>َوَلَّىٰ وَكَفَرَ <span class=end>٢٣</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663933,
+          "resource_id": 101,
+          "text": "Илло ким (бу панд-насиҳатдан) юз ўгириб, кофир бўлса;"
+        }
+      ]
+    },
+    {
+      "id": 5991,
+      "verse_number": 24,
+      "verse_key": "88:24",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فَيُعَذِّبُهُ ٱللَّهُ ٱلْعَذَابَ ٱلْأَكْبَرَ",
+      "text_uthmani_tajweed": "فَيُعَذِّبُهُ <tajweed class=ham_wasl>ٱ</tajweed>للَّهُ <tajweed class=ham_wasl>ٱ</tajweed>لْعَذَابَ <tajweed class=ham_wasl>ٱ</tajweed>لْأَكْبَرَ <span class=end>٢٤</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663934,
+          "resource_id": 101,
+          "text": "У ҳолда Аллоҳ уни энг катта азоб билан азоблар!"
+        }
+      ]
+    },
+    {
+      "id": 5992,
+      "verse_number": 25,
+      "verse_key": "88:25",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "إِنَّ إِلَيْنَآ إِيَابَهُمْ",
+      "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed>َ إِلَيْن<tajweed class=madda_obligatory>َآ</tajweed> إِيَابَهُمْ <span class=end>٢٥</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663935,
+          "resource_id": 101,
+          "text": "Зеро, ёлғиз Ўзимизга қайтишлари бордир!"
+        }
+      ]
+    },
+    {
+      "id": 5993,
+      "verse_number": 26,
+      "verse_key": "88:26",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 237,
+      "ruku_number": 532,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "ثُمَّ إِنَّ عَلَيْنَا حِسَابَهُم",
+      "text_uthmani_tajweed": "ثُ<tajweed class=ghunnah>مّ</tajweed>َ إِ<tajweed class=ghunnah>نّ</tajweed>َ عَلَيْنَا حِسَابَهُم <span class=end>٢٦</span>",
+      "page_number": 592,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663936,
+          "resource_id": 101,
+          "text": "Сўнгра уларни ҳисоб-китоб қилиш (жазо бериш) ҳам ёлғиз Бизнинг зиммамиздадир!"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "per_page": 300,
+    "current_page": 1,
+    "next_page": null,
+    "total_pages": 1,
+    "total_records": 26
+  }
+}

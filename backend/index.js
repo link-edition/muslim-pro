@@ -10,37 +10,58 @@ const PORT = process.env.PORT || 10000;
 app.use(cors());
 app.use(express.json());
 
-// Qur'on tekstlari va audio linklari uchun bazani (JSON) tayyorlash
-// Realdan quran-api yoki fayllardan foydalansa bo'ladi.
-// Hozirda biz ZIP fayllarni server orqali tarqatish uchun yo'llarni ochamiz.
-
-// Statik fayllar uchun papka (agar rasm yoki audiolarni o'zimizda saqlasak)
+// Public folder
 const PUBLIC_DIR = path.join(__dirname, 'public');
 fs.ensureDirSync(PUBLIC_DIR);
 app.use('/static', express.static(PUBLIC_DIR));
 
-// 1. API: Surahlar ro'yxati (proxy kabi ishlaydi yoki keshdan beradi)
-app.get('/api/chapters', async (req, res) => {
+// Data qismi - local saqlangan JSON-lar
+const DATA_DIR = path.join(__dirname, 'data');
+
+// Asosiy ma'lumot qutisi (Xotirada keshlab qo'yish tezlikni oshiradi)
+let chaptersData = null;
+const versesByChapter = {};
+let versesByPage = {};
+
+// Barcha chapterlarni va oyatlarni server yoqilishi bilan xotiraga olish
+async function loadData() {
     try {
-        // Bu joyda xohlasangiz o'zingizning JSON baza-dan ma'lumot qaytarishingiz mumkin
-        // Hozircha namunaviy javob:
-        res.json({
-            message: "Muslim App Backend v1",
-            status: "Online",
-            endpoints: {
-                mushaf_standard: "/api/mushaf/standard",
-                mushaf_tajweed: "/api/mushaf/tajweed",
-                audio: "/api/audio/:id"
+        const chaptersPath = path.join(DATA_DIR, 'chapters.json');
+        if (await fs.pathExists(chaptersPath)) {
+            chaptersData = await fs.readJson(chaptersPath);
+        }
+
+        for (let i = 1; i <= 114; i++) {
+            const chapPath = path.join(DATA_DIR, 'chapters', `${i}.json`);
+            if (await fs.pathExists(chapPath)) {
+                versesByChapter[i] = await fs.readJson(chapPath);
+
+                // Oyatlarni betlarga bo'lib indexing qilish
+                const verses = versesByChapter[i].verses;
+                if (verses && Array.isArray(verses)) {
+                    for (const v of verses) {
+                        const page = v.page_number;
+                        if (!versesByPage[page]) versesByPage[page] = [];
+                        versesByPage[page].push(v);
+                    }
+                }
             }
-        });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+        }
+        console.log("Memory DB loaded successfully.");
+    } catch (e) {
+        console.error("Error loading data:", e);
     }
+}
+loadData();
+
+app.get('/api', (req, res) => {
+    res.json({
+        message: "Muslim App Backend v1",
+        status: "Online"
+    });
 });
 
-// 2. Mushaf ZIP fayllari uchun yo'naltirish (Redirect)
-// Render-da disk joyi kam bo'lsa, GitHub-dagi ZIP-ga yo'naltiramiz
-// Agar serveringizda joy bo'lsa, faylni o'ziga joylash mumkin.
+// Mushaf ZIP yo'naltirishlari
 app.get('/api/mushaf/standard', (req, res) => {
     res.redirect('https://github.com/GovarJabbar/Quran-PNG/archive/refs/heads/master.zip');
 });
@@ -49,14 +70,35 @@ app.get('/api/mushaf/tajweed', (req, res) => {
     res.redirect('https://github.com/HiIAmMoot/quran-android-tajweed-page-provider/archive/refs/heads/main.zip');
 });
 
-// 3. Audio linklar (Masalan: Al-Afasy)
-app.get('/api/audio/:number', (req, res) => {
-    const num = req.params.number.padStart(3, '0');
-    // Mashhur audio serveriga yo'naltiramiz
-    res.json({
-        surah: req.params.number,
-        audio_url: `https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/${num}.mp3`
-    });
+// Suralar ro'yxati (api.quran.com kabi)
+app.get('/api/quran/chapters', (req, res) => {
+    if (chaptersData) {
+        // As api.quran.com response was something like { chapters: [...] }
+        res.json(chaptersData);
+    } else {
+        res.status(503).json({ error: "Data is loading" });
+    }
+});
+
+// Biror suraning barcha oyatlari
+app.get('/api/quran/verses/by_chapter/:id', (req, res) => {
+    const id = req.params.id;
+    if (versesByChapter[id]) {
+        res.json(versesByChapter[id]);
+    } else {
+        res.status(404).json({ error: "Chapter not found" });
+    }
+});
+
+// Biror betning barcha oyatlari 
+app.get('/api/quran/verses/by_page/:id', (req, res) => {
+    const page = parseInt(req.params.id);
+    if (!isNaN(page) && versesByPage[page]) {
+        // api.quran.com formasi
+        res.json({ verses: versesByPage[page] });
+    } else {
+        res.status(404).json({ error: "Page not found or not yet available" });
+    }
 });
 
 app.listen(PORT, () => {

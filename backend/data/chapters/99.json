@@ -1,0 +1,179 @@
+{
+  "verses": [
+    {
+      "id": 6139,
+      "verse_number": 1,
+      "verse_key": "99:1",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 543,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": " إِذَا زُلْزِلَتِ ٱلْأَرْضُ زِلْزَالَهَا",
+      "text_uthmani_tajweed": "إِذَا زُلْزِلَتِ <tajweed class=ham_wasl>ٱ</tajweed>لْأَرْضُ زِلْزَالَهَا <span class=end>١</span>",
+      "page_number": 599,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664082,
+          "resource_id": 101,
+          "text": "Қачон Ер ўзининг (энг даҳшатли) зилзиласи билан ларзага тушганида;"
+        }
+      ]
+    },
+    {
+      "id": 6140,
+      "verse_number": 2,
+      "verse_key": "99:2",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 543,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَأَخْرَجَتِ ٱلْأَرْضُ أَثْقَالَهَا",
+      "text_uthmani_tajweed": "وَأَخْرَجَتِ <tajweed class=ham_wasl>ٱ</tajweed>لْأَرْضُ أَثْقَالَهَا <span class=end>٢</span>",
+      "page_number": 599,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664083,
+          "resource_id": 101,
+          "text": "Ва Ер (ўз бағридаги хазинаю-дафиналардан ва инсон жасадларидан иборат) «юк»ларини (юзага) чиқариб ташлаганида;"
+        }
+      ]
+    },
+    {
+      "id": 6141,
+      "verse_number": 3,
+      "verse_key": "99:3",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 543,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَقَالَ ٱلْإِنسَـٰنُ مَا لَهَا",
+      "text_uthmani_tajweed": "وَقَالَ <tajweed class=ham_wasl>ٱ</tajweed>لْإِ<tajweed class=ikhafa>نس</tajweed>َ<tajweed class=madda_normal>ـٰ</tajweed>نُ مَا لَهَا <span class=end>٣</span>",
+      "page_number": 599,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664084,
+          "resource_id": 101,
+          "text": "Ва (ҳаётлик пайтида қайта тирилишни инкор қилгувчи бўлган) инсон (қайта тирилганидан даҳшатга тушиб: «Ерга) нима бўлди ўзи?», деб қолганида;"
+        }
+      ]
+    },
+    {
+      "id": 6142,
+      "verse_number": 4,
+      "verse_key": "99:4",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 543,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "يَوْمَئِذٍ تُحَدِّثُ أَخْبَارَهَا",
+      "text_uthmani_tajweed": "يَوْمَئِ<tajweed class=ikhafa>ذٍ ت</tajweed>ُحَدِّثُ أَخْبَارَهَا <span class=end>٤</span>",
+      "page_number": 599,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664085,
+          "resource_id": 101,
+          "text": "Ана ўша Кунда Ер ўз хабарларини сўзлар!"
+        }
+      ]
+    },
+    {
+      "id": 6143,
+      "verse_number": 5,
+      "verse_key": "99:5",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 543,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "بِأَنَّ رَبَّكَ أَوْحَىٰ لَهَا",
+      "text_uthmani_tajweed": "بِأَ<tajweed class=ghunnah>نّ</tajweed>َ رَبَّكَ أَوْحَىٰ لَهَا <span class=end>٥</span>",
+      "page_number": 599,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664086,
+          "resource_id": 101,
+          "text": "Парвардигорингиз унга ваҳий қил(иб, сўзлашга буюр)гани сабабли (ўз хабарларини сўзлар!) <sup foot_note=145387>1</sup>"
+        }
+      ]
+    },
+    {
+      "id": 6144,
+      "verse_number": 6,
+      "verse_key": "99:6",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 543,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "يَوْمَئِذٍ يَصْدُرُ ٱلنَّاسُ أَشْتَاتًا لِّيُرَوْا۟ أَعْمَـٰلَهُمْ",
+      "text_uthmani_tajweed": "يَوْمَئِ<tajweed class=idgham_ghunnah>ذٍ ي</tajweed>َصْدُرُ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed>َاسُ أَشْتَا<tajweed class=idgham_wo_ghunnah>تًا ل</tajweed>ِّيُرَوْ<tajweed class=slnt>اْ</tajweed> أَعْمَ<tajweed class=madda_normal>ـٰ</tajweed>لَهُمْ <span class=end>٦</span>",
+      "page_number": 599,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664087,
+          "resource_id": 101,
+          "text": "Ўша Кунда одамлар, уларга (қилиб ўтган амаллари)нинг жазо ёки мукофотлари кўрсатилиши учун тўда-тўда бўлиб чиқиб келурлар!"
+        }
+      ]
+    },
+    {
+      "id": 6145,
+      "verse_number": 7,
+      "verse_key": "99:7",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 543,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُۥ",
+      "text_uthmani_tajweed": "فَم<tajweed class=idgham_ghunnah>َن ي</tajweed>َعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْ<tajweed class=idgham_ghunnah>رًا ي</tajweed>َرَهُۥ <span class=end>٧</span>",
+      "page_number": 599,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664088,
+          "resource_id": 101,
+          "text": "Бас, ким (ҳаёти дунёдалик пайтида) зарра мисқоличалик яхшилик қилса, (Қиёмат Кунида) ўшани кўрур."
+        }
+      ]
+    },
+    {
+      "id": 6146,
+      "verse_number": 8,
+      "verse_key": "99:8",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 543,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ شَرًّا يَرَهُۥ",
+      "text_uthmani_tajweed": "وَم<tajweed class=idgham_ghunnah>َن ي</tajweed>َعْمَلْ مِثْقَالَ ذَرَّ<tajweed class=ikhafa>ةٍ ش</tajweed>َر<tajweed class=idgham_ghunnah>ًّا ي</tajweed>َرَهُۥ <span class=end>٨</span>",
+      "page_number": 599,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664089,
+          "resource_id": 101,
+          "text": "Ким зарра мисқоличалик ёмонлик қилса, уни ҳам кўрур!"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "per_page": 300,
+    "current_page": 1,
+    "next_page": null,
+    "total_pages": 1,
+    "total_records": 8
+  }
+}

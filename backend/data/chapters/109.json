@@ -1,0 +1,137 @@
+{
+  "verses": [
+    {
+      "id": 6208,
+      "verse_number": 1,
+      "verse_key": "109:1",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 553,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": " قُلْ يَـٰٓأَيُّهَا ٱلْكَـٰفِرُونَ",
+      "text_uthmani_tajweed": "قُلْ يَ<tajweed class=madda_obligatory>ـٰٓ</tajweed>أَيُّهَا <tajweed class=ham_wasl>ٱ</tajweed>لْكَ<tajweed class=madda_normal>ـٰ</tajweed>فِر<tajweed class=madda_permissible>ُو</tajweed>نَ <span class=end>١</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664151,
+          "resource_id": 101,
+          "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), айтинг: «Эй кофирлар!"
+        }
+      ]
+    },
+    {
+      "id": 6209,
+      "verse_number": 2,
+      "verse_key": "109:2",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 553,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لَآ أَعْبُدُ مَا تَعْبُدُونَ",
+      "text_uthmani_tajweed": "ل<tajweed class=madda_obligatory>َآ</tajweed> أَعْبُدُ مَا تَعْبُد<tajweed class=madda_permissible>ُو</tajweed>نَ <span class=end>٢</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664152,
+          "resource_id": 101,
+          "text": "Мен сизлар ибодат қилаётган нарсаларга ибодат қилмасман."
+        }
+      ]
+    },
+    {
+      "id": 6210,
+      "verse_number": 3,
+      "verse_key": "109:3",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 553,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَلَآ أَنتُمْ عَـٰبِدُونَ مَآ أَعْبُدُ",
+      "text_uthmani_tajweed": "وَل<tajweed class=madda_obligatory>َآ</tajweed> أَ<tajweed class=ikhafa>نت</tajweed>ُمْ عَ<tajweed class=madda_normal>ـٰ</tajweed>بِدُونَ م<tajweed class=madda_obligatory>َآ</tajweed> أَعْبُ<tajweed class=qalaqah>د</tajweed>ُ <span class=end>٣</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664153,
+          "resource_id": 101,
+          "text": "Ва сизлар ҳам мен ибодат қиладиган (Аллоҳ)га ибодат қилгувчи эмасдирсизлар."
+        }
+      ]
+    },
+    {
+      "id": 6211,
+      "verse_number": 4,
+      "verse_key": "109:4",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 553,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَلَآ أَنَا۠ عَابِدٌ مَّا عَبَدتُّمْ",
+      "text_uthmani_tajweed": "وَل<tajweed class=madda_obligatory>َآ</tajweed> أَنَا۟ عَابِ<tajweed class=idgham_ghunnah>دٌ م</tajweed>َّا عَبَ<tajweed class=idgham_mutajanisayn>د</tajweed>تُّمْ <span class=end>٤</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664154,
+          "resource_id": 101,
+          "text": "Мен сизлар ибодат қилган нарсага ибодат қилгувчи эмасман."
+        }
+      ]
+    },
+    {
+      "id": 6212,
+      "verse_number": 5,
+      "verse_key": "109:5",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 553,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَلَآ أَنتُمْ عَـٰبِدُونَ مَآ أَعْبُدُ",
+      "text_uthmani_tajweed": "وَل<tajweed class=madda_obligatory>َآ</tajweed> أَ<tajweed class=ikhafa>نت</tajweed>ُمْ عَ<tajweed class=madda_normal>ـٰ</tajweed>بِدُونَ م<tajweed class=madda_obligatory>َآ</tajweed> أَعْبُ<tajweed class=qalaqah>د</tajweed>ُ <span class=end>٥</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664155,
+          "resource_id": 101,
+          "text": "Ва сизлар ҳам мен ибодат қиладиган (Аллоҳ)га ибодат қилгувчи эмасдирсизлар."
+        }
+      ]
+    },
+    {
+      "id": 6213,
+      "verse_number": 6,
+      "verse_key": "109:6",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 553,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لَكُمْ دِينُكُمْ وَلِىَ دِينِ",
+      "text_uthmani_tajweed": "لَكُمْ دِينُكُمْ وَلِىَ د<tajweed class=madda_permissible>ِي</tajweed>نِ <span class=end>٦</span>",
+      "page_number": 603,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664156,
+          "resource_id": 101,
+          "text": "Сизларнинг динингиз ўзларингиз учун, менинг диним ўзим учундир!»"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "per_page": 300,
+    "current_page": 1,
+    "next_page": null,
+    "total_pages": 1,
+    "total_records": 6
+  }
+}

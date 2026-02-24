@@ -1,0 +1,473 @@
+{
+  "verses": [
+    {
+      "id": 5910,
+      "verse_number": 1,
+      "verse_key": "85:1",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": " وَٱلسَّمَآءِ ذَاتِ ٱلْبُرُوجِ",
+      "text_uthmani_tajweed": "وَ<tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>سَّم<tajweed class=madda_obligatory>َا</tajweed>ٓءِ ذَاتِ <tajweed class=ham_wasl>ٱ</tajweed>لْبُر<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>ج</tajweed>ِ <span class=end>١</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663853,
+          "resource_id": 101,
+          "text": "Буржлар эгаси бўлмиш осмонга қасам;"
+        }
+      ]
+    },
+    {
+      "id": 5911,
+      "verse_number": 2,
+      "verse_key": "85:2",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَٱلْيَوْمِ ٱلْمَوْعُودِ",
+      "text_uthmani_tajweed": "وَ<tajweed class=ham_wasl>ٱ</tajweed>لْيَوْمِ <tajweed class=ham_wasl>ٱ</tajweed>لْمَوْع<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>ِ <span class=end>٢</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663854,
+          "resource_id": 101,
+          "text": "Ваъда қилинмиш (Қиёмат) Кунига қасам;"
+        }
+      ]
+    },
+    {
+      "id": 5912,
+      "verse_number": 3,
+      "verse_key": "85:3",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَشَاهِدٍ وَمَشْهُودٍ",
+      "text_uthmani_tajweed": "وَشَاهِ<tajweed class=idgham_ghunnah>دٍ و</tajweed>َمَشْه<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>ٍ <span class=end>٣</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663855,
+          "resource_id": 101,
+          "text": "(Ўша Кунда) гувоҳ бўлгувчи (барча халойиққа) ва гувоҳ бўлингувчи (барча воқеа-ҳодисалар)га қасам-ки,"
+        }
+      ]
+    },
+    {
+      "id": 5913,
+      "verse_number": 4,
+      "verse_key": "85:4",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "قُتِلَ أَصْحَـٰبُ ٱلْأُخْدُودِ",
+      "text_uthmani_tajweed": "قُتِلَ أَصْحَ<tajweed class=madda_normal>ـٰ</tajweed>بُ <tajweed class=ham_wasl>ٱ</tajweed>لْأُخْد<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>ِ <span class=end>٤</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663856,
+          "resource_id": 101,
+          "text": "Чоҳ эгалари лаънат қилингайлар!"
+        }
+      ]
+    },
+    {
+      "id": 5914,
+      "verse_number": 5,
+      "verse_key": "85:5",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "ٱلنَّارِ ذَاتِ ٱلْوَقُودِ",
+      "text_uthmani_tajweed": "ٱ<tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed>َارِ ذَاتِ <tajweed class=ham_wasl>ٱ</tajweed>لْوَق<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>ِ <span class=end>٥</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663857,
+          "resource_id": 101,
+          "text": "(У чоҳ ўзига итқитилган одамларнинг таналаридан иборат бўлган) «ўтин»ли оловдир!"
+        }
+      ]
+    },
+    {
+      "id": 5915,
+      "verse_number": 6,
+      "verse_key": "85:6",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "إِذْ هُمْ عَلَيْهَا قُعُودٌ",
+      "text_uthmani_tajweed": "إِذْ هُمْ عَلَيْهَا قُع<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>ٌ <span class=end>٦</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663858,
+          "resource_id": 101,
+          "text": "Ўшанда улар ўша (чоҳ)нинг устида ўтириб олган,"
+        }
+      ]
+    },
+    {
+      "id": 5916,
+      "verse_number": 7,
+      "verse_key": "85:7",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَهُمْ عَلَىٰ مَا يَفْعَلُونَ بِٱلْمُؤْمِنِينَ شُهُودٌ",
+      "text_uthmani_tajweed": "وَهُمْ عَلَىٰ مَا يَفْعَلُونَ بِ<tajweed class=ham_wasl>ٱ</tajweed>لْمُؤْمِنِينَ شُه<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>ٌ <span class=end>٧</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663859,
+          "resource_id": 101,
+          "text": "Ва мўминларга қилаётган ишларига ўзлари гувоҳ бўлган эдилар. <sup foot_note=145362>1</sup>"
+        }
+      ]
+    },
+    {
+      "id": 5917,
+      "verse_number": 8,
+      "verse_key": "85:8",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَمَا نَقَمُوا۟ مِنْهُمْ إِلَّآ أَن يُؤْمِنُوا۟ بِٱللَّهِ ٱلْعَزِيزِ ٱلْحَمِيدِ",
+      "text_uthmani_tajweed": "وَمَا نَقَمُو<tajweed class=slnt>اْ</tajweed> مِنْهُمْ إِلّ<tajweed class=madda_obligatory>َآ</tajweed> أ<tajweed class=idgham_ghunnah>َن ي</tajweed>ُؤْمِنُو<tajweed class=slnt>اْ</tajweed> بِ<tajweed class=ham_wasl>ٱ</tajweed>للَّهِ <tajweed class=ham_wasl>ٱ</tajweed>لْعَزِيزِ <tajweed class=ham_wasl>ٱ</tajweed>لْحَم<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>د</tajweed>ِ <span class=end>٨</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663860,
+          "resource_id": 101,
+          "text": "Улар (мўминлардан) фақат у (мўмин)лар қудрат ва мақтов эгаси бўлган Аллоҳга иймон келтирганлари учунгина ўч олдилар!"
+        }
+      ]
+    },
+    {
+      "id": 5918,
+      "verse_number": 9,
+      "verse_key": "85:9",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "ٱلَّذِى لَهُۥ مُلْكُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضِ ۚ وَٱللَّهُ عَلَىٰ كُلِّ شَىْءٍ شَهِيدٌ",
+      "text_uthmani_tajweed": "ٱلَّذِى لَهُ<tajweed class=madda_normal>ۥ</tajweed> مُلْكُ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>سَّمَ<tajweed class=madda_normal>ـٰ</tajweed>و<tajweed class=madda_normal>َٲ</tajweed>تِ وَ<tajweed class=ham_wasl>ٱ</tajweed>لْأَرْضِ‌ۚ وَ<tajweed class=ham_wasl>ٱ</tajweed>للَّهُ عَلَىٰ كُلِّ ش<tajweed class=ikhafa>َىْءٍ ش</tajweed>َه<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>د</tajweed>ٌ <span class=end>٩</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663861,
+          "resource_id": 101,
+          "text": "У — осмонлар ва Ернинг подшоҳлиги Ўзиники бўлган Зотдир! Аллоҳ барча нарсага гувоҳдир!"
+        }
+      ]
+    },
+    {
+      "id": 5919,
+      "verse_number": 10,
+      "verse_key": "85:10",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "إِنَّ ٱلَّذِينَ فَتَنُوا۟ ٱلْمُؤْمِنِينَ وَٱلْمُؤْمِنَـٰتِ ثُمَّ لَمْ يَتُوبُوا۟ فَلَهُمْ عَذَابُ جَهَنَّمَ وَلَهُمْ عَذَابُ ٱلْحَرِيقِ",
+      "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed>َ <tajweed class=ham_wasl>ٱ</tajweed>لَّذِينَ فَتَنُو<tajweed class=slnt>اْ</tajweed> <tajweed class=ham_wasl>ٱ</tajweed>لْمُؤْمِنِينَ وَ<tajweed class=ham_wasl>ٱ</tajweed>لْمُؤْمِنَ<tajweed class=madda_normal>ـٰ</tajweed>تِ ثُ<tajweed class=ghunnah>مّ</tajweed>َ لَمْ يَتُوبُو<tajweed class=slnt>اْ</tajweed> فَلَهُمْ عَذَابُ جَهَ<tajweed class=ghunnah>نّ</tajweed>َمَ وَلَهُمْ عَذَابُ <tajweed class=ham_wasl>ٱ</tajweed>لْحَر<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>ق</tajweed>ِ <span class=end>١٠</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663862,
+          "resource_id": 101,
+          "text": "Албатта мўмин ва мўминаларни фитнага солиб, (бу қилмишларидан) тавба қилмаган кимсалар учун жаҳаннам азоби бордир ва улар учун ўт азоби бордир!"
+        }
+      ]
+    },
+    {
+      "id": 5920,
+      "verse_number": 11,
+      "verse_key": "85:11",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "إِنَّ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ لَهُمْ جَنَّـٰتٌ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَـٰرُ ۚ ذَٰلِكَ ٱلْفَوْزُ ٱلْكَبِيرُ",
+      "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed>َ <tajweed class=ham_wasl>ٱ</tajweed>لَّذِينَ ءَامَنُو<tajweed class=slnt>اْ</tajweed> وَعَمِلُو<tajweed class=slnt>اْ</tajweed> <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>صَّ<tajweed class=madda_normal>ـٰ</tajweed>لِحَ<tajweed class=madda_normal>ـٰ</tajweed>تِ لَهُمْ جَ<tajweed class=ghunnah>نّ</tajweed>َ<tajweed class=madda_normal>ـٰ</tajweed><tajweed class=ikhafa>تٌ ت</tajweed>َ<tajweed class=qalaqah>جْ</tajweed>رِى مِ<tajweed class=ikhafa>ن ت</tajweed>َحْتِهَا <tajweed class=ham_wasl>ٱ</tajweed>لْأَنْهَ<tajweed class=madda_normal>ـٰ</tajweed>رُ‌ۚ ذ<tajweed class=madda_normal>َٲ</tajweed>لِكَ <tajweed class=ham_wasl>ٱ</tajweed>لْفَوْزُ <tajweed class=ham_wasl>ٱ</tajweed>لْكَب<tajweed class=madda_permissible>ِي</tajweed>رُ <span class=end>١١</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663863,
+          "resource_id": 101,
+          "text": "Албатта иймон келтирган ва яхши амаллар қилган зотлар учун остидан дарёлар оқиб турадиган жаннатлар бордир. Мана шу катта бахтдир."
+        }
+      ]
+    },
+    {
+      "id": 5921,
+      "verse_number": 12,
+      "verse_key": "85:12",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "إِنَّ بَطْشَ رَبِّكَ لَشَدِيدٌ",
+      "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed>َ بَ<tajweed class=qalaqah>طْ</tajweed>شَ رَبِّكَ لَشَد<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>د</tajweed>ٌ <span class=end>١٢</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663864,
+          "resource_id": 101,
+          "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), шак-шубҳасиз, Парвардигорингизнинг (кофирларни азоб билан) ушлаши қаттиқдир."
+        }
+      ]
+    },
+    {
+      "id": 5922,
+      "verse_number": 13,
+      "verse_key": "85:13",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "إِنَّهُۥ هُوَ يُبْدِئُ وَيُعِيدُ",
+      "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed>َهُ<tajweed class=madda_normal>ۥ</tajweed> هُوَ يُ<tajweed class=qalaqah>بْ</tajweed>دِئُ وَيُع<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>د</tajweed>ُ <span class=end>١٣</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663865,
+          "resource_id": 101,
+          "text": "Албатта Унинг Ўзи бошлар (яъни, бошлаб йўқдан бор қилур) ва қайтарур (яъни, халойиқни ўлганларидан кейин қайта тирилтирур)."
+        }
+      ]
+    },
+    {
+      "id": 5923,
+      "verse_number": 14,
+      "verse_key": "85:14",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَهُوَ ٱلْغَفُورُ ٱلْوَدُودُ",
+      "text_uthmani_tajweed": "وَهُوَ <tajweed class=ham_wasl>ٱ</tajweed>لْغَفُورُ <tajweed class=ham_wasl>ٱ</tajweed>لْوَد<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>ُ <span class=end>١٤</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663866,
+          "resource_id": 101,
+          "text": "У (мўминларга) мағфиратли муҳаббатли Зотдир."
+        }
+      ]
+    },
+    {
+      "id": 5924,
+      "verse_number": 15,
+      "verse_key": "85:15",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "ذُو ٱلْعَرْشِ ٱلْمَجِيدُ",
+      "text_uthmani_tajweed": "ذُو <tajweed class=ham_wasl>ٱ</tajweed>لْعَرْشِ <tajweed class=ham_wasl>ٱ</tajweed>لْمَج<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>د</tajweed>ُ <span class=end>١٥</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663867,
+          "resource_id": 101,
+          "text": "(У) арш соҳиби бўлмиш буюк Зотдир."
+        }
+      ]
+    },
+    {
+      "id": 5925,
+      "verse_number": 16,
+      "verse_key": "85:16",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فَعَّالٌ لِّمَا يُرِيدُ",
+      "text_uthmani_tajweed": "فَعَّا<tajweed class=idgham_wo_ghunnah>لٌ ل</tajweed>ِّمَا يُر<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>د</tajweed>ُ <span class=end>١٦</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663868,
+          "resource_id": 101,
+          "text": "(У) истаган нарсасини амалга оширгувчидир."
+        }
+      ]
+    },
+    {
+      "id": 5926,
+      "verse_number": 17,
+      "verse_key": "85:17",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "هَلْ أَتَىٰكَ حَدِيثُ ٱلْجُنُودِ",
+      "text_uthmani_tajweed": "هَلْ أَتَ<tajweed class=madda_normal>ـٰ</tajweed>كَ حَدِيثُ <tajweed class=ham_wasl>ٱ</tajweed>لْجُن<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>ِ <span class=end>١٧</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663869,
+          "resource_id": 101,
+          "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), сизга қўшинларнинг хабари келдими?"
+        }
+      ]
+    },
+    {
+      "id": 5927,
+      "verse_number": 18,
+      "verse_key": "85:18",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فِرْعَوْنَ وَثَمُودَ",
+      "text_uthmani_tajweed": "فِرْعَوْنَ وَثَم<tajweed class=madda_permissible>ُو</tajweed><tajweed class=qalaqah>د</tajweed>َ <span class=end>١٨</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663870,
+          "resource_id": 101,
+          "text": "— Фиръавн (ва унинг одамларининг) ҳамда Самуд (қабиласининг хабари келдими?) <sup foot_note=145363>1</sup>"
+        }
+      ]
+    },
+    {
+      "id": 5928,
+      "verse_number": 19,
+      "verse_key": "85:19",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "بَلِ ٱلَّذِينَ كَفَرُوا۟ فِى تَكْذِيبٍ",
+      "text_uthmani_tajweed": "بَلِ <tajweed class=ham_wasl>ٱ</tajweed>لَّذِينَ كَفَرُو<tajweed class=slnt>اْ</tajweed> فِى تَكْذ<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>ب</tajweed>ٍ <span class=end>١٩</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663871,
+          "resource_id": 101,
+          "text": "Йўқ, кофир бўлган кимсалар (ўзларидан аввал ўтган динсиз кимсалар йўлиққан азоб-ҳалокатлардан ибрат олмай, ҳали ҳам Қуръонни) ёлғон дейишда (оёқ тираб турибдилар!)"
+        }
+      ]
+    },
+    {
+      "id": 5929,
+      "verse_number": 20,
+      "verse_key": "85:20",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَٱللَّهُ مِن وَرَآئِهِم مُّحِيطٌۢ",
+      "text_uthmani_tajweed": "وَ<tajweed class=ham_wasl>ٱ</tajweed>للَّهُ م<tajweed class=idgham_ghunnah>ِن و</tajweed>َر<tajweed class=madda_obligatory>َا</tajweed>ٓئِه<tajweed class=idgham_shafawi>ِم م</tajweed>ُّح<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>ط</tajweed>ُۢ <span class=end>٢٠</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663872,
+          "resource_id": 101,
+          "text": "Ҳолбуки, Аллоҳ уларнинг ортида (барча нарсани билиб) иҳота қилиб тургувчидир."
+        }
+      ]
+    },
+    {
+      "id": 5930,
+      "verse_number": 21,
+      "verse_key": "85:21",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "بَلْ هُوَ قُرْءَانٌ مَّجِيدٌ",
+      "text_uthmani_tajweed": "بَلْ هُوَ قُرْءَا<tajweed class=idgham_ghunnah>نٌ م</tajweed>َّج<tajweed class=madda_permissible>ِي</tajweed><tajweed class=qalaqah>د</tajweed>ٌ <span class=end>٢١</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663873,
+          "resource_id": 101,
+          "text": "Йўқ, (улар ёлғон дейишаётган нарса) Буюк Қуръондир."
+        }
+      ]
+    },
+    {
+      "id": 5931,
+      "verse_number": 22,
+      "verse_key": "85:22",
+      "hizb_number": 59,
+      "rub_el_hizb_number": 236,
+      "ruku_number": 529,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "فِى لَوْحٍ مَّحْفُوظٍۭ",
+      "text_uthmani_tajweed": "فِى لَوْ<tajweed class=idgham_ghunnah>حٍ م</tajweed>َّحْف<tajweed class=madda_permissible>ُو</tajweed>ظِۭ <span class=end>٢٢</span>",
+      "page_number": 590,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 663874,
+          "resource_id": 101,
+          "text": "Лавҳул-Маҳфуздаги (яъни, ҳар қандай бузилиш ва ўзгаришдан сақланган — ҳимояланган Лавҳдаги Буюк Қуръондир)."
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "per_page": 300,
+    "current_page": 1,
+    "next_page": null,
+    "total_pages": 1,
+    "total_records": 22
+  }
+}

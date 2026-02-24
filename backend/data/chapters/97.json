@@ -1,0 +1,116 @@
+{
+  "verses": [
+    {
+      "id": 6126,
+      "verse_number": 1,
+      "verse_key": "97:1",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 541,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "إِنَّآ أَنزَلْنَـٰهُ فِى لَيْلَةِ ٱلْقَدْرِ",
+      "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_obligatory>َآ</tajweed> أَ<tajweed class=ikhafa>نز</tajweed>َلْنَ<tajweed class=madda_normal>ـٰ</tajweed>هُ فِى لَيْلَةِ <tajweed class=ham_wasl>ٱ</tajweed>لْقَ<tajweed class=qalaqah>دْ</tajweed>رِ <span class=end>١</span>",
+      "page_number": 598,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664069,
+          "resource_id": 101,
+          "text": "Албатта Биз у (Қуръон)ни Қадр кечасида нозил қилдик."
+        }
+      ]
+    },
+    {
+      "id": 6127,
+      "verse_number": 2,
+      "verse_key": "97:2",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 541,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَمَآ أَدْرَىٰكَ مَا لَيْلَةُ ٱلْقَدْرِ",
+      "text_uthmani_tajweed": "وَم<tajweed class=madda_obligatory>َآ</tajweed> أَ<tajweed class=qalaqah>دْ</tajweed>رَ<tajweed class=madda_normal>ٮٰ</tajweed>كَ مَا لَيْلَةُ <tajweed class=ham_wasl>ٱ</tajweed>لْقَ<tajweed class=qalaqah>دْ</tajweed>رِ <span class=end>٢</span>",
+      "page_number": 598,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664070,
+          "resource_id": 101,
+          "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), Қадр кечаси нима эканлигини сиз қаердан билар эдингиз?"
+        }
+      ]
+    },
+    {
+      "id": 6128,
+      "verse_number": 3,
+      "verse_key": "97:3",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 541,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لَيْلَةُ ٱلْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ",
+      "text_uthmani_tajweed": "لَيْلَةُ <tajweed class=ham_wasl>ٱ</tajweed>لْقَ<tajweed class=qalaqah>دْ</tajweed>رِ خَيْ<tajweed class=idgham_ghunnah>رٌ م</tajweed>ِّنْ أَلْفِ شَهْرٍ <span class=end>٣</span>",
+      "page_number": 598,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664071,
+          "resource_id": 101,
+          "text": "Қадр кечаси минг ойдан яхшироқдир. <sup foot_note=145385>1</sup>"
+        }
+      ]
+    },
+    {
+      "id": 6129,
+      "verse_number": 4,
+      "verse_key": "97:4",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 541,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "تَنَزَّلُ ٱلْمَلَـٰٓئِكَةُ وَٱلرُّوحُ فِيهَا بِإِذْنِ رَبِّهِم مِّن كُلِّ أَمْرٍ",
+      "text_uthmani_tajweed": "تَنَزَّلُ <tajweed class=ham_wasl>ٱ</tajweed>لْمَلَ<tajweed class=madda_obligatory>ـٰٓ</tajweed>ئِكَةُ وَ<tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>رُّوحُ فِيهَا بِإِذْنِ رَبِّه<tajweed class=idgham_shafawi>ِم م</tajweed>ِّ<tajweed class=ikhafa>ن ك</tajweed>ُلِّ أَمْرٍ <span class=end>٤</span>",
+      "page_number": 598,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664072,
+          "resource_id": 101,
+          "text": "У (кеча)да фаришталар ва Руҳ (яъни, Жаброил алайҳиссалом) Парвардигорларининг изни-ихтиёри ила (йил давомида қилинадиган) барча ишлар билан (осмондан заминга) тушурлар."
+        }
+      ]
+    },
+    {
+      "id": 6130,
+      "verse_number": 5,
+      "verse_key": "97:5",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 239,
+      "ruku_number": 541,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "سَلَـٰمٌ هِىَ حَتَّىٰ مَطْلَعِ ٱلْفَجْرِ",
+      "text_uthmani_tajweed": "سَلَ<tajweed class=madda_normal>ـٰ</tajweed>مٌ هِىَ حَتَّىٰ مَ<tajweed class=qalaqah>طْ</tajweed>لَعِ <tajweed class=ham_wasl>ٱ</tajweed>لْفَ<tajweed class=qalaqah>جْ</tajweed>رِ <span class=end>٥</span>",
+      "page_number": 598,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664073,
+          "resource_id": 101,
+          "text": "У (кеча) то тонг отгунича тинчлик-омонликдир."
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "per_page": 300,
+    "current_page": 1,
+    "next_page": null,
+    "total_pages": 1,
+    "total_records": 5
+  }
+}

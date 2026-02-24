@@ -1,0 +1,95 @@
+{
+  "verses": [
+    {
+      "id": 6222,
+      "verse_number": 1,
+      "verse_key": "112:1",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 556,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": " قُلْ هُوَ ٱللَّهُ أَحَدٌ",
+      "text_uthmani_tajweed": "قُلْ هُوَ <tajweed class=ham_wasl>ٱ</tajweed>للَّهُ أَحَ<tajweed class=qalaqah>د</tajweed>ٌ <span class=end>١</span>",
+      "page_number": 604,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664165,
+          "resource_id": 101,
+          "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), айтинг: «У — Аллоҳ Бирдир. (Яъни, Унинг ҳеч қандай шериги йўқдир. У яккаю ёлғиздир)."
+        }
+      ]
+    },
+    {
+      "id": 6223,
+      "verse_number": 2,
+      "verse_key": "112:2",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 556,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "ٱللَّهُ ٱلصَّمَدُ",
+      "text_uthmani_tajweed": "ٱللَّهُ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>صَّمَ<tajweed class=qalaqah>د</tajweed>ُ <span class=end>٢</span>",
+      "page_number": 604,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664166,
+          "resource_id": 101,
+          "text": "Аллоҳ (барча ҳожатлар билан) кўзлангувчидир (яъни, барча ҳожатлар Ундан сўралади, аммо У ҳеч кимга муҳтож эмасдир)."
+        }
+      ]
+    },
+    {
+      "id": 6224,
+      "verse_number": 3,
+      "verse_key": "112:3",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 556,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+      "text_uthmani_tajweed": "لَمْ يَلِ<tajweed class=qalaqah>دْ</tajweed> وَلَمْ يُولَ<tajweed class=qalaqah>دْ</tajweed> <span class=end>٣</span>",
+      "page_number": 604,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664167,
+          "resource_id": 101,
+          "text": "У туғмаган ва туғилмагандир (яъни, Аллоҳнинг ўғил-қизи ҳам, ота-онаси ҳам йўқдир. У азалий ва абадий Зотдир)."
+        }
+      ]
+    },
+    {
+      "id": 6225,
+      "verse_number": 4,
+      "verse_key": "112:4",
+      "hizb_number": 60,
+      "rub_el_hizb_number": 240,
+      "ruku_number": 556,
+      "manzil_number": 7,
+      "sajdah_number": null,
+      "text_uthmani": "وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ",
+      "text_uthmani_tajweed": "وَلَمْ يَك<tajweed class=idgham_wo_ghunnah>ُن ل</tajweed>َّهُ<tajweed class=madda_normal>ۥ</tajweed> كُفُوًا أَحَ<tajweed class=qalaqah>د</tajweed>ُۢ <span class=end>٤</span>",
+      "page_number": 604,
+      "juz_number": 30,
+      "translations": [
+        {
+          "id": 664168,
+          "resource_id": 101,
+          "text": "Ва ҳеч ким У зотга тенг эмасдир»."
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "per_page": 300,
+    "current_page": 1,
+    "next_page": null,
+    "total_pages": 1,
+    "total_records": 4
+  }
+}

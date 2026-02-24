@@ -6,8 +6,9 @@ import 'quran_db_service.dart';
 
 /// Qur'on API xizmati — api.quran.com (v4)
 class QuranApiService {
-  static const String _baseUrl = 'https://api.quran.com/api/v4';
-  static const String _audioBaseUrl = 'https://audio.qurancdn.com/';
+  // O'zimizning shaxsiy backend server API (Render-dagi URL)
+  static const String _baseUrl = 'https://muslim-app-backend.onrender.com/api/quran';
+  static const String _audioBaseUrl = 'https://download.quranicaudio.com/quran/mishari_rashid_al-afasy/';
   static const String _keySurahs = 'cached_surahs_v5';
 
   static final Dio _dio = Dio(BaseOptions(
@@ -24,7 +25,7 @@ class QuranApiService {
     }
 
     try {
-      final response = await _dio.get('/chapters?language=uz');
+      final response = await _dio.get('/chapters');
       if (response.statusCode == 200) {
         final data = response.data['chapters'] as List;
         final surahs = data.map((json) => SurahModel.fromJson(json)).toList();
@@ -47,14 +48,7 @@ class QuranApiService {
     }
 
     try {
-      final versesResponse = await _dio.get(
-        '/verses/by_chapter/$surahNumber',
-        queryParameters: {
-          'translations': '101',
-          'fields': 'text_uthmani,text_uthmani_tajweed,page_number,juz_number',
-          'per_page': '300',
-        },
-      );
+      final versesResponse = await _dio.get('/verses/by_chapter/$surahNumber');
 
       if (versesResponse.statusCode == 200) {
         final versesData = versesResponse.data['verses'] as List;
@@ -85,13 +79,7 @@ class QuranApiService {
     }
 
     try {
-      final response = await _dio.get(
-        '/verses/by_page/$pageNumber',
-        queryParameters: {
-          'fields': 'text_uthmani,text_uthmani_tajweed,page_number,juz_number',
-          'per_page': '50',
-        },
-      );
+      final response = await _dio.get('/verses/by_page/$pageNumber');
 
       if (response.statusCode == 200) {
         final data = response.data['verses'] as List;
