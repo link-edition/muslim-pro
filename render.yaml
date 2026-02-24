@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: muslim-app-backend
+    env: docker
+    rootDir: backend
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 10000
