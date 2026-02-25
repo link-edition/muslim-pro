@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'core/theme.dart';
 import 'core/splash_page.dart';
 import 'features/home/presentation/home_screen.dart';
-import 'features/quran/data/mushaf_download_service.dart';
-import 'features/quran/data/quran_api_service.dart';
-import 'features/quran/quran_provider.dart';
-
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 import 'package:muslim_pro/core/notification_service.dart';
-
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -25,7 +18,6 @@ void main() async {
   Intl.defaultLocale = 'uz';
   runApp(const ProviderScope(child: MuslimProApp()));
 }
-
 
 class MuslimProApp extends StatelessWidget {
   const MuslimProApp({super.key});
@@ -65,20 +57,6 @@ class _RootPageState extends ConsumerState<RootPage> {
   @override
   void initState() {
     super.initState();
-    // Mushaf yuklashni boshlash (background)
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(mushafDownloadProvider.notifier).checkStatus();
-      
-      // Tekstlarni orqa fonda jimgina yuklab olish
-      QuranApiService.silentSyncAllText(
-        onProgress: (p) {
-          if (mounted) {
-            ref.read(textSyncProgressProvider.notifier).state = p;
-          }
-        }
-      );
-    });
-    
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) setState(() => _showSplash = false);
     });

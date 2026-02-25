@@ -13,13 +13,49 @@
       "text_uthmani_tajweed": "تَبَّتْ يَد<tajweed class=madda_obligatory>َآ</tajweed> أَبِى لَهَ<tajweed class=idgham_ghunnah>بٍ و</tajweed>َتَ<tajweed class=qalaqah>ب</tajweed>َّ <span class=end>١</span>",
       "page_number": 603,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/111001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            790
+          ],
+          [
+            1,
+            2,
+            800,
+            1320
+          ],
+          [
+            2,
+            3,
+            1330,
+            3880
+          ],
+          [
+            3,
+            4,
+            3890,
+            5440
+          ],
+          [
+            4,
+            5,
+            5450,
+            6680
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664160,
           "resource_id": 101,
           "text": "Абу Лаҳабнинг қўллари қуригай — ҳалок бўлгай! (Аниқки), у қуриди — ҳалок бўлди!"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/111001.mp3"
     },
     {
       "id": 6218,
@@ -34,13 +70,55 @@
       "text_uthmani_tajweed": "م<tajweed class=madda_obligatory>َآ</tajweed> أَغْنَىٰ عَنْهُ مَالُهُ<tajweed class=madda_normal>ۥ</tajweed> وَمَا كَسَ<tajweed class=qalaqah>ب</tajweed>َ <span class=end>٢</span>",
       "page_number": 603,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/111002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            50,
+            2230
+          ],
+          [
+            1,
+            2,
+            2240,
+            3060
+          ],
+          [
+            2,
+            3,
+            3070,
+            3850
+          ],
+          [
+            3,
+            4,
+            3860,
+            4930
+          ],
+          [
+            4,
+            5,
+            4940,
+            5500
+          ],
+          [
+            5,
+            6,
+            5510,
+            6140
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664161,
           "resource_id": 101,
           "text": "Мол-мулки ва касб қилиб топган нарсалари унга асқотгани йўқ!"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/111002.mp3"
     },
     {
       "id": 6219,
@@ -55,13 +133,43 @@
       "text_uthmani_tajweed": "سَيَصْلَىٰ نَا<tajweed class=ikhafa>رًا ذ</tajweed>َاتَ لَهَ<tajweed class=qalaqah>ب</tajweed>ٍ <span class=end>٣</span>",
       "page_number": 603,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/111003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1100
+          ],
+          [
+            1,
+            2,
+            1110,
+            2970
+          ],
+          [
+            2,
+            3,
+            2980,
+            3640
+          ],
+          [
+            3,
+            4,
+            3650,
+            4170
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664162,
           "resource_id": 101,
           "text": "Яқинда у (ловуллаб турган) алангали дўзахга киражак!"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/111003.mp3"
     },
     {
       "id": 6220,
@@ -76,13 +184,37 @@
       "text_uthmani_tajweed": "وَ<tajweed class=ham_wasl>ٱ</tajweed>مْرَأَتُهُ<tajweed class=madda_normal>ۥ</tajweed> حَ<tajweed class=ghunnah>مّ</tajweed>َالَةَ <tajweed class=ham_wasl>ٱ</tajweed>لْحَطَ<tajweed class=qalaqah>ب</tajweed>ِ <span class=end>٤</span>",
       "page_number": 603,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/111004.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            40,
+            1480
+          ],
+          [
+            1,
+            2,
+            1490,
+            3850
+          ],
+          [
+            2,
+            3,
+            3860,
+            4730
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664163,
           "resource_id": 101,
           "text": "Ва унинг ўтин орқалаган хотини,"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/111004.mp3"
     },
     {
       "id": 6221,
@@ -97,20 +229,49 @@
       "text_uthmani_tajweed": "فِى جِيدِهَا حَ<tajweed class=qalaqah>بْ</tajweed><tajweed class=idgham_ghunnah>لٌ م</tajweed>ّ<tajweed class=idgham_ghunnah>ِن م</tajweed>َّسَ<tajweed class=qalaqah>د</tajweed>ِۭ <span class=end>٥</span>",
       "page_number": 603,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/111005.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            390
+          ],
+          [
+            1,
+            2,
+            400,
+            1480
+          ],
+          [
+            2,
+            3,
+            1490,
+            3480
+          ],
+          [
+            3,
+            4,
+            3490,
+            4630
+          ],
+          [
+            4,
+            5,
+            4640,
+            5210
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664164,
           "resource_id": 101,
           "text": "— бўйнида пишиқ толадан эшилган арқон бўлган хотини ҳам (ловуллаб турган алангали дўзахга киражак!) <sup foot_note=145394>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/111005.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 5
-  }
+  ]
 }

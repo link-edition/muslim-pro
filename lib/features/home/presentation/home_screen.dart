@@ -4,21 +4,34 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:muslim_pro/core/theme.dart';
 import 'package:muslim_pro/features/namoz/prayer_provider.dart';
-import 'package:muslim_pro/features/quran/presentation/quran_landing_page.dart';
+import 'package:muslim_pro/features/quran/presentation/quran_screen.dart';
 import 'package:muslim_pro/features/duolar/presentation/duolar_screen.dart';
 import 'package:muslim_pro/features/tasbeh/presentation/tasbeh_screen.dart';
 import 'package:muslim_pro/features/qibla/presentation/qibla_screen.dart';
 import 'package:muslim_pro/features/settings/presentation/settings_screen.dart';
 import 'package:muslim_pro/features/namoz/presentation/namoz_vaqtlari_page.dart';
-import 'package:muslim_pro/features/quran/quran_provider.dart';
+import 'package:muslim_pro/features/quran/download_manager.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Background downloadni boshlaymiz
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(AudioDownloadManager.provider).startBackgroundDownload();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final prayerState = ref.watch(prayerProvider);
-    final syncProgress = ref.watch(textSyncProgressProvider);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -32,7 +45,6 @@ class HomeScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Sarlavha qatori
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -46,36 +58,16 @@ class HomeScreen extends ConsumerWidget {
                                 color: AppColors.textSecondary,
                               ),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Muslim Pro',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.textPrimary,
-                                  ),
-                                ),
-                                if (syncProgress != null && syncProgress < 1.0)
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0, top: 4),
-                                    child: Tooltip(
-                                      message: "Qur'on matnlari oflayn saqlanmoqda...",
-                                      child: SizedBox(
-                                        width: 14, height: 14,
-                                        child: CircularProgressIndicator(
-                                          value: syncProgress,
-                                          strokeWidth: 2,
-                                          color: AppColors.softGold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                              ],
+                            Text(
+                              'Muslim Pro',
+                              style: GoogleFonts.poppins(
+                                fontSize: 26,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.textPrimary,
+                              ),
                             ),
                           ],
                         ),
-                        // ⚙️ Settings tugmasi
                         GestureDetector(
                           onTap: () => Navigator.push(
                             context,
@@ -102,10 +94,7 @@ class HomeScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-
                     const SizedBox(height: 24),
-
-                    // Namoz vaqti kartasi
                     GestureDetector(
                       onTap: () => Navigator.push(
                         context,
@@ -113,10 +102,7 @@ class HomeScreen extends ConsumerWidget {
                       ),
                       child: _PrayerCard(prayerState: prayerState),
                     ),
-
                     const SizedBox(height: 32),
-
-                    // Bo'limlar sarlavhasi
                     Text(
                       'Bo\'limlar',
                       style: GoogleFonts.poppins(
@@ -139,9 +125,9 @@ class HomeScreen extends ConsumerWidget {
                 childAspectRatio: 1.15,
                 children: [
                   _MenuCard(
-                    icon: Icons.menu_book_rounded,
-                    title: 'Qur\'on',
-                    subtitle: '114 sura',
+                    icon: Icons.headphones_rounded,
+                    title: 'Audio Qur\'on',
+                    subtitle: 'Tinglash',
                     gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -149,7 +135,7 @@ class HomeScreen extends ConsumerWidget {
                     ),
                     onTap: () => Navigator.push(
                       context,
-                      CupertinoPageRoute(builder: (_) => const QuranLandingPage()),
+                      CupertinoPageRoute(builder: (_) => const QuranScreen()),
                     ),
                   ),
                   _MenuCard(
@@ -205,7 +191,6 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-/// Namoz vaqti kartasi (gradient fonli)
 class _PrayerCard extends StatelessWidget {
   final PrayerState prayerState;
   const _PrayerCard({required this.prayerState});
@@ -278,7 +263,7 @@ class _PrayerCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '🕌 ${nextPrayer?.name ?? "—"}',
+                        '🕌 ${nextPrayer?.name ?? "Bomdod"}',
                         style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -289,7 +274,6 @@ class _PrayerCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-                // Countdown
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -300,16 +284,6 @@ class _PrayerCard extends StatelessWidget {
                     _CountdownUnit(value: seconds, label: 'soniya'),
                   ],
                 ),
-                if (prayerState.error != null) ...[
-                  const SizedBox(height: 12),
-                  Text(
-                    prayerState.error!,
-                    style: GoogleFonts.poppins(
-                      fontSize: 11,
-                      color: Colors.red.shade300,
-                    ),
-                  ),
-                ],
               ],
             ),
     );
@@ -363,7 +337,6 @@ class _CountdownSeparator extends StatelessWidget {
   }
 }
 
-/// Menyu kartasi (Grid item)
 class _MenuCard extends StatelessWidget {
   final IconData icon;
   final String title;

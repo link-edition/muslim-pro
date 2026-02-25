@@ -7,6 +7,12 @@ class SettingsState {
   final bool notificationsEnabled;
   final String language;
   final Map<String, bool> enabledPrayers;
+  final String calculationMethod;
+  final String madhab;
+  final String cityName;
+  final double? latitude;
+  final double? longitude;
+  final bool isAutoLocation;
 
   SettingsState({
     this.notificationsEnabled = true,
@@ -18,17 +24,35 @@ class SettingsState {
       'Shom': true,
       'Xufton': true,
     },
+    this.calculationMethod = 'Uzbekistan',
+    this.madhab = 'Hanafi',
+    this.cityName = 'Toshkent',
+    this.latitude,
+    this.longitude,
+    this.isAutoLocation = true,
   });
 
   SettingsState copyWith({
     bool? notificationsEnabled,
     String? language,
     Map<String, bool>? enabledPrayers,
+    String? calculationMethod,
+    String? madhab,
+    String? cityName,
+    double? latitude,
+    double? longitude,
+    bool? isAutoLocation,
   }) {
     return SettingsState(
       notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
       language: language ?? this.language,
       enabledPrayers: enabledPrayers ?? this.enabledPrayers,
+      calculationMethod: calculationMethod ?? this.calculationMethod,
+      madhab: madhab ?? this.madhab,
+      cityName: cityName ?? this.cityName,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      isAutoLocation: isAutoLocation ?? this.isAutoLocation,
     );
   }
 }
@@ -51,6 +75,12 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
       notificationsEnabled: prefs.getBool('notifications_enabled') ?? true,
       language: prefs.getString('language') ?? 'uz',
       enabledPrayers: enabled,
+      calculationMethod: prefs.getString('calculation_method') ?? 'Uzbekistan',
+      madhab: prefs.getString('madhab') ?? 'Hanafi',
+      cityName: prefs.getString('city_name') ?? 'Toshkent',
+      latitude: prefs.getDouble('latitude'),
+      longitude: prefs.getDouble('longitude'),
+      isAutoLocation: prefs.getBool('is_auto_location') ?? true,
     );
   }
 
@@ -69,6 +99,43 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     newEnabled[prayerName] = value;
     state = state.copyWith(enabledPrayers: newEnabled);
     _rescheduleNotifications();
+  }
+
+  Future<void> setCalculationMethod(String method) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('calculation_method', method);
+    state = state.copyWith(calculationMethod: method);
+  }
+
+  Future<void> setMadhab(String madhab) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('madhab', madhab);
+    state = state.copyWith(madhab: madhab);
+  }
+
+  Future<void> setCity({
+    required String name,
+    required double lat,
+    required double lng,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('city_name', name);
+    await prefs.setDouble('latitude', lat);
+    await prefs.setDouble('longitude', lng);
+    await prefs.setBool('is_auto_location', false);
+    
+    state = state.copyWith(
+      cityName: name,
+      latitude: lat,
+      longitude: lng,
+      isAutoLocation: false,
+    );
+  }
+
+  Future<void> setAutoLocation(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('is_auto_location', value);
+    state = state.copyWith(isAutoLocation: value);
   }
 
   /// Settings o'zgarganda bildirishnomalarni qayta rejalashtirish

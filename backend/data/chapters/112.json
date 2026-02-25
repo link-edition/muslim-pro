@@ -13,13 +13,43 @@
       "text_uthmani_tajweed": "قُلْ هُوَ <tajweed class=ham_wasl>ٱ</tajweed>للَّهُ أَحَ<tajweed class=qalaqah>د</tajweed>ٌ <span class=end>١</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/112001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            390
+          ],
+          [
+            1,
+            2,
+            400,
+            790
+          ],
+          [
+            2,
+            3,
+            800,
+            1640
+          ],
+          [
+            3,
+            4,
+            1650,
+            2300
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664165,
           "resource_id": 101,
           "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), айтинг: «У — Аллоҳ Бирдир. (Яъни, Унинг ҳеч қандай шериги йўқдир. У яккаю ёлғиздир)."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/112001.mp3"
     },
     {
       "id": 6223,
@@ -34,13 +64,31 @@
       "text_uthmani_tajweed": "ٱللَّهُ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>صَّمَ<tajweed class=qalaqah>د</tajweed>ُ <span class=end>٢</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/112002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            40,
+            980
+          ],
+          [
+            1,
+            2,
+            990,
+            1850
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664166,
           "resource_id": 101,
           "text": "Аллоҳ (барча ҳожатлар билан) кўзлангувчидир (яъни, барча ҳожатлар Ундан сўралади, аммо У ҳеч кимга муҳтож эмасдир)."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/112002.mp3"
     },
     {
       "id": 6224,
@@ -55,13 +103,43 @@
       "text_uthmani_tajweed": "لَمْ يَلِ<tajweed class=qalaqah>دْ</tajweed> وَلَمْ يُولَ<tajweed class=qalaqah>دْ</tajweed> <span class=end>٣</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/112003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            60,
+            390
+          ],
+          [
+            1,
+            2,
+            400,
+            1000
+          ],
+          [
+            2,
+            3,
+            1010,
+            1720
+          ],
+          [
+            3,
+            4,
+            1730,
+            2490
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664167,
           "resource_id": 101,
           "text": "У туғмаган ва туғилмагандир (яъни, Аллоҳнинг ўғил-қизи ҳам, ота-онаси ҳам йўқдир. У азалий ва абадий Зотдир)."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/112003.mp3"
     },
     {
       "id": 6225,
@@ -76,20 +154,49 @@
       "text_uthmani_tajweed": "وَلَمْ يَك<tajweed class=idgham_wo_ghunnah>ُن ل</tajweed>َّهُ<tajweed class=madda_normal>ۥ</tajweed> كُفُوًا أَحَ<tajweed class=qalaqah>د</tajweed>ُۢ <span class=end>٤</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/112004.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            650
+          ],
+          [
+            1,
+            2,
+            660,
+            1130
+          ],
+          [
+            2,
+            3,
+            1140,
+            2040
+          ],
+          [
+            3,
+            4,
+            2050,
+            2950
+          ],
+          [
+            4,
+            5,
+            2960,
+            3570
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664168,
           "resource_id": 101,
           "text": "Ва ҳеч ким У зотга тенг эмасдир»."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/112004.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 4
-  }
+  ]
 }

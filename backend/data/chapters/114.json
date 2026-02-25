@@ -13,13 +13,43 @@
       "text_uthmani_tajweed": "قُلْ أَعُوذُ بِرَبِّ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_permissible>َا</tajweed>سِ <span class=end>١</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/114001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            330
+          ],
+          [
+            1,
+            2,
+            340,
+            1150
+          ],
+          [
+            2,
+            3,
+            1160,
+            2050
+          ],
+          [
+            3,
+            4,
+            2060,
+            5830
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664174,
           "resource_id": 101,
           "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), айтинг: «Мен барча инсонларнинг Парвардигоридан,"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/114001.mp3"
     },
     {
       "id": 6232,
@@ -34,13 +64,31 @@
       "text_uthmani_tajweed": "مَلِكِ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_permissible>َا</tajweed>سِ <span class=end>٢</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/114002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            610
+          ],
+          [
+            1,
+            2,
+            620,
+            4900
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664175,
           "resource_id": 101,
           "text": "Барча инсонларнинг Подшоҳидан,"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/114002.mp3"
     },
     {
       "id": 6233,
@@ -55,13 +103,31 @@
       "text_uthmani_tajweed": "إِلَ<tajweed class=madda_normal>ـٰ</tajweed>هِ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_permissible>َا</tajweed>سِ <span class=end>٣</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/114003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            840
+          ],
+          [
+            1,
+            2,
+            850,
+            4990
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664176,
           "resource_id": 101,
           "text": "Барча инсонларнинг Илоҳидан (менга) Ўзи"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/114003.mp3"
     },
     {
       "id": 6234,
@@ -76,13 +142,43 @@
       "text_uthmani_tajweed": "مِ<tajweed class=ikhafa>ن ش</tajweed>َرِّ <tajweed class=ham_wasl>ٱ</tajweed>لْوَسْوَاسِ <tajweed class=ham_wasl>ٱ</tajweed>لْخَ<tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_permissible>َا</tajweed>سِ <span class=end>٤</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/114004.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            70,
+            1380
+          ],
+          [
+            1,
+            2,
+            1390,
+            2070
+          ],
+          [
+            2,
+            3,
+            2080,
+            3340
+          ],
+          [
+            3,
+            4,
+            3350,
+            7510
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664177,
           "resource_id": 101,
           "text": "(Қачон Аллоҳнинг номи зикр қилинганида) яшириниб оладиган васвасачи (шайтон)нинг ёмонлигидан паноҳ беришини сўраб илтижо қилурманки,"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/114004.mp3"
     },
     {
       "id": 6235,
@@ -97,13 +193,49 @@
       "text_uthmani_tajweed": "ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_permissible>َا</tajweed>سِ <span class=end>٥</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/114005.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1060
+          ],
+          [
+            1,
+            2,
+            1070,
+            2080
+          ],
+          [
+            2,
+            3,
+            2090,
+            2460
+          ],
+          [
+            3,
+            4,
+            2470,
+            3460
+          ],
+          [
+            4,
+            5,
+            3470,
+            7790
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664178,
           "resource_id": 101,
           "text": "У инсонларнинг дилларига васваса соладиган,"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/114005.mp3"
     },
     {
       "id": 6236,
@@ -118,20 +250,37 @@
       "text_uthmani_tajweed": "مِنَ <tajweed class=ham_wasl>ٱ</tajweed>لْجِ<tajweed class=ghunnah>نّ</tajweed>َةِ وَ<tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_permissible>َا</tajweed>سِ <span class=end>٦</span>",
       "page_number": 604,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/114006.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            100,
+            380
+          ],
+          [
+            1,
+            2,
+            390,
+            2580
+          ],
+          [
+            2,
+            3,
+            2590,
+            7120
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664179,
           "resource_id": 101,
           "text": "Жин ва инсонлардан бўлган (шайтондир. Ўшанинг ёмонлигидан паноҳ беришини сўраб илтижо қилурман)."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/114006.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 6
-  }
+  ]
 }

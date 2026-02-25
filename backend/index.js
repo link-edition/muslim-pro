@@ -101,6 +101,21 @@ app.get('/api/quran/verses/by_page/:id', (req, res) => {
     }
 });
 
+// Duolar bazasi (Hisnul Muslim O'zbekcha)
+app.get('/api/duas', async (req, res) => {
+    try {
+        const duasPath = path.join(DATA_DIR, 'duas_uz.json');
+        if (await fs.pathExists(duasPath)) {
+            const duas = await fs.readJson(duasPath);
+            res.json(duas);
+        } else {
+            res.status(404).json({ error: "Duas not found" });
+        }
+    } catch (e) {
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

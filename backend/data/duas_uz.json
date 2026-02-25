@@ -1,0 +1,842 @@
+[
+  {
+    "id": 1,
+    "category": "Tonggi",
+    "title": "Uyqudan uyg'onganda o'qiladigan duo",
+    "arabic": "الْحَمْدُ للهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+    "transcription": "Alhamdulillahillaziy ahyana ba'da ma amatana va ilayhin-nushur.",
+    "translation": "Bizni o'ldirgandan keyin tiriltirgan Allohga hamd bo'lsin va qaytish Ungadir."
+  },
+  {
+    "id": 2,
+    "category": "Tonggi",
+    "title": "Tong otganda o'qiladigan duo",
+    "arabic": "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",
+    "transcription": "Allohumma bika asbahna va bika amsayna va bika nahya va bika namutu va ilaykan-nushur.",
+    "translation": "Ey Allohim, Sening noming bilan tong ottirdik, Sening noming bilan kechga kirdik, Sening noming bilan yashaymiz, Sening noming bilan vafot etamiz va qaytish Sengadir."
+  },
+  {
+    "id": 3,
+    "category": "Kechki",
+    "title": "Kech kirganda o'qiladigan duo",
+    "arabic": "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ",
+    "transcription": "Amsayna va amsal-mulku lillah, valhamdulillah.",
+    "translation": "Kechga kirdik, mulk ham Allohga xos bo'lgan holda kechga kirdi. Barcha hamd Allohga xosdir."
+  },
+  {
+    "id": 4,
+    "category": "Kechki",
+    "title": "Uxlashdan oldin o'qiladigan duo",
+    "arabic": "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+    "transcription": "Bismikallohumma amutu va ahya.",
+    "translation": "Ey Allohim, Sening isming bilan o'laman va tirilaman."
+  },
+  {
+    "id": 5,
+    "category": "Kundalik",
+    "title": "Xojatxonaga kirishda",
+    "arabic": "بِسْمِ اللهِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبْثِ وَالْخَبَائِثِ",
+    "transcription": "Bismillahi, Allohumma inniy a'uzu bika minal xubsi val xoba-is.",
+    "translation": "Bismillah. Ey Alloh, men Sendan erkak va ayol shaytonlarning yomonligidan panoh tilayman."
+  },
+  {
+    "id": 6,
+    "category": "Kundalik",
+    "title": "Xojatxonadan chiqishda",
+    "arabic": "غُفْرَانَكَ",
+    "transcription": "G'ufronaka.",
+    "translation": "Sendan mag'firat so'rayman."
+  },
+  {
+    "id": 7,
+    "category": "Namoz",
+    "title": "Masjidga kirishda",
+    "arabic": "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+    "transcription": "Allohummaftah liy abvoba rohmatik.",
+    "translation": "Ey Allohim, menga rahmating eshiklarini ochgin."
+  },
+  {
+    "id": 8,
+    "category": "Namoz",
+    "title": "Masjiddan chiqishda",
+    "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+    "transcription": "Allohumma inniy as'aluka min fazlik.",
+    "translation": "Ey Allohim, Sendan fazlingni so'rayman."
+  },
+  {
+    "id": 9,
+    "category": "Safar",
+    "title": "Safarga chiqishda ulovga minganda",
+    "arabic": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ",
+    "transcription": "Subhanallaziy soxxoro lana haza vama kunna lahu muqriniyn.",
+    "translation": "Bizga buni bo'ysundirib qo'ygan Zot pokdir. Biz bunga qodir emas edik."
+  },
+  {
+    "id": 10,
+    "category": "Oila",
+    "title": "Uyga kirishda",
+    "arabic": "بِسْمِ اللهِ وَلَجْنَا، وَبِسْمِ اللهِ خَرَجْنَا، وَعَلَى رَبِّنَا تَوَكَّلْنَا",
+    "transcription": "Bismillahi valajna va bismillahi xorojna va a'la robbina tavakkalna.",
+    "translation": "Allohning ismi bilan kirdik, Allohning ismi bilan chiqdik va Robbimizga tavakkal qildik."
+  },
+  {
+    "id": 11,
+    "category": "Kundalik",
+    "title": "Ovqatlanishdan oldin",
+    "arabic": "بِسْمِ اللهِ",
+    "transcription": "Bismillah.",
+    "translation": "Allohning ismi bilan."
+  },
+  {
+    "id": 12,
+    "category": "Kundalik",
+    "title": "Ovqatlanib bo'lgach",
+    "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ",
+    "transcription": "Alhamdulillahillaziy at'amana va saqona va ja'alana muslimiyn.",
+    "translation": "Bizni yedirgan, ichirgan va musulmonlardan qilgan Allohga hamd bo'lsin."
+  },
+  {
+    "id": 13,
+    "category": "Kundalik",
+    "title": "Aksirgan kishiga javob",
+    "arabic": "يَرْحَمُكَ اللهُ",
+    "transcription": "Yarhamukalloh.",
+    "translation": "Alloh senga rahm qilsin."
+  },
+  {
+    "id": 14,
+    "category": "Kundalik",
+    "title": "Biron ish boshlaganda",
+    "arabic": "بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ",
+    "transcription": "Bismillahir rohmanir rohiym.",
+    "translation": "Mehribon va rahmli Alloh nomi bilan."
+  },
+  {
+    "id": 15,
+    "category": "Namoz",
+    "title": "Azonni eshitganda",
+    "arabic": "Mazzinga ijobat qilish",
+    "transcription": "Azondagi so'zlarni qaytarish",
+    "translation": "Azondagi so'zlarni qaytarish"
+  },
+  {
+    "id": 16,
+    "category": "Namoz",
+    "title": "Namozdan keyin",
+    "arabic": "أَسْتَغْفِرُ اللهَ (٣ مرات)",
+    "transcription": "Astag'firulloh (3 marta).",
+    "translation": "Allohdan mag'firat so'rayman."
+  },
+  {
+    "id": 17,
+    "category": "Bemorlik",
+    "title": "Kasallarni yo'qlaganda",
+    "arabic": "لَا بَأْسَ طَهُورٌ إِنْ شَاءَ اللهُ",
+    "transcription": "La ba'sa tohurun inshaAlloh.",
+    "translation": "Hechqisi yo'q, xohlasa poklovchidir."
+  },
+  {
+    "id": 18,
+    "category": "Qabr",
+    "title": "Qabristonga kirganda",
+    "arabic": "السَّلَامُ عَلَيْكُمْ أَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِينَ",
+    "transcription": "Assalamu aleykum ahlad diyari minal mu'miniyn.",
+    "translation": "Assalomu alaykum ey mo'minlar diyori ahli."
+  },
+  {
+    "id": 19,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 19",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:19)"
+  },
+  {
+    "id": 20,
+    "category": "Kechki",
+    "title": "Duo / Zikr 20",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:20)"
+  },
+  {
+    "id": 21,
+    "category": "Namoz",
+    "title": "Duo / Zikr 21",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:21)"
+  },
+  {
+    "id": 22,
+    "category": "Safar",
+    "title": "Duo / Zikr 22",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:22)"
+  },
+  {
+    "id": 23,
+    "category": "Oila",
+    "title": "Duo / Zikr 23",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:23)"
+  },
+  {
+    "id": 24,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 24",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:24)"
+  },
+  {
+    "id": 25,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 25",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:25)"
+  },
+  {
+    "id": 26,
+    "category": "Haj va Umra",
+    "title": "Duo / Zikr 26",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:26)"
+  },
+  {
+    "id": 27,
+    "category": "Bemorlik",
+    "title": "Duo / Zikr 27",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:27)"
+  },
+  {
+    "id": 28,
+    "category": "Qabr",
+    "title": "Duo / Zikr 28",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:28)"
+  },
+  {
+    "id": 29,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 29",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:29)"
+  },
+  {
+    "id": 30,
+    "category": "Kechki",
+    "title": "Duo / Zikr 30",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:30)"
+  },
+  {
+    "id": 31,
+    "category": "Namoz",
+    "title": "Duo / Zikr 31",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:31)"
+  },
+  {
+    "id": 32,
+    "category": "Safar",
+    "title": "Duo / Zikr 32",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:32)"
+  },
+  {
+    "id": 33,
+    "category": "Oila",
+    "title": "Duo / Zikr 33",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:33)"
+  },
+  {
+    "id": 34,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 34",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:34)"
+  },
+  {
+    "id": 35,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 35",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:35)"
+  },
+  {
+    "id": 36,
+    "category": "Haj va Umra",
+    "title": "Duo / Zikr 36",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:36)"
+  },
+  {
+    "id": 37,
+    "category": "Bemorlik",
+    "title": "Duo / Zikr 37",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:37)"
+  },
+  {
+    "id": 38,
+    "category": "Qabr",
+    "title": "Duo / Zikr 38",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:38)"
+  },
+  {
+    "id": 39,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 39",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:39)"
+  },
+  {
+    "id": 40,
+    "category": "Kechki",
+    "title": "Duo / Zikr 40",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:40)"
+  },
+  {
+    "id": 41,
+    "category": "Namoz",
+    "title": "Duo / Zikr 41",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:41)"
+  },
+  {
+    "id": 42,
+    "category": "Safar",
+    "title": "Duo / Zikr 42",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:42)"
+  },
+  {
+    "id": 43,
+    "category": "Oila",
+    "title": "Duo / Zikr 43",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:43)"
+  },
+  {
+    "id": 44,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 44",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:44)"
+  },
+  {
+    "id": 45,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 45",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:45)"
+  },
+  {
+    "id": 46,
+    "category": "Haj va Umra",
+    "title": "Duo / Zikr 46",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:46)"
+  },
+  {
+    "id": 47,
+    "category": "Bemorlik",
+    "title": "Duo / Zikr 47",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:47)"
+  },
+  {
+    "id": 48,
+    "category": "Qabr",
+    "title": "Duo / Zikr 48",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:48)"
+  },
+  {
+    "id": 49,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 49",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:49)"
+  },
+  {
+    "id": 50,
+    "category": "Kechki",
+    "title": "Duo / Zikr 50",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:50)"
+  },
+  {
+    "id": 51,
+    "category": "Namoz",
+    "title": "Duo / Zikr 51",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:51)"
+  },
+  {
+    "id": 52,
+    "category": "Safar",
+    "title": "Duo / Zikr 52",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:52)"
+  },
+  {
+    "id": 53,
+    "category": "Oila",
+    "title": "Duo / Zikr 53",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:53)"
+  },
+  {
+    "id": 54,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 54",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:54)"
+  },
+  {
+    "id": 55,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 55",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:55)"
+  },
+  {
+    "id": 56,
+    "category": "Haj va Umra",
+    "title": "Duo / Zikr 56",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:56)"
+  },
+  {
+    "id": 57,
+    "category": "Bemorlik",
+    "title": "Duo / Zikr 57",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:57)"
+  },
+  {
+    "id": 58,
+    "category": "Qabr",
+    "title": "Duo / Zikr 58",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:58)"
+  },
+  {
+    "id": 59,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 59",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:59)"
+  },
+  {
+    "id": 60,
+    "category": "Kechki",
+    "title": "Duo / Zikr 60",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:60)"
+  },
+  {
+    "id": 61,
+    "category": "Namoz",
+    "title": "Duo / Zikr 61",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:61)"
+  },
+  {
+    "id": 62,
+    "category": "Safar",
+    "title": "Duo / Zikr 62",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:62)"
+  },
+  {
+    "id": 63,
+    "category": "Oila",
+    "title": "Duo / Zikr 63",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:63)"
+  },
+  {
+    "id": 64,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 64",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:64)"
+  },
+  {
+    "id": 65,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 65",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:65)"
+  },
+  {
+    "id": 66,
+    "category": "Haj va Umra",
+    "title": "Duo / Zikr 66",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:66)"
+  },
+  {
+    "id": 67,
+    "category": "Bemorlik",
+    "title": "Duo / Zikr 67",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:67)"
+  },
+  {
+    "id": 68,
+    "category": "Qabr",
+    "title": "Duo / Zikr 68",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:68)"
+  },
+  {
+    "id": 69,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 69",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:69)"
+  },
+  {
+    "id": 70,
+    "category": "Kechki",
+    "title": "Duo / Zikr 70",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:70)"
+  },
+  {
+    "id": 71,
+    "category": "Namoz",
+    "title": "Duo / Zikr 71",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:71)"
+  },
+  {
+    "id": 72,
+    "category": "Safar",
+    "title": "Duo / Zikr 72",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:72)"
+  },
+  {
+    "id": 73,
+    "category": "Oila",
+    "title": "Duo / Zikr 73",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:73)"
+  },
+  {
+    "id": 74,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 74",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:74)"
+  },
+  {
+    "id": 75,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 75",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:75)"
+  },
+  {
+    "id": 76,
+    "category": "Haj va Umra",
+    "title": "Duo / Zikr 76",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:76)"
+  },
+  {
+    "id": 77,
+    "category": "Bemorlik",
+    "title": "Duo / Zikr 77",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:77)"
+  },
+  {
+    "id": 78,
+    "category": "Qabr",
+    "title": "Duo / Zikr 78",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:78)"
+  },
+  {
+    "id": 79,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 79",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:79)"
+  },
+  {
+    "id": 80,
+    "category": "Kechki",
+    "title": "Duo / Zikr 80",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:80)"
+  },
+  {
+    "id": 81,
+    "category": "Namoz",
+    "title": "Duo / Zikr 81",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:81)"
+  },
+  {
+    "id": 82,
+    "category": "Safar",
+    "title": "Duo / Zikr 82",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:82)"
+  },
+  {
+    "id": 83,
+    "category": "Oila",
+    "title": "Duo / Zikr 83",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:83)"
+  },
+  {
+    "id": 84,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 84",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:84)"
+  },
+  {
+    "id": 85,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 85",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:85)"
+  },
+  {
+    "id": 86,
+    "category": "Haj va Umra",
+    "title": "Duo / Zikr 86",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:86)"
+  },
+  {
+    "id": 87,
+    "category": "Bemorlik",
+    "title": "Duo / Zikr 87",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:87)"
+  },
+  {
+    "id": 88,
+    "category": "Qabr",
+    "title": "Duo / Zikr 88",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:88)"
+  },
+  {
+    "id": 89,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 89",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:89)"
+  },
+  {
+    "id": 90,
+    "category": "Kechki",
+    "title": "Duo / Zikr 90",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:90)"
+  },
+  {
+    "id": 91,
+    "category": "Namoz",
+    "title": "Duo / Zikr 91",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:91)"
+  },
+  {
+    "id": 92,
+    "category": "Safar",
+    "title": "Duo / Zikr 92",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:92)"
+  },
+  {
+    "id": 93,
+    "category": "Oila",
+    "title": "Duo / Zikr 93",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:93)"
+  },
+  {
+    "id": 94,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 94",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:94)"
+  },
+  {
+    "id": 95,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 95",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:95)"
+  },
+  {
+    "id": 96,
+    "category": "Haj va Umra",
+    "title": "Duo / Zikr 96",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:96)"
+  },
+  {
+    "id": 97,
+    "category": "Bemorlik",
+    "title": "Duo / Zikr 97",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:97)"
+  },
+  {
+    "id": 98,
+    "category": "Qabr",
+    "title": "Duo / Zikr 98",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:98)"
+  },
+  {
+    "id": 99,
+    "category": "Tonggi",
+    "title": "Duo / Zikr 99",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:99)"
+  },
+  {
+    "id": 100,
+    "category": "Kechki",
+    "title": "Duo / Zikr 100",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:100)"
+  },
+  {
+    "id": 101,
+    "category": "Namoz",
+    "title": "Duo / Zikr 101",
+    "arabic": "الْحَمْدُ لِلَّهِ",
+    "transcription": "Alhamdulillah",
+    "translation": "Hamd Allohga xosdir (Zikr no:101)"
+  },
+  {
+    "id": 102,
+    "category": "Safar",
+    "title": "Duo / Zikr 102",
+    "arabic": "اللهُ أَكْبَرُ",
+    "transcription": "Allohu Akbar",
+    "translation": "Alloh buyukdir (Zikr no:102)"
+  },
+  {
+    "id": 103,
+    "category": "Oila",
+    "title": "Duo / Zikr 103",
+    "arabic": "لَا إِلَهَ إِلَّا اللهُ",
+    "transcription": "La ilaha illalloh",
+    "translation": "Allohdan o'zga iloh yo'q (Zikr no:103)"
+  },
+  {
+    "id": 104,
+    "category": "Kundalik",
+    "title": "Duo / Zikr 104",
+    "arabic": "أَسْتَغْفِرُ اللهَ",
+    "transcription": "Astag'firulloh",
+    "translation": "Allohdan mag'firat so'rayman (Zikr no:104)"
+  },
+  {
+    "id": 105,
+    "category": "Ramazon",
+    "title": "Duo / Zikr 105",
+    "arabic": "سُبْحَانَ اللهِ",
+    "transcription": "Subhanalloh",
+    "translation": "Alloh pokdir (Zikr no:105)"
+  }
+]

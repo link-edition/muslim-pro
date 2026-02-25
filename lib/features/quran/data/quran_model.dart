@@ -6,8 +6,8 @@ class SurahModel {
   final String nameUz;      // O'zbekcha nomi
   final String revelationType; // Makka yoki Madina
   final int ayahCount;      // Oyatlar soni
-  final int startPage;      // Boshlanish sahifasi
-  final int endPage;        // Tugash sahifasi
+  final int startPage;      
+  final int endPage;        
 
   const SurahModel({
     required this.number,
@@ -20,7 +20,6 @@ class SurahModel {
     required this.endPage,
   });
 
-  /// JSON dan o'qish (API javobidan - api.quran.com)
   factory SurahModel.fromJson(Map<String, dynamic> json) {
     return SurahModel(
       number: json['id'] as int,
@@ -34,7 +33,6 @@ class SurahModel {
     );
   }
 
-  /// JSON ga yozish (kesh uchun)
   Map<String, dynamic> toJson() {
     return {
       'id': number,
@@ -48,62 +46,50 @@ class SurahModel {
   }
 }
 
-/// Oyat modeli
+/// Oyat modeli - Faqat Audio va Arabcha matn uchun qisqartirilgan
 class AyahModel {
   final int id;
-  final int numberInSurah;   // Sura ichidagi raqami
-  final String text;         // Arabcha matni
-  final String? textTajweed; // Tajvidli matni
-  final String verseKey;     // Sura:Oyat kaliti (masalan "1:1")
-  final String? translation; // Tarjimasi
-  final String? audioUrl;    // Audio URL
-  final bool isActive;       // Hozir o'qilmoqda
-  final int pageNumber;      // Mushaf sahifa raqami (1-604)
-  final int juzNumber;       // Juz raqami (1-30)
+  final int numberInSurah;   
+  final String text;         // Toza Arabcha matni
+  final String verseKey;     
+  final String? audioUrl;    // Remote URL
+  final String? localPath;   // Yuklangan joyi
+  final bool isActive;       
 
   const AyahModel({
     required this.id,
     required this.numberInSurah,
     required this.text,
-    this.textTajweed,
     required this.verseKey,
-    this.translation,
     this.audioUrl,
+    this.localPath,
     this.isActive = false,
-    this.pageNumber = 1,
-    this.juzNumber = 1,
   });
 
-  AyahModel copyWith({bool? isActive, String? audioUrl}) {
+  AyahModel copyWith({bool? isActive, String? audioUrl, String? localPath}) {
     return AyahModel(
       id: id,
       numberInSurah: numberInSurah,
       text: text,
-      textTajweed: textTajweed,
       verseKey: verseKey,
-      translation: translation,
       audioUrl: audioUrl ?? this.audioUrl,
+      localPath: localPath ?? this.localPath,
       isActive: isActive ?? this.isActive,
-      pageNumber: pageNumber,
-      juzNumber: juzNumber,
     );
   }
 
-  factory AyahModel.fromQuranFoundation(Map<String, dynamic> json) {
-    String? translationText;
-    if (json['translations'] != null && (json['translations'] as List).isNotEmpty) {
-      translationText = json['translations'][0]['text'];
-    }
+  /// Footnote va boshqa kodlardan tozalash
+  static String cleanText(String t) {
+    return t.replaceAll(RegExp(r'<[^>]*>'), '').replaceAll(RegExp(r'\[\d+\]'), '').trim();
+  }
 
+  factory AyahModel.fromQuranFoundation(Map<String, dynamic> json) {
     return AyahModel(
       id: json['id'] as int,
       numberInSurah: json['verse_number'] as int,
-      text: json['text_uthmani'] as String? ?? '',
-      textTajweed: json['text_uthmani_tajweed'] as String?,
+      text: cleanText(json['text_uthmani'] as String? ?? ''),
       verseKey: json['verse_key'] as String,
-      translation: translationText,
-      pageNumber: json['page_number'] as int? ?? 1,
-      juzNumber: json['juz_number'] as int? ?? 1,
+      audioUrl: json['audio_url'] as String?,
     );
   }
 }

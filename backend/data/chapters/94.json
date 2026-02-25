@@ -13,13 +13,43 @@
       "text_uthmani_tajweed": "أَلَمْ نَشْرَحْ لَكَ صَ<tajweed class=qalaqah>دْ</tajweed>رَكَ <span class=end>١</span>",
       "page_number": 596,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/094001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            150,
+            600
+          ],
+          [
+            1,
+            2,
+            610,
+            1460
+          ],
+          [
+            2,
+            3,
+            1470,
+            1860
+          ],
+          [
+            3,
+            4,
+            1870,
+            2890
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664034,
           "resource_id": 101,
           "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), Биз сизнинг қалбингизни (иймон ва Қуръон нури билан) кенг-мунаввар қилиб қўймадикми?"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/094001.mp3"
     },
     {
       "id": 6092,
@@ -34,13 +64,37 @@
       "text_uthmani_tajweed": "وَوَضَعْنَا عَ<tajweed class=ikhafa>نك</tajweed>َ وِزْرَكَ <span class=end>٢</span>",
       "page_number": 596,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/094002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1260
+          ],
+          [
+            1,
+            2,
+            1270,
+            2880
+          ],
+          [
+            2,
+            3,
+            2890,
+            3830
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664035,
           "resource_id": 101,
           "text": "Ва Биз сиздан юкингизни олиб қўйдик."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/094002.mp3"
     },
     {
       "id": 6093,
@@ -55,13 +109,37 @@
       "text_uthmani_tajweed": "ٱلَّذ<tajweed class=madda_obligatory>ِىٓ</tajweed> أَ<tajweed class=ikhafa>نق</tajweed>َضَ ظَهْرَكَ <span class=end>٣</span>",
       "page_number": 596,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/094003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            2630
+          ],
+          [
+            1,
+            2,
+            2640,
+            4160
+          ],
+          [
+            2,
+            3,
+            4170,
+            5030
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664036,
           "resource_id": 101,
           "text": "У елкангизни эзиб турган оғир (юкингизни олиб қўйдик). <sup foot_note=145379>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/094003.mp3"
     },
     {
       "id": 6094,
@@ -76,13 +154,37 @@
       "text_uthmani_tajweed": "وَرَفَعْنَا لَكَ ذِكْرَكَ <span class=end>٤</span>",
       "page_number": 596,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/094004.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            40,
+            1360
+          ],
+          [
+            1,
+            2,
+            1370,
+            1770
+          ],
+          [
+            2,
+            3,
+            1780,
+            2700
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664037,
           "resource_id": 101,
           "text": "Ва Биз сизнинг зикрингизни (яъни, мартабангизни) баланд қилиб қўйдик. <sup foot_note=145380>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/094004.mp3"
     },
     {
       "id": 6095,
@@ -97,13 +199,43 @@
       "text_uthmani_tajweed": "فَإِ<tajweed class=ghunnah>نّ</tajweed>َ مَعَ <tajweed class=ham_wasl>ٱ</tajweed>لْعُسْرِ يُسْرًا <span class=end>٥</span>",
       "page_number": 596,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/094005.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1580
+          ],
+          [
+            1,
+            2,
+            1590,
+            2030
+          ],
+          [
+            2,
+            3,
+            2040,
+            2860
+          ],
+          [
+            3,
+            4,
+            2870,
+            3880
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664038,
           "resource_id": 101,
           "text": "Бас, албатта ҳар бир оғирлик-машаққат билан бирга бир енгиллик ҳам бордир."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/094005.mp3"
     },
     {
       "id": 6096,
@@ -118,13 +250,43 @@
       "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed>َ مَعَ <tajweed class=ham_wasl>ٱ</tajweed>لْعُسْرِ يُسْرًا <span class=end>٦</span>",
       "page_number": 596,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/094006.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1330
+          ],
+          [
+            1,
+            2,
+            1340,
+            1730
+          ],
+          [
+            2,
+            3,
+            1740,
+            2610
+          ],
+          [
+            3,
+            4,
+            2620,
+            3540
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664039,
           "resource_id": 101,
           "text": "Албатта ҳар бир оғирлик-машаққат билан бирга бир енгиллик ҳам бордир. <sup foot_note=145381>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/094006.mp3"
     },
     {
       "id": 6097,
@@ -139,13 +301,37 @@
       "text_uthmani_tajweed": "فَإِذَا فَرَغْتَ فَ<tajweed class=ham_wasl>ٱ</tajweed><tajweed class=ikhafa>نص</tajweed>َ<tajweed class=qalaqah>بْ</tajweed> <span class=end>٧</span>",
       "page_number": 596,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/094007.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            790
+          ],
+          [
+            1,
+            2,
+            800,
+            1670
+          ],
+          [
+            2,
+            3,
+            1680,
+            3490
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664040,
           "resource_id": 101,
           "text": "Бас, (эй Муҳаммад алайҳис-салоту вас-салом), қачон сиз (кишиларни Ҳақ йўлга даъват қилишдан ва бошқа дунёвий ҳожатлардан — ишлардан) фориғ бўлсангиз (ўрнингиздан) туринг."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/094007.mp3"
     },
     {
       "id": 6098,
@@ -160,20 +346,37 @@
       "text_uthmani_tajweed": "وَإِلَىٰ رَبِّكَ فَ<tajweed class=ham_wasl>ٱ</tajweed>رْغَ<tajweed class=qalaqah>ب</tajweed> <span class=end>٨</span>",
       "page_number": 596,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/094008.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            830
+          ],
+          [
+            1,
+            2,
+            840,
+            1690
+          ],
+          [
+            2,
+            3,
+            1700,
+            2580
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664041,
           "resource_id": 101,
           "text": "Ва ёлғиз Парвардигорингизга юзингизни буринг!"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/094008.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 8
-  }
+  ]
 }

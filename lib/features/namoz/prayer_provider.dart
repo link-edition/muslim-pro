@@ -5,6 +5,7 @@ import 'data/prayer_model.dart';
 import 'data/prayer_times_service.dart';
 import 'data/prayer_storage.dart';
 import 'package:muslim_pro/core/notification_service.dart';
+import 'package:muslim_pro/features/settings/settings_provider.dart';
 /// Namoz vaqtlari holati
 class PrayerState {
   final DailyPrayerTimes? prayerTimes;
@@ -36,48 +37,101 @@ class PrayerState {
 
 /// Namoz vaqtlari Notifier — barcha logika shu yerda
 class PrayerNotifier extends StateNotifier<PrayerState> {
+  final Ref ref;
   Timer? _countdownTimer;
 
-  PrayerNotifier() : super(const PrayerState()) {
+  PrayerNotifier(this.ref) : super(const PrayerState()) {
     _initialize();
+    _listenToSettings();
+  }
+
+  void _listenToSettings() {
+    ref.listen(settingsProvider, (previous, next) {
+      if (previous == null) return;
+      
+      bool shouldRefresh = false;
+      
+      if (previous.calculationMethod != next.calculationMethod) {
+        print('Settings: Calculation method changed to ${next.calculationMethod}');
+        shouldRefresh = true;
+      }
+      if (previous.madhab != next.madhab) {
+        print('Settings: Madhab changed to ${next.madhab}');
+        shouldRefresh = true;
+      }
+      if (previous.isAutoLocation != next.isAutoLocation) {
+        print('Settings: Auto location changed to ${next.isAutoLocation}');
+        shouldRefresh = true;
+      }
+      if (previous.latitude != next.latitude || previous.longitude != next.longitude) {
+        print('Settings: Coordinates changed');
+        shouldRefresh = true;
+      }
+      
+      if (shouldRefresh) {
+        refreshPrayerTimes();
+      }
+    });
   }
 
   /// Ilovani boshlashda: keshdan yuklash, keyin yangi hisoblash
   Future<void> _initialize() async {
     state = state.copyWith(isLoading: true);
 
-    // 1. Avval keshdan yuklash (oflayn rejim uchun)
-    final isCacheValid = await PrayerStorage.isCacheValid();
-    if (isCacheValid) {
-      final cached = await PrayerStorage.loadPrayerTimes();
-      if (cached != null) {
+    // 1. Avval keshdan yuklash
+    final cached = await PrayerStorage.loadPrayerTimes();
+    if (cached != null) {
+      final isCacheValid = await PrayerStorage.isCacheValid();
+      if (isCacheValid) {
         state = state.copyWith(
           prayerTimes: cached,
           isLoading: false,
         );
         _startCountdown();
-        // Bildirishnomalarni rejalashtirish
         NotificationService.schedulePrayerNotifications(cached);
+        // Baribir bir marta yangilab qo'yamiz (fon rejimida)
+        refreshPrayerTimes();
         return;
       }
     }
 
-    // 2. GPS dan yangi hisoblash
+    // 2. Yangi hisoblash
     await refreshPrayerTimes();
   }
 
-  /// Namoz vaqtlarini yangilash (GPS dan qayta hisoblash)
+  /// Namoz vaqtlarini yangilash
   Future<void> refreshPrayerTimes() async {
+    print('PrayerProvider: refreshing prayer times...');
     state = state.copyWith(isLoading: true, error: null);
 
     try {
-      // GPS koordinatalarini olish
-      final position = await LocationService.getCurrentLocation();
+      final settings = ref.read(settingsProvider);
+      double lat = 41.2995;
+      double lng = 69.2401;
+
+      if (settings.isAutoLocation) {
+        try {
+          final position = await LocationService.getCurrentLocation();
+          lat = position.latitude;
+          lng = position.longitude;
+        } catch (e) {
+          print('GPS error: $e. Using cached/default coordinates.');
+          if (settings.latitude != null && settings.longitude != null) {
+            lat = settings.latitude!;
+            lng = settings.longitude!;
+          }
+        }
+      } else if (settings.latitude != null && settings.longitude != null) {
+        lat = settings.latitude!;
+        lng = settings.longitude!;
+      }
 
       // Namoz vaqtlarini hisoblash
       final prayerTimes = PrayerTimesService.calculateForToday(
-        latitude: position.latitude,
-        longitude: position.longitude,
+        latitude: lat,
+        longitude: lng,
+        method: settings.calculationMethod,
+        madhab: settings.madhab,
       );
 
       // Keshga saqlash
@@ -132,6 +186,13 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
 
     final now = DateTime.now();
 
+    // Agar kun o'zgargan bo'lsa (yarim tundan o'tganda), hamma vaqtlarni yangilaymiz
+    if (now.day != prayerTimes.date.day) {
+      _countdownTimer?.cancel();
+      Future.microtask(() => refreshPrayerTimes());
+      return;
+    }
+
     // Keyingi namozni qayta hisoblash (vaqt o'tgan bo'lishi mumkin)
     final updatedPrayers = prayerTimes.prayers.map((prayer) {
       return prayer.copyWith(isNext: false);
@@ -149,7 +210,25 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
         ? updatedPrayers.firstWhere((p) => p.isNext)
         : null;
 
-    final countdown = nextPrayer?.time.difference(now);
+    Duration? countdown;
+    if (nextPrayer != null) {
+      countdown = nextPrayer.time.difference(now);
+    } else {
+      // Bugun hamma namozlar o'tib bo'ldi, ertangi Bomdodni hisoblaymiz
+      final settings = ref.read(settingsProvider);
+      final tomorrow = now.add(const Duration(days: 1));
+      
+      final tomorrowTimes = PrayerTimesService.calculateForDate(
+        date: tomorrow,
+        latitude: prayerTimes.latitude,
+        longitude: prayerTimes.longitude,
+        method: settings.calculationMethod,
+        madhab: settings.madhab,
+      );
+      
+      final tomorrowFajr = tomorrowTimes.prayers.first; // Bomdod doim birinchi
+      countdown = tomorrowFajr.time.difference(now);
+    }
 
     state = state.copyWith(
       prayerTimes: DailyPrayerTimes(
@@ -172,5 +251,5 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
 /// Global Riverpod provider
 final prayerProvider =
     StateNotifierProvider<PrayerNotifier, PrayerState>((ref) {
-  return PrayerNotifier();
+  return PrayerNotifier(ref);
 });

@@ -13,13 +13,43 @@
       "text_uthmani_tajweed": "بِسْمِ <tajweed class=ham_wasl>ٱ</tajweed>للَّهِ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>رَّحْمَ<tajweed class=madda_normal>ـٰ</tajweed>نِ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>رَّح<tajweed class=madda_permissible>ِي</tajweed>مِ <span class=end>١</span>",
       "page_number": 1,
       "juz_number": 1,
+      "audio": {
+        "url": "Alafasy/mp3/001001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            60,
+            610
+          ],
+          [
+            1,
+            2,
+            620,
+            1310
+          ],
+          [
+            2,
+            3,
+            1320,
+            2450
+          ],
+          [
+            3,
+            4,
+            2460,
+            5970
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 657944,
           "resource_id": 101,
           "text": "Меҳрибон ва раҳмли Аллоҳ номи билан (бошлайман)."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/001001.mp3"
     },
     {
       "id": 2,
@@ -34,13 +64,43 @@
       "text_uthmani_tajweed": "ٱلْحَمْدُ لِلَّهِ رَبِّ <tajweed class=ham_wasl>ٱ</tajweed>لْعَ<tajweed class=madda_normal>ـٰ</tajweed>لَم<tajweed class=madda_permissible>ِي</tajweed>نَ <span class=end>٢</span>",
       "page_number": 1,
       "juz_number": 1,
+      "audio": {
+        "url": "Alafasy/mp3/001002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            80,
+            960
+          ],
+          [
+            1,
+            2,
+            970,
+            1800
+          ],
+          [
+            2,
+            3,
+            1810,
+            2460
+          ],
+          [
+            3,
+            4,
+            2470,
+            5140
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 657945,
           "resource_id": 101,
           "text": "Ҳамду сано бутун оламлар Парвардигори Аллоҳ учундир."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/001002.mp3"
     },
     {
       "id": 3,
@@ -55,13 +115,31 @@
       "text_uthmani_tajweed": "ٱ<tajweed class=laam_shamsiyah>ل</tajweed>رَّحْمَ<tajweed class=madda_normal>ـٰ</tajweed>نِ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>رَّح<tajweed class=madda_permissible>ِي</tajweed>مِ <span class=end>٣</span>",
       "page_number": 1,
       "juz_number": 1,
+      "audio": {
+        "url": "Alafasy/mp3/001003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            40,
+            1230
+          ],
+          [
+            1,
+            2,
+            1240,
+            4160
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 657946,
           "resource_id": 101,
           "text": "Меҳрибон ва Раҳмли."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/001003.mp3"
     },
     {
       "id": 4,
@@ -76,13 +154,37 @@
       "text_uthmani_tajweed": "مَ<tajweed class=madda_normal>ـٰ</tajweed>لِكِ يَوْمِ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>دّ<tajweed class=madda_permissible>ِي</tajweed>نِ <span class=end>٤</span>",
       "page_number": 1,
       "juz_number": 1,
+      "audio": {
+        "url": "Alafasy/mp3/001004.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            60,
+            840
+          ],
+          [
+            1,
+            2,
+            850,
+            1400
+          ],
+          [
+            2,
+            3,
+            1410,
+            4280
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 657947,
           "resource_id": 101,
           "text": "Жазо (Қиёмат) кунининг Эгаси — Подшоҳи. <sup foot_note=144868>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/001004.mp3"
     },
     {
       "id": 5,
@@ -97,13 +199,43 @@
       "text_uthmani_tajweed": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَع<tajweed class=madda_permissible>ِي</tajweed>نُ <span class=end>٥</span>",
       "page_number": 1,
       "juz_number": 1,
+      "audio": {
+        "url": "Alafasy/mp3/001005.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            970
+          ],
+          [
+            1,
+            2,
+            980,
+            1710
+          ],
+          [
+            2,
+            3,
+            1720,
+            2870
+          ],
+          [
+            3,
+            4,
+            2880,
+            6290
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 657948,
           "resource_id": 101,
           "text": "Сенгагина ибодат қиламиз ва Сендангина мадад сўраймиз. <sup foot_note=144869>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/001005.mp3"
     },
     {
       "id": 6,
@@ -118,13 +250,37 @@
       "text_uthmani_tajweed": "ٱهْدِنَا <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>صِّر<tajweed class=madda_normal>َٲ</tajweed>طَ <tajweed class=ham_wasl>ٱ</tajweed>لْمُسْتَق<tajweed class=madda_permissible>ِي</tajweed>مَ <span class=end>٦</span>",
       "page_number": 1,
       "juz_number": 1,
+      "audio": {
+        "url": "Alafasy/mp3/001006.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            670
+          ],
+          [
+            1,
+            2,
+            680,
+            1630
+          ],
+          [
+            2,
+            3,
+            1640,
+            5120
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 657949,
           "resource_id": 101,
           "text": "Бизларни Тўғри Йўлга йўллагайсан."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/001006.mp3"
     },
     {
       "id": 7,
@@ -139,20 +295,73 @@
       "text_uthmani_tajweed": "صِر<tajweed class=madda_normal>َٲ</tajweed>طَ <tajweed class=ham_wasl>ٱ</tajweed>لَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ <tajweed class=ham_wasl>ٱ</tajweed>لْمَغْضُوبِ عَلَيْهِمْ وَلَا <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>ضّ<tajweed class=madda_necessary>َا</tajweed>ٓلّ<tajweed class=madda_permissible>ِي</tajweed>نَ <span class=end>٧</span>",
       "page_number": 1,
       "juz_number": 1,
+      "audio": {
+        "url": "Alafasy/mp3/001007.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            740
+          ],
+          [
+            1,
+            2,
+            750,
+            1700
+          ],
+          [
+            2,
+            3,
+            1710,
+            2620
+          ],
+          [
+            3,
+            4,
+            2630,
+            3590
+          ],
+          [
+            4,
+            5,
+            3600,
+            4210
+          ],
+          [
+            5,
+            6,
+            4220,
+            5290
+          ],
+          [
+            6,
+            7,
+            5300,
+            6320
+          ],
+          [
+            7,
+            8,
+            6330,
+            6630
+          ],
+          [
+            8,
+            9,
+            6640,
+            12320
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 657950,
           "resource_id": 101,
           "text": "У шундай зотларнинг йўлики, Сен Ўзинг уларга инъом қилгансан — улар ғазабга дучор бўлмаган ва залолатга кетмаган — адашмаганларнинг йўлидир. <sup foot_note=144870>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/001007.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 7
-  }
+  ]
 }

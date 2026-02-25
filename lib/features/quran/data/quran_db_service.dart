@@ -15,7 +15,7 @@ class QuranDbService {
 
   static Future<Database> _initDb() async {
     final docsDir = await getApplicationDocumentsDirectory();
-    final path = join(docsDir.path, 'quran_offline.db');
+    final path = join(docsDir.path, 'quran_audio_pro_v1.db'); // Professional Version
     
     return await openDatabase(
       path,
@@ -28,9 +28,7 @@ class QuranDbService {
             englishName TEXT,
             nameUz TEXT,
             revelationType TEXT,
-            ayahCount INTEGER,
-            startPage INTEGER,
-            endPage INTEGER
+            ayahCount INTEGER
           )
         ''');
 
@@ -38,12 +36,10 @@ class QuranDbService {
           CREATE TABLE ayahs (
             id INTEGER PRIMARY KEY,
             numberInSurah INTEGER,
-            text TEXT,
-            textTajweed TEXT,
             verseKey TEXT,
-            translation TEXT,
-            pageNumber INTEGER,
-            juzNumber INTEGER
+            audioUrl TEXT,
+            localPath TEXT,
+            text TEXT
           )
         ''');
       },
@@ -62,8 +58,6 @@ class QuranDbService {
         'nameUz': s.nameUz,
         'revelationType': s.revelationType,
         'ayahCount': s.ayahCount,
-        'startPage': s.startPage,
-        'endPage': s.endPage,
       }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
     await batch.commit(noResult: true);
@@ -79,12 +73,12 @@ class QuranDbService {
       nameUz: map['nameUz'] as String,
       revelationType: map['revelationType'] as String,
       ayahCount: map['ayahCount'] as int,
-      startPage: map['startPage'] as int,
-      endPage: map['endPage'] as int,
+      startPage: 1, 
+      endPage: 1,   
     )).toList();
   }
 
-  // --- Ayahs (Verses) ---
+  // --- Ayahs ---
   static Future<void> insertAyahs(List<AyahModel> ayahs) async {
     final d = await db;
     final batch = d.batch();
@@ -92,30 +86,18 @@ class QuranDbService {
       batch.insert('ayahs', {
         'id': a.id,
         'numberInSurah': a.numberInSurah,
-        'text': a.text,
-        'textTajweed': a.textTajweed,
         'verseKey': a.verseKey,
-        'translation': a.translation,
-        'pageNumber': a.pageNumber,
-        'juzNumber': a.juzNumber,
+        'audioUrl': a.audioUrl,
+        'localPath': a.localPath,
+        'text': a.text,
       }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
     await batch.commit(noResult: true);
   }
 
-  static Future<List<AyahModel>> getAyahsByPage(int pageNumber) async {
+  static Future<void> updateAyahLocalPath(int id, String localPath) async {
     final d = await db;
-    final res = await d.query('ayahs', where: 'pageNumber = ?', whereArgs: [pageNumber], orderBy: 'id ASC');
-    return res.map((map) => AyahModel(
-      id: map['id'] as int,
-      numberInSurah: map['numberInSurah'] as int,
-      text: map['text'] as String,
-      textTajweed: map['textTajweed'] as String?,
-      verseKey: map['verseKey'] as String,
-      translation: map['translation'] as String?,
-      pageNumber: map['pageNumber'] as int,
-      juzNumber: map['juzNumber'] as int,
-    )).toList();
+    await d.update('ayahs', {'localPath': localPath}, where: 'id = ?', whereArgs: [id]);
   }
 
   static Future<List<AyahModel>> getAyahsBySurah(int surahNumber) async {
@@ -125,12 +107,10 @@ class QuranDbService {
     return res.map((map) => AyahModel(
       id: map['id'] as int,
       numberInSurah: map['numberInSurah'] as int,
-      text: map['text'] as String,
-      textTajweed: map['textTajweed'] as String?,
+      text: map['text'] as String? ?? '', 
       verseKey: map['verseKey'] as String,
-      translation: map['translation'] as String?,
-      pageNumber: map['pageNumber'] as int,
-      juzNumber: map['juzNumber'] as int,
+      audioUrl: map['audioUrl'] as String?,
+      localPath: map['localPath'] as String?,
     )).toList();
   }
 }

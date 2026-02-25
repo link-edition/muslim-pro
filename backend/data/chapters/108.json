@@ -13,13 +13,37 @@
       "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_obligatory>َآ</tajweed> أَعْطَيْنَ<tajweed class=madda_normal>ـٰ</tajweed>كَ <tajweed class=ham_wasl>ٱ</tajweed>لْكَوْثَرَ <span class=end>١</span>",
       "page_number": 602,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/108001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            150,
+            2120
+          ],
+          [
+            1,
+            2,
+            2130,
+            4970
+          ],
+          [
+            2,
+            3,
+            4980,
+            5900
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664148,
           "resource_id": 101,
           "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), албатта Биз сизга Кавсарни ато этдик."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/108001.mp3"
     },
     {
       "id": 6206,
@@ -34,13 +58,37 @@
       "text_uthmani_tajweed": "فَصَلِّ لِرَبِّكَ وَ<tajweed class=ham_wasl>ٱ</tajweed>نْحَرْ <span class=end>٢</span>",
       "page_number": 602,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/108002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            910
+          ],
+          [
+            1,
+            2,
+            920,
+            1970
+          ],
+          [
+            2,
+            3,
+            1980,
+            2790
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664149,
           "resource_id": 101,
           "text": "Бас, сиз Парвардигорингиз учун намоз ўқинг ва (жонлик) сўйиб-қурбонлиқ қилинг!"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/108002.mp3"
     },
     {
       "id": 6207,
@@ -55,20 +103,43 @@
       "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed>َ شَانِئَكَ هُوَ <tajweed class=ham_wasl>ٱ</tajweed>لْأَ<tajweed class=qalaqah>بْ</tajweed>تَرُ <span class=end>٣</span>",
       "page_number": 602,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/108003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1660
+          ],
+          [
+            1,
+            2,
+            1670,
+            2750
+          ],
+          [
+            2,
+            3,
+            2760,
+            3220
+          ],
+          [
+            3,
+            4,
+            3230,
+            4250
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664150,
           "resource_id": 101,
           "text": "Албатта сизни ёмон кўргувчи кимсанинг думи қирқилгандир (яъни, беному-бенишон бўлиб кетгувчидир)!"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/108003.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 3
-  }
+  ]
 }

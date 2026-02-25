@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:muslim_pro/core/theme.dart';
-import 'package:translit/translit.dart';
-import 'package:muslim_pro/features/quran/quran_settings_provider.dart';
 import '../data/quran_model.dart';
 import '../quran_provider.dart';
 import 'surah_detail_screen.dart';

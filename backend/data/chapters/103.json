@@ -13,13 +13,25 @@
       "text_uthmani_tajweed": "وَ<tajweed class=ham_wasl>ٱ</tajweed>لْعَصْرِ <span class=end>١</span>",
       "page_number": 601,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/103001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1230
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664120,
           "resource_id": 101,
           "text": "Аср (вақти)га қасамки,"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/103001.mp3"
     },
     {
       "id": 6178,
@@ -34,13 +46,43 @@
       "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed>َ <tajweed class=ham_wasl>ٱ</tajweed>لْإِ<tajweed class=ikhafa>نس</tajweed>َ<tajweed class=madda_normal>ـٰ</tajweed>نَ لَفِى خُسْرٍ <span class=end>٢</span>",
       "page_number": 601,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/103002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1260
+          ],
+          [
+            1,
+            2,
+            1270,
+            3830
+          ],
+          [
+            2,
+            3,
+            3840,
+            4430
+          ],
+          [
+            3,
+            4,
+            4440,
+            4900
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664121,
           "resource_id": 101,
           "text": "(Барча) инсон зиён-бахтсизликдадир."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/103002.mp3"
     },
     {
       "id": 6179,
@@ -55,20 +97,73 @@
       "text_uthmani_tajweed": "إِلَّا <tajweed class=ham_wasl>ٱ</tajweed>لَّذِينَ ءَامَنُو<tajweed class=slnt>اْ</tajweed> وَعَمِلُو<tajweed class=slnt>اْ</tajweed> <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>صَّ<tajweed class=madda_normal>ـٰ</tajweed>لِحَ<tajweed class=madda_normal>ـٰ</tajweed>تِ وَتَوَاصَوْ<tajweed class=slnt>اْ</tajweed> بِ<tajweed class=ham_wasl>ٱ</tajweed>لْحَقِّ وَتَوَاصَوْ<tajweed class=slnt>اْ</tajweed> بِ<tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>صَّ<tajweed class=qalaqah>بْ</tajweed>رِ <span class=end>٣</span>",
       "page_number": 601,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/103003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            50,
+            600
+          ],
+          [
+            1,
+            2,
+            610,
+            1750
+          ],
+          [
+            2,
+            3,
+            1760,
+            2910
+          ],
+          [
+            3,
+            4,
+            2920,
+            3740
+          ],
+          [
+            4,
+            5,
+            3750,
+            5330
+          ],
+          [
+            5,
+            6,
+            5340,
+            6610
+          ],
+          [
+            6,
+            7,
+            6620,
+            7700
+          ],
+          [
+            7,
+            8,
+            7710,
+            9060
+          ],
+          [
+            8,
+            9,
+            9070,
+            10080
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664122,
           "resource_id": 101,
           "text": "Фақат иймон келтирган ва яхши амаллар қилган, бир-бирларига Ҳақ (йўли)ни тавсия этган ва бир-бирларига (мана шу Ҳақ йўлида) сабр-тоқат қилишни тавсия этган зотларгина (нажот топгувчидирлар)."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/103003.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 3
-  }
+  ]
 }

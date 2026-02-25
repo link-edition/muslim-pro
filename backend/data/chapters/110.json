@@ -13,13 +13,49 @@
       "text_uthmani_tajweed": "إِذَا ج<tajweed class=madda_obligatory>َا</tajweed>ٓءَ نَصْرُ <tajweed class=ham_wasl>ٱ</tajweed>للَّهِ وَ<tajweed class=ham_wasl>ٱ</tajweed>لْفَتْحُ <span class=end>١</span>",
       "page_number": 603,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/110001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            200,
+            680
+          ],
+          [
+            1,
+            2,
+            690,
+            3590
+          ],
+          [
+            2,
+            3,
+            3600,
+            4210
+          ],
+          [
+            3,
+            4,
+            4220,
+            5140
+          ],
+          [
+            4,
+            5,
+            5150,
+            6210
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664157,
           "resource_id": 101,
           "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), қачон Аллоҳнинг ёрдами ва ғалаба келса;"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/110001.mp3"
     },
     {
       "id": 6215,
@@ -34,13 +70,61 @@
       "text_uthmani_tajweed": "وَرَأَيْتَ <tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed><tajweed class=ghunnah>نّ</tajweed>َاسَ يَ<tajweed class=qalaqah>دْ</tajweed>خُلُونَ فِى دِينِ <tajweed class=ham_wasl>ٱ</tajweed>للَّهِ أَفْوَاجًا <span class=end>٢</span>",
       "page_number": 603,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/110002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1070
+          ],
+          [
+            1,
+            2,
+            1080,
+            2620
+          ],
+          [
+            2,
+            3,
+            2630,
+            3870
+          ],
+          [
+            3,
+            4,
+            3880,
+            4330
+          ],
+          [
+            4,
+            5,
+            4340,
+            5080
+          ],
+          [
+            5,
+            6,
+            5090,
+            5920
+          ],
+          [
+            6,
+            7,
+            5930,
+            7430
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664158,
           "resource_id": 101,
           "text": "Ва одамлар тўп-тўп бўлишиб, Аллоҳнинг дини (Ислом)га кираётганларини кўрсангиз;"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/110002.mp3"
     },
     {
       "id": 6216,
@@ -55,20 +139,61 @@
       "text_uthmani_tajweed": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَ<tajweed class=ham_wasl>ٱ</tajweed>سْتَغْفِرْهُ‌ۚ إِ<tajweed class=ghunnah>نّ</tajweed>َهُ<tajweed class=madda_normal>ۥ</tajweed> كَانَ تَوَّابَۢا <span class=end>٣</span>",
       "page_number": 603,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/110003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1010
+          ],
+          [
+            1,
+            2,
+            1020,
+            1790
+          ],
+          [
+            2,
+            3,
+            1800,
+            2730
+          ],
+          [
+            3,
+            4,
+            2740,
+            4570
+          ],
+          [
+            4,
+            5,
+            4580,
+            6350
+          ],
+          [
+            5,
+            6,
+            6360,
+            7070
+          ],
+          [
+            6,
+            7,
+            7080,
+            8750
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664159,
           "resource_id": 101,
           "text": "Дарҳол Парвардигорингизга ҳамд айтиш билан (У зотни ҳар қандай «шерик»лардан) покланг ва У зотдан мағфират сўранг! Зеро, У тавбаларни қабул қилгувчи бўлган Зотдир. <sup foot_note=145393>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/110003.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 3
-  }
+  ]
 }

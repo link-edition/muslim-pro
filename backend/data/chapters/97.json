@@ -13,13 +13,49 @@
       "text_uthmani_tajweed": "إِ<tajweed class=ghunnah>نّ</tajweed><tajweed class=madda_obligatory>َآ</tajweed> أَ<tajweed class=ikhafa>نز</tajweed>َلْنَ<tajweed class=madda_normal>ـٰ</tajweed>هُ فِى لَيْلَةِ <tajweed class=ham_wasl>ٱ</tajweed>لْقَ<tajweed class=qalaqah>دْ</tajweed>رِ <span class=end>١</span>",
       "page_number": 598,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/097001.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            150,
+            2890
+          ],
+          [
+            1,
+            2,
+            2900,
+            5410
+          ],
+          [
+            2,
+            3,
+            5420,
+            5880
+          ],
+          [
+            3,
+            4,
+            5890,
+            6710
+          ],
+          [
+            4,
+            5,
+            6720,
+            7260
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664069,
           "resource_id": 101,
           "text": "Албатта Биз у (Қуръон)ни Қадр кечасида нозил қилдик."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/097001.mp3"
     },
     {
       "id": 6127,
@@ -34,13 +70,49 @@
       "text_uthmani_tajweed": "وَم<tajweed class=madda_obligatory>َآ</tajweed> أَ<tajweed class=qalaqah>دْ</tajweed>رَ<tajweed class=madda_normal>ٮٰ</tajweed>كَ مَا لَيْلَةُ <tajweed class=ham_wasl>ٱ</tajweed>لْقَ<tajweed class=qalaqah>دْ</tajweed>رِ <span class=end>٢</span>",
       "page_number": 598,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/097002.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            40,
+            390
+          ],
+          [
+            1,
+            2,
+            400,
+            3200
+          ],
+          [
+            2,
+            3,
+            3210,
+            3630
+          ],
+          [
+            3,
+            4,
+            3640,
+            4430
+          ],
+          [
+            4,
+            5,
+            4440,
+            4990
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664070,
           "resource_id": 101,
           "text": "(Эй Муҳаммад алайҳис-салоту вас-салом), Қадр кечаси нима эканлигини сиз қаердан билар эдингиз?"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/097002.mp3"
     },
     {
       "id": 6128,
@@ -55,13 +127,55 @@
       "text_uthmani_tajweed": "لَيْلَةُ <tajweed class=ham_wasl>ٱ</tajweed>لْقَ<tajweed class=qalaqah>دْ</tajweed>رِ خَيْ<tajweed class=idgham_ghunnah>رٌ م</tajweed>ِّنْ أَلْفِ شَهْرٍ <span class=end>٣</span>",
       "page_number": 598,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/097003.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            150,
+            870
+          ],
+          [
+            1,
+            2,
+            880,
+            1640
+          ],
+          [
+            2,
+            3,
+            1650,
+            3350
+          ],
+          [
+            3,
+            4,
+            3360,
+            3680
+          ],
+          [
+            4,
+            5,
+            3690,
+            4250
+          ],
+          [
+            5,
+            6,
+            4260,
+            4770
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664071,
           "resource_id": 101,
           "text": "Қадр кечаси минг ойдан яхшироқдир. <sup foot_note=145385>1</sup>"
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/097003.mp3"
     },
     {
       "id": 6129,
@@ -76,13 +190,73 @@
       "text_uthmani_tajweed": "تَنَزَّلُ <tajweed class=ham_wasl>ٱ</tajweed>لْمَلَ<tajweed class=madda_obligatory>ـٰٓ</tajweed>ئِكَةُ وَ<tajweed class=ham_wasl>ٱ</tajweed><tajweed class=laam_shamsiyah>ل</tajweed>رُّوحُ فِيهَا بِإِذْنِ رَبِّه<tajweed class=idgham_shafawi>ِم م</tajweed>ِّ<tajweed class=ikhafa>ن ك</tajweed>ُلِّ أَمْرٍ <span class=end>٤</span>",
       "page_number": 598,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/097004.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            30,
+            1010
+          ],
+          [
+            1,
+            2,
+            1020,
+            3980
+          ],
+          [
+            2,
+            3,
+            3990,
+            4940
+          ],
+          [
+            3,
+            4,
+            4950,
+            5800
+          ],
+          [
+            4,
+            5,
+            5810,
+            6550
+          ],
+          [
+            5,
+            6,
+            6560,
+            8310
+          ],
+          [
+            6,
+            7,
+            8320,
+            9380
+          ],
+          [
+            7,
+            8,
+            9390,
+            10050
+          ],
+          [
+            8,
+            9,
+            10060,
+            10570
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664072,
           "resource_id": 101,
           "text": "У (кеча)да фаришталар ва Руҳ (яъни, Жаброил алайҳиссалом) Парвардигорларининг изни-ихтиёри ила (йил давомида қилинадиган) барча ишлар билан (осмондан заминга) тушурлар."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/097004.mp3"
     },
     {
       "id": 6130,
@@ -97,20 +271,49 @@
       "text_uthmani_tajweed": "سَلَ<tajweed class=madda_normal>ـٰ</tajweed>مٌ هِىَ حَتَّىٰ مَ<tajweed class=qalaqah>طْ</tajweed>لَعِ <tajweed class=ham_wasl>ٱ</tajweed>لْفَ<tajweed class=qalaqah>جْ</tajweed>رِ <span class=end>٥</span>",
       "page_number": 598,
       "juz_number": 30,
+      "audio": {
+        "url": "Alafasy/mp3/097005.mp3",
+        "segments": [
+          [
+            0,
+            1,
+            200,
+            1080
+          ],
+          [
+            1,
+            2,
+            1090,
+            1530
+          ],
+          [
+            2,
+            3,
+            1540,
+            2420
+          ],
+          [
+            3,
+            4,
+            2430,
+            3380
+          ],
+          [
+            4,
+            5,
+            3390,
+            4050
+          ]
+        ]
+      },
       "translations": [
         {
           "id": 664073,
           "resource_id": 101,
           "text": "У (кеча) то тонг отгунича тинчлик-омонликдир."
         }
-      ]
+      ],
+      "audio_url": "https://audio.quran.com/reciters/7/Alafasy/mp3/097005.mp3"
     }
-  ],
-  "pagination": {
-    "per_page": 300,
-    "current_page": 1,
-    "next_page": null,
-    "total_pages": 1,
-    "total_records": 5
-  }
+  ]
 }
