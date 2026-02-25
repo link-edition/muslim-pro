@@ -128,8 +128,8 @@ class _DuaItemCardState extends State<_DuaItemCard> {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          color: Colors.transparent,
           child: ExpansionTile(
             onExpansionChanged: (val) {
               setState(() => _isExpanded = val);
@@ -158,67 +158,86 @@ class _DuaItemCardState extends State<_DuaItemCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Divider(color: Colors.black12),
+                    const Divider(color: Colors.white10),
                     const SizedBox(height: 16),
-                    // Arabic Text - Beautiful Uthmani or Amiri
+                    
+                    // Narrator Intro
+                    if (widget.dua.narratorIntro.isNotEmpty) ...[
+                      Text(
+                        widget.dua.narratorIntro,
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white.withOpacity(0.85),
+                          height: 1.5,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+
+                    // Arabic Text
                     Directionality(
                       textDirection: TextDirection.rtl,
                       child: Text(
                         widget.dua.arabic,
                         textAlign: TextAlign.right,
-                        style: GoogleFonts.amiri( // Alternatively fontFamily: 'UthmanTaha'
+                        style: GoogleFonts.amiri(
                           fontSize: 26,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.emeraldDark,
+                          color: AppColors.softGold, // Made it softGold for high visibility
                           height: 2.0,
                         ),
                       ),
                     ),
                     const SizedBox(height: 24),
-                    // Transliteration
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: AppColors.emeraldLight.withOpacity(0.08),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "O'QILISHI:",
-                            style: GoogleFonts.inter(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 1.5,
-                              color: AppColors.emeraldMid,
+                    
+                    // Transliteration (faqat bo'lsa ko'rsatish)
+                    if (widget.dua.transcription.isNotEmpty) ...[
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: AppColors.emeraldLight.withOpacity(0.08),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "O'QILISHI:",
+                              style: GoogleFonts.inter(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 1.5,
+                                color: AppColors.emeraldMid,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            widget.dua.transcription,
-                            style: GoogleFonts.inter(
-                              fontSize: 14,
-                              fontStyle: FontStyle.italic,
-                              color: AppColors.textSecondary,
-                              height: 1.5,
+                            const SizedBox(height: 6),
+                            Text(
+                              widget.dua.transcription,
+                              style: GoogleFonts.inter(
+                                fontSize: 14,
+                                fontStyle: FontStyle.italic,
+                                color: AppColors.textSecondary,
+                                height: 1.5,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
+                      const SizedBox(height: 16),
+                    ],
+                    
                     // Translation
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: AppColors.softGold.withOpacity(0.08),
+                        color: AppColors.softGold.withOpacity(0.05),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          /* Text(
                             "MA'NOSI:",
                             style: GoogleFonts.inter(
                               fontSize: 10,
@@ -227,18 +246,36 @@ class _DuaItemCardState extends State<_DuaItemCard> {
                               color: AppColors.softGold,
                             ),
                           ),
-                          const SizedBox(height: 6),
+                          const SizedBox(height: 6), */
                           Text(
                             widget.dua.translation,
                             style: GoogleFonts.inter(
                               fontSize: 14,
-                              color: AppColors.textPrimary,
+                              color: Colors.white.withOpacity(0.9),
                               height: 1.5,
                             ),
                           ),
                         ],
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    // Reference
+                    if (widget.dua.reference.isNotEmpty) ...[
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          widget.dua.reference.toUpperCase(),
+                          textAlign: TextAlign.right,
+                          style: GoogleFonts.inter(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.italic,
+                            letterSpacing: 0.5,
+                            color: AppColors.emeraldLight.withOpacity(0.6),
+                          ),
+                        ),
+                      ),
+                    ],
                     const SizedBox(height: 8),
                   ],
                 ),

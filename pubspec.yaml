@@ -87,6 +87,7 @@ flutter:
 
   assets:
     - assets/fonts/
+    - assets/data/
 
   fonts:
     - family: UthmanTaha

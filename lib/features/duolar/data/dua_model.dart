@@ -2,17 +2,21 @@ class Dua {
   final int id;
   final String category;
   final String title;
+  final String narratorIntro;
   final String arabic;
-  final String transcription;
   final String translation;
+  final String reference;
+  final String transcription;
 
   const Dua({
     required this.id,
     required this.category,
     required this.title,
+    this.narratorIntro = '',
     required this.arabic,
-    required this.transcription,
     required this.translation,
+    this.reference = '',
+    this.transcription = '',
   });
 
   factory Dua.fromJson(Map<String, dynamic> json) {
@@ -20,9 +24,11 @@ class Dua {
       id: json['id'] is int ? json['id'] : int.parse(json['id'].toString()),
       category: json['category'] ?? '',
       title: json['title'] ?? '',
+      narratorIntro: json['narrator_intro'] ?? '',
       arabic: json['arabic'] ?? '',
-      transcription: json['transcription'] ?? '',
       translation: json['translation'] ?? '',
+      reference: json['reference'] ?? '',
+      transcription: json['transcription'] ?? '',
     );
   }
 
@@ -31,9 +37,11 @@ class Dua {
       'id': id,
       'category': category,
       'title': title,
+      'narrator_intro': narratorIntro,
       'arabic': arabic,
-      'transcription': transcription,
       'translation': translation,
+      'reference': reference,
+      'transcription': transcription,
     };
   }
 }
@@ -69,8 +77,9 @@ class DuaData {
     DuaCategory(id: 'Kundalik', name: 'Kundalik duolar', icon: '🤲'),
     DuaCategory(id: 'Safar', name: 'Safar duolari', icon: '✈️'),
     DuaCategory(id: 'Oila', name: 'Oila duolari', icon: '👨‍👩‍👧‍👦'),
+    DuaCategory(id: 'Juma', name: 'Juma duolari', icon: '🕌'),
     DuaCategory(id: 'Ramazon', name: 'Ramazon duolari', icon: '🌙'),
-    DuaCategory(id: 'Haj va Umra', name: 'Haj va Umra', icon: '🕋'),
+    DuaCategory(id: 'Haj', name: 'Haj va Umra', icon: '🕋'),
     DuaCategory(id: 'Bemorlik', name: 'Bemorlik', icon: '🏥'),
     DuaCategory(id: 'Qabr', name: 'Qabr ziyorati', icon: '🪦'),
   ];

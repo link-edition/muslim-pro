@@ -35,9 +35,11 @@ CREATE TABLE duas (
   id $idType,
   category $textType,
   title $textType,
+  narrator_intro $textType,
   arabic $textType,
   transcription $textType,
-  translation $textType
+  translation $textType,
+  reference $textType
 )
 ''');
   }
@@ -74,5 +76,10 @@ CREATE TABLE duas (
     final result = await db.rawQuery('SELECT COUNT(*) FROM duas');
     int count = Sqflite.firstIntValue(result) ?? 0;
     return count > 0;
+  }
+
+  Future<void> clearAll() async {
+    final db = await instance.database;
+    await db.delete('duas');
   }
 }
