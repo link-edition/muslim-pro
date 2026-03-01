@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:muslim_pro/core/theme.dart';
 import 'package:muslim_pro/features/tasbeh/data/zikr_database.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:muslim_pro/core/localization.dart';
 
-class HistoryPage extends StatefulWidget {
+class HistoryPage extends ConsumerStatefulWidget {
   const HistoryPage({super.key});
 
   @override
-  State<HistoryPage> createState() => _HistoryPageState();
+  ConsumerState<HistoryPage> createState() => _HistoryPageState();
 }
 
-class _HistoryPageState extends State<HistoryPage> {
+class _HistoryPageState extends ConsumerState<HistoryPage> {
   List<ZikrSession> _sessions = [];
   bool _isLoading = true;
   int _todayCount = 0;
   int _streak = 0;
   int _totalCount = 0;
-  Map<DateTime, int> _heatmapData = {};
   Map<String, int> _dailyCounts = {};
-  DateTime _currentMonth = DateTime.now();
 
   @override
   void initState() {
@@ -53,18 +51,13 @@ class _HistoryPageState extends State<HistoryPage> {
     
     _totalCount = 0;
     _dailyCounts = {};
-    Map<DateTime, int> heatmap = {};
 
     for (var s in _sessions) {
       _totalCount += s.count;
       final key = DateFormat('yyyy-MM-dd').format(s.date);
       _dailyCounts[key] = (_dailyCounts[key] ?? 0) + s.count;
-      
-      final dateKey = DateTime(s.date.year, s.date.month, s.date.day);
-      heatmap[dateKey] = (heatmap[dateKey] ?? 0) + s.count;
     }
     
-    _heatmapData = heatmap;
     _todayCount = _dailyCounts[todayStr] ?? 0;
 
     int streak = 0;
@@ -83,22 +76,23 @@ class _HistoryPageState extends State<HistoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = ref.watch(localizationProvider);
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0A0A),
+      backgroundColor: context.colors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios_new, size: 20, color: AppColors.textPrimary),
+          icon: Icon(Icons.arrow_back_ios_new, size: 20, color: context.colors.textPrimary),
         ),
         title: Text(
-          'Tarix va Statistika v1.6',
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+          l10n.translate('history_stats'),
+          style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: context.colors.textPrimary),
         ),
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: AppColors.softGold))
+          ? Center(child: CircularProgressIndicator(color: context.colors.softGold))
           : SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -108,17 +102,17 @@ class _HistoryPageState extends State<HistoryPage> {
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      _StatCard(title: 'Bugun', value: '$_todayCount', icon: Icons.today),
+                      _StatCard(title: l10n.translate('today'), value: '$_todayCount', icon: Icons.today),
                       const SizedBox(width: 12),
-                      _StatCard(title: 'Davomiylik', value: '$_streak', icon: Icons.local_fire_department),
+                      _StatCard(title: l10n.translate('streak'), value: '$_streak', icon: Icons.local_fire_department),
                       const SizedBox(width: 12),
-                      _StatCard(title: 'Jami', value: '$_totalCount', icon: Icons.analytics),
+                      _StatCard(title: l10n.translate('all'), value: '$_totalCount', icon: Icons.analytics),
                     ],
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    'Oxirgi 7 kun',
-                    style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+                    l10n.translate('last_7_days'),
+                    style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: context.colors.textPrimary),
                   ),
                   const SizedBox(height: 16),
                   
@@ -128,59 +122,11 @@ class _HistoryPageState extends State<HistoryPage> {
                     width: double.infinity,
                     padding: const EdgeInsets.fromLTRB(15, 20, 15, 10),
                     decoration: BoxDecoration(
-                      color: AppColors.cardBg,
+                      color: context.colors.cardBg,
                       borderRadius: BorderRadius.circular(24),
-                      border: Border.all(color: AppColors.softGold.withOpacity(0.1)),
+                      border: Border.all(color: context.colors.softGold.withOpacity(0.1)),
                     ),
-                    child: _buildBarChart(),
-                  ),
-                  
-                  const SizedBox(height: 32),
-                  Text(
-                    'Faollik xaritasi',
-                    style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
-                  ),
-                  const SizedBox(height: 16),
-                  
-                  // Heatmap with Uzbek Labels Overlaying English ones
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: AppColors.cardBg,
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(color: AppColors.softGold.withOpacity(0.1)),
-                    ),
-                    child: Column(
-                      children: [
-                        _buildHeatmapHeader(),
-                        const SizedBox(height: 12),
-                        _buildHeatmapWeekDays(),
-                        const SizedBox(height: 5),
-                        // We use a ClipRect and Transform to hide the package's English labels
-                        ClipRect(
-                          child: Transform.translate(
-                            offset: const Offset(0, -78), // Hide header and week labels of package
-                            child: SizedBox(
-                              height: 250, // Fixed height to show the grid
-                              child: HeatMapCalendar(
-                                defaultColor: const Color(0xFF0F3D2E),
-                                flexible: true,
-                                colorMode: ColorMode.opacity,
-                                datasets: _heatmapData,
-                                initDate: _currentMonth,
-                                colorsets: const {
-                                  1: Color(0xFF0D4A36),
-                                  500: Color(0xFF1DB386),
-                                  1000: Color(0xFFD4AF37),
-                                },
-                                textColor: Colors.white,
-                                showColorTip: false,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: _buildBarChart(l10n),
                   ),
                   const SizedBox(height: 40),
                 ],
@@ -189,7 +135,7 @@ class _HistoryPageState extends State<HistoryPage> {
     );
   }
 
-  Widget _buildBarChart() {
+  Widget _buildBarChart(AppLocalization l10n) {
     final now = DateTime.now();
     List<double> values = [];
     for (int i = 0; i < 7; i++) {
@@ -201,12 +147,22 @@ class _HistoryPageState extends State<HistoryPage> {
     double maxVal = values.reduce((a, b) => a > b ? a : b);
     if (maxVal == 0) maxVal = 100;
 
+    final weekDays = [
+      l10n.translate('mon'),
+      l10n.translate('tue'),
+      l10n.translate('wed'),
+      l10n.translate('thu'),
+      l10n.translate('fri'),
+      l10n.translate('sat'),
+      l10n.translate('sun')
+    ];
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: List.generate(7, (index) {
         final date = DateTime(now.year, now.month, now.day).subtract(Duration(days: 6 - index));
-        final dayName = ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'][date.weekday - 1];
+        final dayName = weekDays[date.weekday - 1];
         final heightFactor = values[index] / maxVal;
         
         return Column(
@@ -215,7 +171,7 @@ class _HistoryPageState extends State<HistoryPage> {
             if (values[index] > 0)
               Text(
                 '${values[index].toInt()}',
-                style: GoogleFonts.poppins(color: AppColors.softGold, fontSize: 9, fontWeight: FontWeight.bold),
+                style: GoogleFonts.inter(color: context.colors.goldText, fontSize: 9, fontWeight: FontWeight.bold),
               ),
             const SizedBox(height: 4),
             Container(
@@ -226,19 +182,19 @@ class _HistoryPageState extends State<HistoryPage> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    index == 6 ? AppColors.goldLight : AppColors.softGold.withOpacity(0.8),
-                    index == 6 ? AppColors.softGold : AppColors.softGold.withOpacity(0.4),
+                    index == 6 ? context.colors.goldText : context.colors.goldText.withOpacity(0.8),
+                    index == 6 ? context.colors.goldText.withOpacity(0.7) : context.colors.goldText.withOpacity(0.4),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(6),
-                boxShadow: index == 6 ? [BoxShadow(color: AppColors.softGold.withOpacity(0.3), blurRadius: 8)] : null,
+                boxShadow: index == 6 ? [BoxShadow(color: context.colors.cardShadow, blurRadius: 8)] : null,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               dayName,
-              style: GoogleFonts.poppins(
-                color: index == 6 ? AppColors.softGold : AppColors.textMuted,
+              style: GoogleFonts.inter(
+                color: index == 6 ? context.colors.goldText : context.colors.textMuted,
                 fontSize: 10,
                 fontWeight: index == 6 ? FontWeight.bold : FontWeight.normal,
               ),
@@ -246,45 +202,6 @@ class _HistoryPageState extends State<HistoryPage> {
           ],
         );
       }),
-    );
-  }
-
-  Widget _buildHeatmapHeader() {
-    final months = [
-      '', 'Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun',
-      'Iyul', 'Avgust', 'Sentyabr', 'Oktyabr', 'Noyabr', 'Dekabr'
-    ];
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-          icon: const Icon(Icons.arrow_back_ios, size: 16, color: Colors.white),
-          onPressed: () => setState(() => _currentMonth = DateTime(_currentMonth.year, _currentMonth.month - 1)),
-        ),
-        Text(
-          '${months[_currentMonth.month]} ${_currentMonth.year}',
-          style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
-        ),
-        IconButton(
-          icon: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
-          onPressed: () => setState(() => _currentMonth = DateTime(_currentMonth.year, _currentMonth.month + 1)),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildHeatmapWeekDays() {
-    final days = ['Ya', 'Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh'];
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: days.map((d) => Expanded(
-          child: Center(
-            child: Text(d, style: GoogleFonts.poppins(color: AppColors.textMuted, fontSize: 11)),
-          ),
-        )).toList(),
-      ),
     );
   }
 }
@@ -301,16 +218,16 @@ class _StatCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(
-          color: AppColors.cardBg,
+          color: context.colors.cardBg,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppColors.softGold.withOpacity(0.1)),
+          border: Border.all(color: context.colors.softGold.withOpacity(0.1)),
         ),
         child: Column(
           children: [
-            Icon(icon, color: AppColors.softGold, size: 22),
+            Icon(icon, color: context.colors.goldText, size: 22),
             const SizedBox(height: 8),
-            Text(value, style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
-            Text(title, style: GoogleFonts.poppins(fontSize: 11, color: AppColors.textMuted)),
+            Text(value, style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.bold, color: context.colors.textPrimary)),
+            Text(title, style: GoogleFonts.inter(fontSize: 11, color: context.colors.textMuted)),
           ],
         ),
       ),

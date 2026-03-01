@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dua_model.dart';
 import 'dua_database_helper.dart';
+import 'saved_duas_provider.dart';
 
 final duaRepositoryProvider = Provider<DuaRepository>((ref) {
   return DuaRepository();
@@ -16,7 +17,16 @@ final duaCategoriesProvider = FutureProvider<List<DuaCategory>>((ref) async {
 
 final duasByCategoryProvider = FutureProvider.family<List<Dua>, String>((ref, categoryId) async {
   final repo = ref.watch(duaRepositoryProvider);
+  await repo.initDuas();
   return repo.getDuasByCategory(categoryId);
+});
+
+final savedDuasListProvider = FutureProvider<List<Dua>>((ref) async {
+  final repo = ref.watch(duaRepositoryProvider);
+  final savedIds = ref.watch(savedDuasProvider);
+  if (savedIds.isEmpty) return [];
+  await repo.initDuas();
+  return repo.getDuasByIds(savedIds);
 });
 
 class DuaRepository {
@@ -33,8 +43,7 @@ class DuaRepository {
         final List<dynamic> data = json.decode(jsonString);
         final List<Dua> duas = data.map((item) => Dua.fromJson(item)).toList();
         await DuaDatabaseHelper.instance.insertDuas(duas);
-      } catch (e) {
-        print('Error parsing offline duas_uz.json: $e');
+      } catch (_) {
       }
     }
   }
@@ -50,5 +59,9 @@ class DuaRepository {
 
   Future<List<Dua>> getDuasByCategory(String categoryId) async {
     return DuaDatabaseHelper.instance.getDuasByCategory(categoryId);
+  }
+
+  Future<List<Dua>> getDuasByIds(List<int> ids) async {
+    return DuaDatabaseHelper.instance.getDuasByIds(ids);
   }
 }

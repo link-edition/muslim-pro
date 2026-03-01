@@ -6,15 +6,18 @@ import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:muslim_pro/core/theme.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:muslim_pro/core/localization.dart';
+import 'dart:ui' as ui;
 
-class QiblaScreen extends StatefulWidget {
+class QiblaScreen extends ConsumerStatefulWidget {
   const QiblaScreen({super.key});
 
   @override
-  State<QiblaScreen> createState() => _QiblaScreenState();
+  ConsumerState<QiblaScreen> createState() => _QiblaScreenState();
 }
 
-class _QiblaScreenState extends State<QiblaScreen> {
+class _QiblaScreenState extends ConsumerState<QiblaScreen> {
   bool _hasPermission = false;
   bool _isLoading = true;
   String? _error;
@@ -32,8 +35,10 @@ class _QiblaScreenState extends State<QiblaScreen> {
         final requested = await Geolocator.requestPermission();
         if (requested == LocationPermission.denied ||
             requested == LocationPermission.deniedForever) {
+          if (!mounted) return;
+          final l10n = ref.read(localizationProvider);
           setState(() {
-            _error = 'Joylashuvga ruxsat berilmadi';
+            _error = l10n.translate('location_denied');
             _isLoading = false;
           });
           return;
@@ -44,17 +49,25 @@ class _QiblaScreenState extends State<QiblaScreen> {
         _isLoading = false;
       });
     } catch (e) {
+      if (!mounted) return;
+      final l10n = ref.read(localizationProvider);
       setState(() {
-        _error = 'Xatolik: $e';
+        _error = '${l10n.translate('error_occured')}: $e';
         _isLoading = false;
       });
     }
   }
 
   @override
+  void setState(VoidCallback fn) {
+    if (mounted) super.setState(fn);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final l10n = ref.watch(localizationProvider);
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: context.colors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
@@ -62,21 +75,21 @@ class _QiblaScreenState extends State<QiblaScreen> {
           icon: const Icon(Icons.arrow_back_ios_new, size: 20),
         ),
         title: Text(
-          'Qibla',
-          style: GoogleFonts.poppins(
+          l10n.translate('qibla'),
+          style: GoogleFonts.inter(
             fontWeight: FontWeight.w600,
-            color: AppColors.textPrimary,
+            color: context.colors.textPrimary,
           ),
         ),
       ),
-      body: _buildBody(),
+      body: _buildBody(l10n),
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(AppLocalization l10n) {
     if (_isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(color: AppColors.softGold),
+      return Center(
+        child: CircularProgressIndicator(color: context.colors.softGold),
       );
     }
 
@@ -90,21 +103,21 @@ class _QiblaScreenState extends State<QiblaScreen> {
               Icon(Icons.location_off, size: 64, color: Colors.red.shade300),
               const SizedBox(height: 16),
               Text(
-                _error!,
+                l10n.translate(_error!),
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.inter(
                   fontSize: 16,
-                  color: AppColors.textSecondary,
+                  color: context.colors.textSecondary,
                 ),
               ),
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: _checkPermission,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.emeraldMid,
-                  foregroundColor: AppColors.softGold,
+                  backgroundColor: context.colors.emeraldMid,
+                  foregroundColor: context.colors.softGold,
                 ),
-                child: const Text('Qayta urinish'),
+                child: Text(l10n.translate('retry')),
               ),
             ],
           ),
@@ -113,8 +126,8 @@ class _QiblaScreenState extends State<QiblaScreen> {
     }
 
     if (!_hasPermission) {
-      return const Center(
-        child: Text('Joylashuvga ruxsat kerak'),
+      return Center(
+        child: Text(l10n.translate('location_needed')),
       );
     }
 
@@ -122,13 +135,13 @@ class _QiblaScreenState extends State<QiblaScreen> {
       stream: FlutterQiblah.qiblahStream,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const Center(
-            child: CircularProgressIndicator(color: AppColors.softGold),
+          return Center(
+            child: CircularProgressIndicator(color: context.colors.softGold),
           );
         }
 
         final qibla = snapshot.data!;
-        return _QiblaCompass(qibla: qibla);
+        return _QiblaCompass(qibla: qibla, l10n: l10n);
       },
     );
   }
@@ -136,51 +149,66 @@ class _QiblaScreenState extends State<QiblaScreen> {
 
 class _QiblaCompass extends StatelessWidget {
   final QiblahDirection qibla;
-  const _QiblaCompass({required this.qibla});
+  final AppLocalization l10n;
+  const _QiblaCompass({required this.qibla, required this.l10n});
 
   @override
   Widget build(BuildContext context) {
-    final qiblaDirection = qibla.qiblah;
     final compassDirection = qibla.direction;
+    final qiblaOffset = qibla.offset;
+
+    // Aniq qibla burchagini topamiz (ekranga nisbatan)
+    final meccaAngle = qiblaOffset - compassDirection;
 
     // Qibla to'g'ri yo'nalishda bo'lsa
-    final isAligned = (qiblaDirection.abs() < 5);
+    double diff = meccaAngle.abs() % 360;
+    if (diff > 180) diff = 360 - diff;
+    final isAligned = diff <= 5;
 
     return Column(
       children: [
         const Spacer(flex: 1),
 
         // Daraja ko'rsatkichi
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           decoration: BoxDecoration(
             color: isAligned
-                ? AppColors.softGold.withOpacity( 0.15)
-                : AppColors.cardBg,
-            borderRadius: BorderRadius.circular(16),
+                ? context.colors.softGold
+                : context.colors.cardBg,
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: isAligned
-                  ? AppColors.softGold
-                  : AppColors.emeraldLight.withOpacity( 0.15),
+                  ? context.colors.softGold
+                  : context.colors.emeraldLight.withOpacity( 0.15),
             ),
+            boxShadow: [
+              if (isAligned)
+                BoxShadow(
+                  color: context.colors.softGold.withOpacity(0.5),
+                  blurRadius: 20,
+                  spreadRadius: 2,
+                )
+            ],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
-                isAligned ? Icons.check_circle : Icons.explore,
-                color: isAligned ? AppColors.softGold : AppColors.textMuted,
-                size: 20,
+                isAligned ? Icons.star_rounded : Icons.explore,
+                color: isAligned ? Colors.white : context.colors.textMuted,
+                size: isAligned ? 28 : 20,
               ),
               const SizedBox(width: 8),
               Text(
                 isAligned
-                    ? 'Qibla yo\'nalishidasiz!'
+                    ? l10n.translate('qibla_aligned')
                     : '${compassDirection.toStringAsFixed(1)}°',
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: isAligned ? AppColors.softGold : AppColors.textPrimary,
+                style: GoogleFonts.inter(
+                  fontSize: isAligned ? 22 : 16,
+                  fontWeight: FontWeight.bold,
+                  color: isAligned ? Colors.white : context.colors.textPrimary,
                 ),
               ),
             ],
@@ -200,64 +228,43 @@ class _QiblaCompass extends StatelessWidget {
                 // Tashqi doira (kompas)
                 Transform.rotate(
                   angle: -compassDirection * (pi / 180),
-                  child: Container(
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
                     width: 280,
                     height: 280,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.cardBg,
+                      color: isAligned ? context.colors.softGold.withOpacity(0.2) : context.colors.cardBg,
                       border: Border.all(
-                        color: AppColors.emeraldLight.withOpacity( 0.2),
-                        width: 2,
+                        color: isAligned ? context.colors.softGold : context.colors.emeraldLight.withOpacity( 0.2),
+                        width: isAligned ? 8 : 2,
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.softGold.withOpacity( 0.08),
-                          blurRadius: 30,
-                          spreadRadius: 5,
+                          color: context.colors.softGold.withOpacity(isAligned ? 0.6 : 0.08),
+                          blurRadius: isAligned ? 60 : 30,
+                          spreadRadius: isAligned ? 15 : 5,
                         ),
                       ],
                     ),
                     child: CustomPaint(
-                      painter: _CompassPainter(),
+                      painter: _CompassPainter(
+                        colors: context.colors,
+                        isLightMode: Theme.of(context).brightness == Brightness.light,
+                      ),
                     ),
                   ),
                 ),
 
                 // Qibla yo'nalish ko'rsatgichi (ka'ba)
                 Transform.rotate(
-                  angle: qiblaDirection * (pi / 180),
+                  angle: meccaAngle * (pi / 180),
                   child: Column(
                     children: [
                       const SizedBox(height: 10),
-                      TweenAnimationBuilder<double>(
-                        tween: Tween(begin: 0, end: isAligned ? 1.0 : 0.0),
-                        duration: const Duration(milliseconds: 300),
-                        builder: (context, value, child) {
-                          if (isAligned && value > 0.9) {
-                            HapticFeedback.selectionClick();
-                          }
-                          return Container(
-                            width: 54 + (value * 6),
-                            height: 54 + (value * 6),
-                            decoration: BoxDecoration(
-                              color: Color.lerp(AppColors.softGold, Colors.white, value * 0.2),
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.softGold.withOpacity( 0.4 + (value * 0.2)),
-                                  blurRadius: 15 + (value * 10),
-                                  spreadRadius: 2 + (value * 3),
-                                ),
-                              ],
-                            ),
-                            child: Icon(
-                              Icons.mosque_rounded,
-                              color: AppColors.deepEmerald,
-                              size: 28 + (value * 2),
-                            ),
-                          );
-                        },
+                      _QiblaAlignedMosque(
+                        isAligned: isAligned,
+                        colors: context.colors,
                       ),
                       const Spacer(),
                     ],
@@ -270,8 +277,8 @@ class _QiblaCompass extends StatelessWidget {
                   height: 16,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.softGold,
-                    border: Border.all(color: AppColors.deepEmerald, width: 3),
+                    color: context.colors.goldText,
+                    border: Border.all(color: context.colors.deepEmerald, width: 3),
                   ),
                 ),
               ],
@@ -287,22 +294,22 @@ class _QiblaCompass extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              gradient: AppColors.cardGradient,
+              gradient: context.colors.cardGradient,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: AppColors.emeraldLight.withOpacity( 0.1),
+                color: context.colors.emeraldLight.withOpacity( 0.1),
               ),
             ),
             child: Row(
               children: [
-                const Icon(Icons.info_outline, color: AppColors.softGold, size: 20),
+                Icon(Icons.info_outline, color: context.colors.softGold, size: 20),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'Telefoningizni tekis ushlang va sekin aylantiring',
-                    style: GoogleFonts.poppins(
+                    l10n.translate('qibla_hint'),
+                    style: GoogleFonts.inter(
                       fontSize: 13,
-                      color: AppColors.textSecondary,
+                      color: context.colors.textSecondary,
                     ),
                   ),
                 ),
@@ -320,6 +327,11 @@ class _QiblaCompass extends StatelessWidget {
 
 /// Sodda kompas chizuvchisi
 class _CompassPainter extends CustomPainter {
+  final MyColors colors;
+  final bool isLightMode;
+
+  _CompassPainter({required this.colors, required this.isLightMode});
+
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
@@ -328,10 +340,10 @@ class _CompassPainter extends CustomPainter {
     // Yo'nalish harflari
     final directions = ['N', 'E', 'S', 'W'];
     final dirColors = [
-      const Color(0xFFD4AF37), // N - oltin
-      Colors.white70,
-      Colors.white70,
-      Colors.white70,
+      colors.softGold, 
+      colors.textSecondary.withOpacity(0.7),
+      colors.textSecondary.withOpacity(0.7),
+      colors.textSecondary.withOpacity(0.7),
     ];
 
     for (int i = 0; i < 4; i++) {
@@ -358,7 +370,7 @@ class _CompassPainter extends CustomPainter {
 
     // Kichik chiziqlar (har 30 drajada)
     final tickPaint = Paint()
-      ..color = Colors.white24
+      ..color = colors.textMuted.withOpacity(isLightMode ? 0.3 : 0.24)
       ..strokeWidth = 1.5;
 
     for (int i = 0; i < 36; i++) {
@@ -376,4 +388,92 @@ class _CompassPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+class _QiblaAlignedMosque extends StatefulWidget {
+  final bool isAligned;
+  final MyColors colors;
+
+  const _QiblaAlignedMosque({required this.isAligned, required this.colors});
+
+  @override
+  State<_QiblaAlignedMosque> createState() => _QiblaAlignedMosqueState();
+}
+
+class _QiblaAlignedMosqueState extends State<_QiblaAlignedMosque> with SingleTickerProviderStateMixin {
+  late AnimationController _pulseController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+       vsync: this, 
+       duration: const Duration(milliseconds: 800)
+    );
+    if (widget.isAligned) {
+      _pulseController.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant _QiblaAlignedMosque oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isAligned && !oldWidget.isAligned) {
+      HapticFeedback.heavyImpact();
+      _pulseController.repeat(reverse: true);
+    } else if (!widget.isAligned && oldWidget.isAligned) {
+      _pulseController.stop();
+      _pulseController.animateTo(0.0, duration: const Duration(milliseconds: 300));
+    }
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _pulseController,
+      builder: (context, child) {
+        final double pulse = _pulseController.value;
+        return Container(
+          width: 60 + (pulse * 8),
+          height: 60 + (pulse * 8),
+          decoration: BoxDecoration(
+            color: Color.lerp(widget.colors.softGold, Colors.white, widget.isAligned ? 0.2 : 0.0),
+            shape: BoxShape.circle,
+            boxShadow: [
+              if (widget.isAligned) ...[
+                BoxShadow(
+                  color: widget.colors.softGold.withOpacity(0.6 + (pulse * 0.4)),
+                  blurRadius: 20 + (pulse * 15),
+                  spreadRadius: 5 + (pulse * 5),
+                ),
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.3 + (pulse * 0.2)),
+                  blurRadius: 10 + (pulse * 10),
+                  spreadRadius: 2 + (pulse * 3),
+                ),
+              ] else
+                BoxShadow(
+                  color: widget.colors.softGold.withOpacity(0.4),
+                  blurRadius: 15,
+                  spreadRadius: 2,
+                ),
+            ],
+          ),
+          child: Center(
+             child: Icon(
+                Icons.mosque_rounded,
+                color: widget.colors.deepEmerald,
+                size: 30 + (pulse * 4),
+             ),
+          ),
+        );
+      },
+    );
+  }
 }

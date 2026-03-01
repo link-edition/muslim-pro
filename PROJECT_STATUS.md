@@ -1,4 +1,4 @@
-# Muslim Pro — Loyiha Holati (v1.0)
+# Amal — Loyiha Holati (v1.0)
 
 Ushbu fayl loyihaning hozirgi holati va bajarilgan ishlar haqida qisqacha ma'lumot beradi. Yangi agent uchun qo'llanma.
 

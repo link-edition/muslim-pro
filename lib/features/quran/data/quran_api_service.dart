@@ -1,6 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
+import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'quran_model.dart';
@@ -8,33 +9,33 @@ import 'quran_db_service.dart';
 import 'dart:developer' as dev;
 
 class QuranApiService {
-  static const String _baseUrl = 'https://muslim-app-backend.onrender.com/api/quran';
   static const String _audioBaseUrl = 'https://everyayah.com/data/Alafasy_128kbps/';
 
   static final Dio _dio = Dio(BaseOptions(
-    baseUrl: _baseUrl,
     connectTimeout: const Duration(seconds: 30),
     receiveTimeout: const Duration(seconds: 30),
   ));
 
+  /// Suralar ro'yxatini OFFLINE yuklash (bundled surahs.json)
   static Future<List<SurahModel>> getSurahs({bool forceRefresh = false}) async {
+    // 1. Avval SQLite keshdan
     if (!forceRefresh) {
       final cached = await QuranDbService.getSurahs();
       if (cached.isNotEmpty) return cached;
     }
 
+    // 2. Bundled JSON dan yuklash (TO'LIQ OFFLINE)
     try {
-      final response = await _dio.get('/chapters');
-      if (response.statusCode == 200) {
-        final List? chaptersData = response.data['chapters'];
-        if (chaptersData != null) {
-          final surahs = chaptersData.map((json) => SurahModel.fromJson(json)).toList();
-          await QuranDbService.insertSurahs(surahs);
-          return surahs;
-        }
+      final jsonStr = await rootBundle.loadString('assets/data/surahs.json');
+      final data = json.decode(jsonStr);
+      final List? chaptersData = data['chapters'];
+      if (chaptersData != null) {
+        final surahs = chaptersData.map((j) => SurahModel.fromJson(j)).toList();
+        await QuranDbService.insertSurahs(surahs);
+        return surahs;
       }
     } catch (e) {
-      dev.log('QuranApiService getSurahs Error: $e');
+      dev.log('QuranApiService getSurahs offline Error: $e');
     }
     return await QuranDbService.getSurahs();
   }
@@ -42,12 +43,17 @@ class QuranApiService {
   static Future<List<AyahModel>> getAyahs(int surahNumber) async {
     final curAyahs = await QuranDbService.getAyahsBySurah(surahNumber);
     
-    // Sura ma'lumotlarini bazadan olamiz (oyatlar sonini tekshirish uchun)
-    final allSurahs = await QuranDbService.getSurahs();
-    final surah = allSurahs.firstWhere((s) => s.number == surahNumber, orElse: () => null as dynamic);
+    // Sura ma'lumotlarini API yoki bazadan kafolatli tarzda olamiz
+    final allSurahs = await getSurahs();
+    if (allSurahs.isEmpty) return [];
+
+    final surahMatches = allSurahs.where((s) => s.number == surahNumber).toList();
+    if (surahMatches.isEmpty) return [];
     
+    final surah = surahMatches.first;
+
     // Agar hamma oyatlar bazada bo'lsa, qaytaramiz
-    if (curAyahs.isNotEmpty && surah != null && curAyahs.length >= surah.ayahCount) {
+    if (curAyahs.isNotEmpty && curAyahs.length >= surah.ayahCount) {
       return _attachAudioLocally(curAyahs);
     }
 
@@ -58,6 +64,7 @@ class QuranApiService {
         queryParameters: {
           'words': false,
           'fields': 'text_uthmani',
+          'translations': '55,127',
           'per_page': 300,
         },
       );

@@ -43,7 +43,7 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: context.colors.background,
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -58,38 +58,30 @@ class _SplashPageState extends State<SplashPage>
                   height: 100,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: AppColors.cardGradient,
-                    border: Border.all(color: AppColors.softGold, width: 2),
+                    gradient: context.colors.cardGradient,
+                    border: Border.all(color: context.colors.softGold, width: 2),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.softGold.withOpacity( 0.2),
+                        color: context.colors.softGold.withOpacity( 0.2),
                         blurRadius: 30,
                         spreadRadius: 5,
                       ),
                     ],
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.mosque_rounded,
                     size: 48,
-                    color: AppColors.softGold,
+                    color: context.colors.softGold,
                   ),
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Muslim Pro',
+                  'Amal',
                   style: GoogleFonts.poppins(
                     fontSize: 28,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
+                    color: context.colors.textPrimary,
                     letterSpacing: 1,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Antigravity jamoasi',
-                  style: GoogleFonts.poppins(
-                    fontSize: 13,
-                    color: AppColors.textMuted,
                   ),
                 ),
               ],

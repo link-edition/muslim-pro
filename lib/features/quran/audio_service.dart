@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'data/quran_model.dart';
 import 'download_manager.dart';
 import 'dart:developer' as dev;
@@ -82,50 +83,77 @@ class AudioPlayerNotifier extends StateNotifier<AudioPlayerState> {
   }
 
   void _setupListeners() {
-    _player.playerStateStream.listen((playerState) {
+    _player.playerStateStream.listen((pState) {
+      if (!mounted) return;
       state = state.copyWith(
-        isPlaying: playerState.playing,
-        isLoading: playerState.processingState == ProcessingState.loading ||
-            playerState.processingState == ProcessingState.buffering,
+        isPlaying: pState.playing,
+        isLoading: pState.processingState == ProcessingState.loading || pState.processingState == ProcessingState.buffering, 
       );
+      if (pState.processingState == ProcessingState.completed) {
+        state = state.copyWith(isPlaying: false);
+      }
+    });
 
-      if (playerState.processingState == ProcessingState.completed) {
-        _onAudioCompleted();
+    _player.currentIndexStream.listen((index) {
+      if (!mounted) return;
+      if (index != null && index < _player.sequence.length) {
+         final mediaItem = _player.sequence[index].tag as MediaItem;
+         final ayahIndex = mediaItem.extras?['ayahIndex'] as int? ?? index;
+         if (ayahIndex != state.currentAyahIndex) {
+            state = state.copyWith(currentAyahIndex: ayahIndex);
+         }
       }
     });
 
     _player.positionStream.listen((pos) {
+      if (!mounted) return;
       state = state.copyWith(position: pos);
     });
 
     _player.durationStream.listen((dur) {
+      if (!mounted) return;
       if (dur != null) {
         state = state.copyWith(duration: dur);
       }
     });
 
-    _player.playbackEventStream.listen((event) {}, onError: (Object e, StackTrace st) {
-      dev.log('AudioPlayer Playback Error: $e');
-      state = state.copyWith(error: 'Audio ijrosida xatolik yuz berdi');
+    _player.playbackEventStream.listen((event) {}, onError: (Object e, StackTrace stackTrace) {
+      dev.log('AudioPlayer Log Error: $e');
     });
   }
 
-  void _onAudioCompleted() {
-    final currentIndex = state.currentAyahIndex;
-    if (currentIndex != null) {
-      if (state.repeatMode == -1) {
-        playAyah(currentIndex, forcePlay: true);
-      } else if (state.repeatMode > 0 && state.currentRepeatCount < state.repeatMode) {
-        state = state.copyWith(currentRepeatCount: state.currentRepeatCount + 1);
-        playAyah(currentIndex, forcePlay: true);
-      } else {
-        state = state.copyWith(currentRepeatCount: 0);
-        if (currentIndex < state.ayahs.length - 1) {
-          playAyah(currentIndex + 1, forcePlay: true);
-        } else {
-          state = state.copyWith(isPlaying: false);
+  Future<void> _updatePlaylist(int startIndex) async {
+    final audioSources = <AudioSource>[];
+    final repeats = (state.repeatMode == -1) ? 0 : state.repeatMode; 
+
+    for (int i = 0; i < state.ayahs.length; i++) {
+        final ayah = state.ayahs[i];
+        final uri = (ayah.localPath != null && File(ayah.localPath!).existsSync()) 
+             ? Uri.file(ayah.localPath!) 
+             : Uri.parse(ayah.audioUrl!);
+        
+        final count = (state.repeatMode == -1) ? 1 : (repeats + 1);
+        for(int c=0; c < count; c++) {
+            final mediaItem = MediaItem(
+              id: '${state.currentSurahNumber}_${i}_$c',
+              album: 'Qur\'on - Amal',
+              title: '${state.currentSurahName} — Oyat ${i + 1}',
+              artist: 'Mishary Rashid Alafasy',
+              extras: {'ayahIndex': i},
+            );
+            audioSources.add(AudioSource.uri(uri, tag: mediaItem));
         }
-      }
+    }
+    
+    final playlist = ConcatenatingAudioSource(children: audioSources);
+    final actualStartIndex = (state.repeatMode == -1) ? startIndex : (startIndex * (repeats + 1));
+    
+    await _player.setAudioSource(playlist, initialIndex: actualStartIndex, initialPosition: Duration.zero);
+    
+    if (state.repeatMode == -1) {
+       await _player.setLoopMode(LoopMode.one);
+    } else {
+       await _player.setLoopMode(LoopMode.off);
     }
   }
 
@@ -142,85 +170,74 @@ class AudioPlayerNotifier extends StateNotifier<AudioPlayerState> {
       ayahs: ayahs,
       error: null,
       currentRepeatCount: 0,
+      currentAyahIndex: startAyah,
     );
     
     // Priority downloadga qo'yamiz
     _ref.read(AudioDownloadManager.provider).setPrioritySurah(surahNumber);
 
+    await _updatePlaylist(startAyah);
     if (autoPlay) {
-      await playAyah(startAyah, forcePlay: true);
-    } else {
-      await playAyah(startAyah, forcePlay: false);
+      _player.play();
     }
   }
 
   Future<void> playAyah(int index, {bool forcePlay = true}) async {
     if (index < 0 || index >= state.ayahs.length) return;
-
-    final ayah = state.ayahs[index];
     
-    state = state.copyWith(
-      currentAyahIndex: index,
-      isLoading: true,
-      error: null,
-      position: Duration.zero,
-      duration: Duration.zero,
-    );
+    final repeats = (state.repeatMode == -1) ? 0 : state.repeatMode; 
+    final actualIndex = (state.repeatMode == -1) ? index : (index * (repeats + 1));
 
     try {
-      AudioSource source;
-      
-      // Local fayl bormi?
-      if (ayah.localPath != null && await File(ayah.localPath!).exists()) {
-        dev.log('AudioPlayer: Playing LOCAL Ayah $index: ${ayah.localPath}');
-        source = AudioSource.file(ayah.localPath!);
-      } else {
-        if (ayah.audioUrl == null) throw Exception("Audio URL yo'q");
-        dev.log('AudioPlayer: Playing REMOTE Ayah $index: ${ayah.audioUrl}');
-        source = AudioSource.uri(Uri.parse(ayah.audioUrl!));
-      }
-
-      await _player.setAudioSource(source);
-      _player.setSpeed(state.playbackSpeed);
-      if (forcePlay) _player.play();
-    } catch (e) {
-      dev.log('AudioPlayer Error: $e');
-      state = state.copyWith(
-        isLoading: false,
-        error: 'Audio yuklab bo\'lmadi.',
-      );
+        await _player.seek(Duration.zero, index: actualIndex);
+        if (forcePlay) {
+            _player.play();
+        }
+    } catch(e) {
+        dev.log('playAyah Error: $e');
     }
   }
 
   Future<void> cycleSpeed() async {
     double nextSpeed = 1.0;
-    if (state.playbackSpeed == 1.0) nextSpeed = 1.5;
-    else if (state.playbackSpeed == 1.5) nextSpeed = 0.5;
+    if (state.playbackSpeed == 1.0) {
+      nextSpeed = 1.5;
+    } else if (state.playbackSpeed == 1.5) nextSpeed = 2.0;
+    else if (state.playbackSpeed == 2.0) nextSpeed = 0.5;
     else nextSpeed = 1.0;
 
     state = state.copyWith(playbackSpeed: nextSpeed);
     await _player.setSpeed(nextSpeed);
   }
 
-  void cycleRepeatMode() {
+  Future<void> cycleRepeatMode() async {
     int nextMode = 0;
-    if (state.repeatMode == 0) nextMode = 1;
-    else if (state.repeatMode == 1) nextMode = 5;
+    if (state.repeatMode == 0) {
+      nextMode = 1;
+    } else if (state.repeatMode == 1) nextMode = 5;
     else if (state.repeatMode == 5) nextMode = -1;
     else nextMode = 0;
 
     state = state.copyWith(repeatMode: nextMode, currentRepeatCount: 0);
+    
+    final currentAyah = state.currentAyahIndex ?? 0;
+    final wasPlaying = _player.playing;
+    
+    await _updatePlaylist(currentAyah);
+    if (wasPlaying) {
+        _player.play();
+    }
   }
 
   Future<void> togglePlayPause() async {
     try {
-      if (_player.playing) {
+      if (state.isPlaying) {
         await _player.pause();
       } else {
         if (state.currentAyahIndex == null && state.ayahs.isNotEmpty) {
           await playAyah(0);
         } else {
-          await _player.play();
+          _player.play();
         }
       }
     } catch (e) {
@@ -240,7 +257,6 @@ class AudioPlayerNotifier extends StateNotifier<AudioPlayerState> {
   Future<void> nextAyah() async {
     final current = state.currentAyahIndex;
     if (current != null && current < state.ayahs.length - 1) {
-      state = state.copyWith(currentRepeatCount: 0);
       await playAyah(current + 1);
     }
   }
@@ -248,7 +264,6 @@ class AudioPlayerNotifier extends StateNotifier<AudioPlayerState> {
   Future<void> previousAyah() async {
     final current = state.currentAyahIndex;
     if (current != null && current > 0) {
-      state = state.copyWith(currentRepeatCount: 0);
       await playAyah(current - 1);
     }
   }

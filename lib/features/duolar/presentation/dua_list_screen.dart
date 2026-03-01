@@ -1,10 +1,16 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:muslim_pro/core/theme.dart';
 import '../data/dua_model.dart';
 import '../data/dua_repository.dart';
+import '../data/dua_settings_provider.dart';
+import '../data/saved_duas_provider.dart';
+import 'dua_settings_sheet.dart';
+import 'package:muslim_pro/core/localization.dart';
+import 'package:muslim_pro/features/settings/settings_provider.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:flutter/services.dart';
 
 class DuaListScreen extends ConsumerWidget {
   final DuaCategory category;
@@ -15,8 +21,12 @@ class DuaListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final duasAsync = ref.watch(duasByCategoryProvider(category.id));
 
+    final l10n = ref.watch(localizationProvider);
+
+    final lang = ref.watch(settingsProvider).language;
+
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: context.colors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -25,105 +35,88 @@ class DuaListScreen extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back_ios_new, size: 20),
         ),
         title: Text(
-          category.name,
-          style: GoogleFonts.poppins(
+          category.getName(lang),
+          style: GoogleFonts.inter(
             fontWeight: FontWeight.w600,
-            color: AppColors.textPrimary,
+            color: context.colors.textPrimary,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () => showDuaSettings(context),
+            icon: Icon(Icons.settings_outlined, color: context.colors.softGold),
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
-      body: Stack(
-        children: [
-          // Subtle background glow for Liquid Glass effect
-          Positioned(
-            top: 100,
-            left: -50,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.emeraldLight.withOpacity(0.1),
+      body: duasAsync.when(
+        data: (duas) {
+          if (duas.isEmpty) {
+            return Center(
+              child: Text(
+                l10n.translate("Bu bo'limda duolar hozircha yo'q"),
+                style: GoogleFonts.inter(color: context.colors.textMuted),
               ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-                child: Container(color: Colors.transparent),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -50,
-            right: -50,
-            child: Container(
-              width: 250,
-              height: 250,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.softGold.withOpacity(0.05),
-              ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-                child: Container(color: Colors.transparent),
-              ),
-            ),
-          ),
-
-          // Main list
-          duasAsync.when(
-            data: (duas) {
-              if (duas.isEmpty) {
-                return Center(
-                  child: Text(
-                    "Bu bo'limda duolar hozircha yo'q",
-                    style: GoogleFonts.inter(color: AppColors.textMuted),
-                  ),
-                );
-              }
-              return ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                itemCount: duas.length,
-                itemBuilder: (context, index) {
-                  return _DuaItemCard(dua: duas[index]);
-                },
+            );
+          }
+          return ListView.builder(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 120),
+            itemCount: duas.length,
+            cacheExtent: 1000, // Pre-renders items for smoother scrolling
+            itemBuilder: (context, index) {
+              return RepaintBoundary(
+                child: DuaItemCard(dua: duas[index]),
               );
             },
-            loading: () => const Center(child: CircularProgressIndicator(color: AppColors.emeraldMid)),
-            error: (e, st) => Center(child: Text('Xatolik: $e')),
-          ),
-        ],
+          );
+        },
+        loading: () => Center(child: CircularProgressIndicator(color: context.colors.emeraldMid)),
+        error: (e, st) => Center(child: Text('Xatolik: $e')),
       ),
     );
   }
+
 }
 
-class _DuaItemCard extends StatefulWidget {
+class DuaItemCard extends ConsumerStatefulWidget {
   final Dua dua;
-  const _DuaItemCard({required this.dua});
+  const DuaItemCard({super.key, required this.dua});
 
   @override
-  State<_DuaItemCard> createState() => _DuaItemCardState();
+  ConsumerState<DuaItemCard> createState() => _DuaItemCardState();
 }
 
-class _DuaItemCardState extends State<_DuaItemCard> {
+class _DuaItemCardState extends ConsumerState<DuaItemCard> {
   bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
+    final settings = ref.watch(duaSettingsProvider);
+    final isSaved = ref.watch(savedDuasProvider).contains(widget.dua.id);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 18),
       decoration: BoxDecoration(
-        color: AppColors.surface.withOpacity(0.6),
-        borderRadius: BorderRadius.circular(20),
+        color: isDark ? context.colors.surface.withOpacity(0.6) : Colors.white,
+        borderRadius: BorderRadius.circular(22),
         border: Border.all(
-          color: AppColors.emeraldLight.withOpacity(0.15),
+          color: isDark
+              ? context.colors.emeraldLight.withOpacity(0.15)
+              : const Color(0xFFD4AF37).withOpacity(0.08),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
-            blurRadius: 15,
-            offset: const Offset(0, 5),
+            color: Colors.black.withOpacity(isDark ? 0.02 : 0.04),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
           ),
+          if (!isDark)
+            BoxShadow(
+              color: const Color(0xFFD4AF37).withOpacity(0.03),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
         ],
       ),
       child: ClipRRect(
@@ -137,16 +130,16 @@ class _DuaItemCardState extends State<_DuaItemCard> {
             shape: const Border(),
             backgroundColor: Colors.transparent,
             collapsedBackgroundColor: Colors.transparent,
-            iconColor: AppColors.emeraldMid,
-            collapsedIconColor: AppColors.emeraldMid.withOpacity(0.5),
+            iconColor: context.colors.emeraldMid,
+            collapsedIconColor: context.colors.emeraldMid.withOpacity(0.5),
             title: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Text(
-                widget.dua.title,
-                style: GoogleFonts.poppins(
+                widget.dua.getTitle(ref.watch(settingsProvider).language),
+                style: GoogleFonts.inter(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.textPrimary,
+                  color: context.colors.textPrimary,
                   height: 1.4,
                 ),
               ),
@@ -164,11 +157,11 @@ class _DuaItemCardState extends State<_DuaItemCard> {
                     // Narrator Intro
                     if (widget.dua.narratorIntro.isNotEmpty) ...[
                       Text(
-                        widget.dua.narratorIntro,
+                        widget.dua.getNarratorIntro(ref.watch(settingsProvider).language),
                         style: GoogleFonts.inter(
-                          fontSize: 14,
+                          fontSize: 14, // Fixed size
                           fontWeight: FontWeight.w400,
-                          color: Colors.white.withOpacity(0.85),
+                          color: context.colors.textPrimary.withOpacity(0.85),
                           height: 1.5,
                         ),
                       ),
@@ -182,9 +175,9 @@ class _DuaItemCardState extends State<_DuaItemCard> {
                         widget.dua.arabic,
                         textAlign: TextAlign.right,
                         style: GoogleFonts.amiri(
-                          fontSize: 26,
+                          fontSize: settings.arabicFontSize,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.softGold, // Made it softGold for high visibility
+                          color: context.colors.goldText, // Made it softGold for high visibility
                           height: 2.0,
                         ),
                       ),
@@ -196,28 +189,28 @@ class _DuaItemCardState extends State<_DuaItemCard> {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: AppColors.emeraldLight.withOpacity(0.08),
+                          color: context.colors.emeraldLight.withOpacity(0.08),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "O'QILISHI:",
+                              ref.watch(localizationProvider).translate("O'QILISHI:"),
                               style: GoogleFonts.inter(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w700,
                                 letterSpacing: 1.5,
-                                color: AppColors.emeraldMid,
+                                color: context.colors.emeraldMid,
                               ),
                             ),
                             const SizedBox(height: 6),
                             Text(
-                              widget.dua.transcription,
+                              ref.watch(localizationProvider).translate(widget.dua.transcription),
                               style: GoogleFonts.inter(
-                                fontSize: 14,
+                                fontSize: settings.transcriptionFontSize,
                                 fontStyle: FontStyle.italic,
-                                color: AppColors.textSecondary,
+                                color: context.colors.textSecondary,
                                 height: 1.5,
                               ),
                             ),
@@ -231,7 +224,7 @@ class _DuaItemCardState extends State<_DuaItemCard> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: AppColors.softGold.withOpacity(0.05),
+                        color: context.colors.softGold.withOpacity(0.05),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
@@ -243,15 +236,15 @@ class _DuaItemCardState extends State<_DuaItemCard> {
                               fontSize: 10,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 1.5,
-                              color: AppColors.softGold,
+                              color: context.colors.softGold,
                             ),
                           ),
                           const SizedBox(height: 6), */
                           Text(
-                            widget.dua.translation,
+                            widget.dua.getTranslation(ref.watch(settingsProvider).language),
                             style: GoogleFonts.inter(
-                              fontSize: 14,
-                              color: Colors.white.withOpacity(0.9),
+                              fontSize: settings.translationFontSize,
+                              color: context.colors.textPrimary.withOpacity(0.9),
                               height: 1.5,
                             ),
                           ),
@@ -271,12 +264,45 @@ class _DuaItemCardState extends State<_DuaItemCard> {
                             fontWeight: FontWeight.w600,
                             fontStyle: FontStyle.italic,
                             letterSpacing: 0.5,
-                            color: AppColors.emeraldLight.withOpacity(0.6),
+                            color: context.colors.emeraldMid.withOpacity(0.6),
                           ),
                         ),
                       ),
                     ],
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 16),
+                    Divider(color: context.colors.emeraldLight.withOpacity(0.1)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            ref.read(savedDuasProvider.notifier).toggleSaved(widget.dua.id);
+                          },
+                          icon: Icon(
+                            isSaved ? Icons.bookmark : Icons.bookmark_border,
+                            color: isSaved ? context.colors.softGold : context.colors.textMuted,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            final lang = ref.read(settingsProvider).language;
+                            Clipboard.setData(ClipboardData(text: "${widget.dua.getTitle(lang)}\n\n${widget.dua.arabic}\n\n${widget.dua.getTranslation(lang)}"));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(ref.read(localizationProvider).translate('Nusxa olindi!')),
+                              backgroundColor: context.colors.emeraldMid,
+                            ));
+                          },
+                          icon: Icon(Icons.copy, color: context.colors.textMuted),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            final lang = ref.read(settingsProvider).language;
+                            Share.share("${widget.dua.getTitle(lang)}\n\n${widget.dua.arabic}\n\n${widget.dua.getTranslation(lang)}\n\nAmal ilovasidan yuborildi.");
+                          },
+                          icon: Icon(Icons.share, color: context.colors.textMuted),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

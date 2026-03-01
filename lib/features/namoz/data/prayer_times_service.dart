@@ -8,7 +8,7 @@ class PrayerTimesService {
     required DateTime date,
     required double latitude,
     required double longitude,
-    String method = 'Uzbekistan',
+    String method = 'Muslim World League',
     String madhab = 'Hanafi',
   }) {
     final coordinates = Coordinates(latitude, longitude);
@@ -18,43 +18,76 @@ class PrayerTimesService {
 
     // Metod bo'yicha parametrlarni tanlash
     switch (method) {
-      case 'Uzbekistan':
+      case 'uzbekistan':
         params = CalculationMethod.muslim_world_league.getParameters();
         params.fajrAngle = 18.0;
         params.ishaAngle = 17.0;
         break;
-      case 'Muslim World League':
+      case 'mwl':
         params = CalculationMethod.muslim_world_league.getParameters();
         break;
-      case 'Egyptian':
-        params = CalculationMethod.egyptian.getParameters();
-        break;
-      case 'Karachi':
-        params = CalculationMethod.karachi.getParameters();
-        break;
-      case 'Umm Al-Qura':
+      case 'umm_al_qura':
         params = CalculationMethod.umm_al_qura.getParameters();
         break;
-      case 'Dubai':
-        params = CalculationMethod.dubai.getParameters();
-        break;
-      case 'North America':
-        params = CalculationMethod.north_america.getParameters();
-        break;
-      case 'Kuwait':
-        params = CalculationMethod.kuwait.getParameters();
-        break;
-      case 'Qatar':
-        params = CalculationMethod.qatar.getParameters();
-        break;
-      case 'Singapore':
-        params = CalculationMethod.singapore.getParameters();
-        break;
-      case 'Turkey':
+      case 'diyanet':
         params = CalculationMethod.turkey.getParameters();
         break;
-      case 'Tehran':
-        params = CalculationMethod.tehran.getParameters();
+      case 'isna':
+        params = CalculationMethod.north_america.getParameters();
+        break;
+      case 'egyptian':
+        params = CalculationMethod.egyptian.getParameters();
+        break;
+      case 'kuwait':
+        params = CalculationMethod.kuwait.getParameters();
+        break;
+      case 'qatar':
+        params = CalculationMethod.qatar.getParameters();
+        break;
+      case 'uae':
+        params = CalculationMethod.dubai.getParameters();
+        break;
+      case 'algeria':
+        params = CalculationMethod.egyptian.getParameters();
+        params.fajrAngle = 18.0;
+        params.ishaAngle = 17.0;
+        break;
+      case 'morocco':
+        params = CalculationMethod.egyptian.getParameters();
+        params.fajrAngle = 18.0;
+        params.ishaAngle = 19.0;
+        break;
+      case 'tunisia':
+        params = CalculationMethod.egyptian.getParameters();
+        params.fajrAngle = 18.0;
+        params.ishaAngle = 18.0;
+        break;
+      case 'singapore':
+        params = CalculationMethod.singapore.getParameters();
+        break;
+      case 'malaysia':
+        params = CalculationMethod.singapore.getParameters();
+        break;
+      case 'indonesia':
+        params = CalculationMethod.singapore.getParameters(); // or standard Kemenag params (20, 18)
+        params.fajrAngle = 20.0;
+        params.ishaAngle = 18.0;
+        break;
+      case 'karachi':
+        params = CalculationMethod.karachi.getParameters();
+        break;
+      case 'india':
+      case 'bangladesh':
+        params = CalculationMethod.karachi.getParameters();
+        break;
+      case 'uk_birmingham':
+        params = CalculationMethod.muslim_world_league.getParameters();
+        // custom adjustment can be specified
+        break;
+      case 'france_uoif':
+        params = CalculationMethod.muslim_world_league.getParameters();
+        params.fajrAngle = 12.0;
+        params.ishaAngle = 12.0;
         break;
       default:
         params = CalculationMethod.muslim_world_league.getParameters();
@@ -62,7 +95,6 @@ class PrayerTimesService {
 
     params.madhab = madhab == 'Hanafi' ? Madhab.hanafi : Madhab.shafi;
 
-    print('DEBUG: Calculating for Date: ${date.toIso8601String()}, Method: $method, Madhab: $madhab, Lat: $latitude, Lng: $longitude');
 
     final prayerTimes = PrayerTimes(coordinates, dateComponents, params);
 
@@ -89,11 +121,10 @@ class PrayerTimesService {
     );
   }
 
-  /// Bugun uchun hisoblash (eskicha qulaylik uchun)
   static DailyPrayerTimes calculateForToday({
     required double latitude,
     required double longitude,
-    String method = 'Uzbekistan',
+    String method = 'Muslim World League',
     String madhab = 'Hanafi',
   }) {
     return calculateForDate(

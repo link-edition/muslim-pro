@@ -13,6 +13,14 @@ class SettingsState {
   final double? latitude;
   final double? longitude;
   final bool isAutoLocation;
+  final bool adhanEnabled;
+  final String selectedAdhan;
+  final bool isDarkMode;
+  final double fontScale;
+  final bool prePrayerReminderEnabled;
+  final bool jumaReminderEnabled;
+
+
 
   SettingsState({
     this.notificationsEnabled = true,
@@ -30,7 +38,15 @@ class SettingsState {
     this.latitude,
     this.longitude,
     this.isAutoLocation = true,
+    this.adhanEnabled = false,
+    this.selectedAdhan = 'makkah',
+    this.isDarkMode = true,
+    this.fontScale = 0.9,
+    this.prePrayerReminderEnabled = true,
+    this.jumaReminderEnabled = true,
   });
+
+
 
   SettingsState copyWith({
     bool? notificationsEnabled,
@@ -42,6 +58,12 @@ class SettingsState {
     double? latitude,
     double? longitude,
     bool? isAutoLocation,
+    bool? adhanEnabled,
+    String? selectedAdhan,
+    bool? isDarkMode,
+    double? fontScale,
+    bool? prePrayerReminderEnabled,
+    bool? jumaReminderEnabled,
   }) {
     return SettingsState(
       notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
@@ -53,9 +75,17 @@ class SettingsState {
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
       isAutoLocation: isAutoLocation ?? this.isAutoLocation,
+      adhanEnabled: adhanEnabled ?? this.adhanEnabled,
+      selectedAdhan: selectedAdhan ?? this.selectedAdhan,
+      isDarkMode: isDarkMode ?? this.isDarkMode,
+      fontScale: fontScale ?? this.fontScale,
+      prePrayerReminderEnabled: prePrayerReminderEnabled ?? this.prePrayerReminderEnabled,
+      jumaReminderEnabled: jumaReminderEnabled ?? this.jumaReminderEnabled,
     );
   }
 }
+
+
 
 class SettingsNotifier extends StateNotifier<SettingsState> {
   SettingsNotifier() : super(SettingsState()) {
@@ -81,8 +111,28 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
       latitude: prefs.getDouble('latitude'),
       longitude: prefs.getDouble('longitude'),
       isAutoLocation: prefs.getBool('is_auto_location') ?? true,
+      adhanEnabled: prefs.getBool('adhan_enabled') ?? false,
+      selectedAdhan: prefs.getString('selected_adhan') ?? 'makkah',
+      isDarkMode: prefs.getBool('is_dark_mode') ?? true,
+      fontScale: prefs.getDouble('font_scale') ?? 0.9,
+      prePrayerReminderEnabled: prefs.getBool('pre_prayer_reminder') ?? true,
+      jumaReminderEnabled: prefs.getBool('juma_reminder') ?? true,
     );
   }
+
+  Future<void> toggleTheme(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('is_dark_mode', value);
+    state = state.copyWith(isDarkMode: value);
+  }
+
+  Future<void> setFontScale(double value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble('font_scale', value);
+    state = state.copyWith(fontScale: value);
+  }
+
+
 
   Future<void> toggleNotifications(bool value) async {
     final prefs = await SharedPreferences.getInstance();
@@ -90,6 +140,36 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     state = state.copyWith(notificationsEnabled: value);
     _rescheduleNotifications();
   }
+
+  Future<void> toggleAdhan(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('adhan_enabled', value);
+    state = state.copyWith(adhanEnabled: value);
+    _rescheduleNotifications();
+  }
+
+  Future<void> setSelectedAdhan(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selected_adhan', value);
+    state = state.copyWith(selectedAdhan: value);
+    _rescheduleNotifications();
+  }
+
+  Future<void> togglePrePrayerReminder(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('pre_prayer_reminder', value);
+    state = state.copyWith(prePrayerReminderEnabled: value);
+    _rescheduleNotifications();
+  }
+
+  Future<void> toggleJumaReminder(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('juma_reminder', value);
+    state = state.copyWith(jumaReminderEnabled: value);
+    _rescheduleNotifications();
+  }
+
+
 
   Future<void> togglePrayerNotification(String prayerName, bool value) async {
     final prefs = await SharedPreferences.getInstance();

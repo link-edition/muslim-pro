@@ -1,0 +1,6 @@
+{
+  "uz": [
+    "allohu_akbar",
+    "la_ilaha_illalloh"
+  ]
+}

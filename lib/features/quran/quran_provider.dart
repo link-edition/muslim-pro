@@ -63,6 +63,7 @@ class QuranListNotifier extends StateNotifier<QuranListState> {
     _debounceTimer?.cancel();
     _debounceTimer = Timer(const Duration(milliseconds: 300), () {
       final filtered = state.allSurahs.where((s) =>
+        s.uzbekPhoneticName.toLowerCase().contains(query.toLowerCase()) ||
         s.englishName.toLowerCase().contains(query.toLowerCase()) ||
         s.name.contains(query) ||
         s.number.toString() == query

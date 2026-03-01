@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -15,11 +14,11 @@ class QuranDbService {
 
   static Future<Database> _initDb() async {
     final docsDir = await getApplicationDocumentsDirectory();
-    final path = join(docsDir.path, 'quran_audio_pro_v1.db'); // Professional Version
+    final path = join(docsDir.path, 'quran_audio_pro_v5.db'); // Professional Version 5
     
     return await openDatabase(
       path,
-      version: 1,
+      version: 5,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE surahs (
@@ -39,7 +38,10 @@ class QuranDbService {
             verseKey TEXT,
             audioUrl TEXT,
             localPath TEXT,
-            text TEXT
+            text TEXT,
+            translation TEXT,
+            translationKril TEXT,
+            transliteration TEXT
           )
         ''');
       },
@@ -90,6 +92,9 @@ class QuranDbService {
         'audioUrl': a.audioUrl,
         'localPath': a.localPath,
         'text': a.text,
+        'translation': a.translation,
+        'translationKril': a.translationKril,
+        'transliteration': a.transliteration,
       }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
     await batch.commit(noResult: true);
@@ -111,6 +116,9 @@ class QuranDbService {
       verseKey: map['verseKey'] as String,
       audioUrl: map['audioUrl'] as String?,
       localPath: map['localPath'] as String?,
+      translation: map['translation'] as String?,
+      translationKril: map['translationKril'] as String?,
+      transliteration: map['transliteration'] as String?,
     )).toList();
   }
 }

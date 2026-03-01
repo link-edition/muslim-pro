@@ -4,6 +4,7 @@ import 'package:muslim_pro/core/location_service.dart';
 import 'data/prayer_model.dart';
 import 'data/prayer_times_service.dart';
 import 'data/prayer_storage.dart';
+import 'data/prayer_calculation_method.dart';
 import 'package:muslim_pro/core/notification_service.dart';
 import 'package:muslim_pro/features/settings/settings_provider.dart';
 /// Namoz vaqtlari holati
@@ -50,25 +51,24 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
       if (previous == null) return;
       
       bool shouldRefresh = false;
-      
-      if (previous.calculationMethod != next.calculationMethod) {
-        print('Settings: Calculation method changed to ${next.calculationMethod}');
-        shouldRefresh = true;
-      }
+
       if (previous.madhab != next.madhab) {
-        print('Settings: Madhab changed to ${next.madhab}');
         shouldRefresh = true;
       }
       if (previous.isAutoLocation != next.isAutoLocation) {
-        print('Settings: Auto location changed to ${next.isAutoLocation}');
         shouldRefresh = true;
       }
       if (previous.latitude != next.latitude || previous.longitude != next.longitude) {
-        print('Settings: Coordinates changed');
         shouldRefresh = true;
       }
       
       if (shouldRefresh) {
+        refreshPrayerTimes();
+      }
+    });
+
+    ref.listen(prayerMethodProvider, (previous, next) {
+      if (previous?.method != next.method) {
         refreshPrayerTimes();
       }
     });
@@ -101,7 +101,7 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
 
   /// Namoz vaqtlarini yangilash
   Future<void> refreshPrayerTimes() async {
-    print('PrayerProvider: refreshing prayer times...');
+
     state = state.copyWith(isLoading: true, error: null);
 
     try {
@@ -115,7 +115,7 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
           lat = position.latitude;
           lng = position.longitude;
         } catch (e) {
-          print('GPS error: $e. Using cached/default coordinates.');
+
           if (settings.latitude != null && settings.longitude != null) {
             lat = settings.latitude!;
             lng = settings.longitude!;
@@ -127,10 +127,11 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
       }
 
       // Namoz vaqtlarini hisoblash
+      final currentMethodState = ref.read(prayerMethodProvider);
       final prayerTimes = PrayerTimesService.calculateForToday(
         latitude: lat,
         longitude: lng,
-        method: settings.calculationMethod,
+        method: currentMethodState.method.apiName,
         madhab: settings.madhab,
       );
 
@@ -193,22 +194,34 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
       return;
     }
 
-    // Keyingi namozni qayta hisoblash (vaqt o'tgan bo'lishi mumkin)
-    final updatedPrayers = prayerTimes.prayers.map((prayer) {
-      return prayer.copyWith(isNext: false);
-    }).toList();
-
-    bool nextFound = false;
-    for (int i = 0; i < updatedPrayers.length; i++) {
-      if (!nextFound && updatedPrayers[i].time.isAfter(now)) {
-        updatedPrayers[i] = updatedPrayers[i].copyWith(isNext: true);
-        nextFound = true;
+    // Keyingi namozni qayta hisoblash
+    int? currentNextIndex;
+    for (int i = 0; i < prayerTimes.prayers.length; i++) {
+      if (prayerTimes.prayers[i].isNext) {
+        currentNextIndex = i;
+        break;
       }
     }
 
-    final nextPrayer = nextFound
-        ? updatedPrayers.firstWhere((p) => p.isNext)
-        : null;
+    int? newNextIndex;
+    for (int i = 0; i < prayerTimes.prayers.length; i++) {
+      if (prayerTimes.prayers[i].time.isAfter(now)) {
+        newNextIndex = i;
+        break;
+      }
+    }
+
+    List<PrayerModel> updatedPrayers = prayerTimes.prayers;
+    if (newNextIndex != currentNextIndex) {
+      updatedPrayers = prayerTimes.prayers.map((prayer) {
+        return prayer.copyWith(isNext: false);
+      }).toList();
+      if (newNextIndex != null) {
+        updatedPrayers[newNextIndex] = updatedPrayers[newNextIndex].copyWith(isNext: true);
+      }
+    }
+
+    final nextPrayer = newNextIndex != null ? updatedPrayers[newNextIndex] : null;
 
     Duration? countdown;
     if (nextPrayer != null) {
@@ -216,13 +229,14 @@ class PrayerNotifier extends StateNotifier<PrayerState> {
     } else {
       // Bugun hamma namozlar o'tib bo'ldi, ertangi Bomdodni hisoblaymiz
       final settings = ref.read(settingsProvider);
+      final currentMethodState = ref.read(prayerMethodProvider);
       final tomorrow = now.add(const Duration(days: 1));
       
       final tomorrowTimes = PrayerTimesService.calculateForDate(
         date: tomorrow,
         latitude: prayerTimes.latitude,
         longitude: prayerTimes.longitude,
-        method: settings.calculationMethod,
+        method: currentMethodState.method.apiName,
         madhab: settings.madhab,
       );
       

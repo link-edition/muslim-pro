@@ -1,7 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dua_model.dart';
-import 'package:flutter/foundation.dart';
 
 class DuaDatabaseHelper {
   static final DuaDatabaseHelper instance = DuaDatabaseHelper._init();
@@ -11,7 +10,7 @@ class DuaDatabaseHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('duas_uz.db');
+    _database = await _initDB('duas_v2.db');
     return _database!;
   }
 
@@ -21,14 +20,16 @@ class DuaDatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: _createDB,
+      onUpgrade: _onUpgrade,
     );
   }
 
   Future _createDB(Database db, int version) async {
     const idType = 'INTEGER PRIMARY KEY';
     const textType = 'TEXT NOT NULL';
+    const textOptional = 'TEXT DEFAULT ""';
 
     await db.execute('''
 CREATE TABLE duas (
@@ -39,9 +40,36 @@ CREATE TABLE duas (
   arabic $textType,
   transcription $textType,
   translation $textType,
-  reference $textType
+  reference $textType,
+  title_en $textOptional,
+  title_ar $textOptional,
+  title_id $textOptional,
+  narrator_intro_en $textOptional,
+  narrator_intro_ar $textOptional,
+  narrator_intro_id $textOptional,
+  translation_en $textOptional,
+  translation_ar $textOptional,
+  translation_id $textOptional
 )
 ''');
+  }
+
+  Future _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      // Add multilingual columns
+      final cols = [
+        'title_en', 'title_ar', 'title_id',
+        'narrator_intro_en', 'narrator_intro_ar', 'narrator_intro_id',
+        'translation_en', 'translation_ar', 'translation_id',
+      ];
+      for (var col in cols) {
+        try {
+          await db.execute('ALTER TABLE duas ADD COLUMN $col TEXT DEFAULT ""');
+        } catch (_) {
+          // Column might already exist
+        }
+      }
+    }
   }
 
   Future<void> insertDuas(List<Dua> duas) async {
@@ -62,6 +90,17 @@ CREATE TABLE duas (
       orderBy: 'id ASC'
     );
 
+    return maps.map((json) => Dua.fromJson(json)).toList();
+  }
+
+  Future<List<Dua>> getDuasByIds(List<int> ids) async {
+    if (ids.isEmpty) return [];
+    final db = await instance.database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'duas',
+      where: 'id IN (${ids.join(',')})',
+      orderBy: 'id ASC'
+    );
     return maps.map((json) => Dua.fromJson(json)).toList();
   }
 
